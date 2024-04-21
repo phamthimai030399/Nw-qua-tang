@@ -1,0 +1,16 @@
+.swiper-pagination-bullet-active {
+    background: #f07d00 !important;
+}
+.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+    width: 13px;
+    height: 13px;
+}
+#megamenu-mainbanners.index_mg_bottom {
+    height: fit-content;
+}
+@media (max-width: 767.99px) {
+    .swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+    }
+}
