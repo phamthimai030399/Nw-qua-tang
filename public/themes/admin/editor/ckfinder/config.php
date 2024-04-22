@@ -33,8 +33,8 @@ $config['authentication'] = function () {
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = 'emogift.newway';
-$config['licenseKey']  = 'C5D5EDTJM2QK7NED5BVQUQYV741RP';
+$config['licenseName'] = 'quatang.newway';
+$config['licenseKey']  = 'C3N3G4V43F43K4YVYNKL1GYD8K6E4';
 
 /*============================ CKFinder Internal Directory ============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_privateDir

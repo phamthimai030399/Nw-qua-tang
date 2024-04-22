@@ -19,40 +19,11 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($web_information);
-		/*
-        // Kiểm tra xem đã tồn tại bản ghi hay chưa
-        $userOnline = TbViews::select('*')->where('ngay',strtotime(date('Y-m-d')))->first();
-		if ($userOnline) {
-			if ($this->svl_ismobile() == 1) {
-				$web = $userOnline->web;
-				$mb = $userOnline->mobile + 1;
-			} else {
-				$web = $userOnline->web + 1;
-				$mb = $userOnline->mobile;
-			}
-            $toantrang = $userOnline->toantrang + 1;
-			$userOnline->mobile = $mb;
-			$userOnline->web = $web;
-			$userOnline->toantrang = $toantrang;
-			$userOnline->save();
-		} else {
-			if ($this->svl_ismobile() == 1) {
-				$web = 0;
-				$mb = 1;
-			} else {
-				$web = 1;
-				$mb = 0;
-			}
-			$userOnline = new TbViews();
-            $userOnline->ngay = strtotime(date('Y-m-d'));
-			$userOnline->mobile = $mb;
-			$userOnline->web = $web;
-			$userOnline->toantrang = 1;
-			$userOnline->save();
-		}
-		*/
         //return redirect()->route('frontend.home')->with('successMessage', 'Thêm mới tin thành công! Tin của bạn đang được chờ duyệt');
+        $this->responseData['new_products'] = ContentService::getProducts(['hienthi' => '0', 'status' => '1', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
+        $this->responseData['feature_products'] = ContentService::getProducts(['hienthi' => '1', 'status' => '1', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
+        $this->responseData['ever_made_products'] = ContentService::getProducts(['hienthi' => '2', 'status' => '1', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
+        $this->responseData['liquidation_gifts'] = ContentService::getProducts(['hienthi' => '3', 'status' => '1', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
         return $this->responseView('frontend.pages.home.index');
         //return redirect()->route('frontend.home');
     }

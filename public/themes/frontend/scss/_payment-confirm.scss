@@ -1,0 +1,109 @@
+.confirm {
+  margin: 5.25rem 0;
+  .confirm-content {
+    margin-bottom: 6.75rem;
+    h2 {
+      font-weight: $font-semibold;
+      font-size: 2.625rem;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    p {
+      font-weight: $font-medium;
+      font-size: 1.25rem;
+      line-height: 2;
+      text-align: center;
+      color: #646464;
+      margin-bottom: 3.5rem;
+      max-width: 865px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .confirm-icon {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.1875rem;
+    img {
+      width: auto;
+      height: auto;
+      max-width: 66px;
+      max-height: 66px;
+    }
+  }
+  .confirm-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3.125rem;
+    @include landscape-phone {
+      gap: 20px;
+    }
+  }
+  .confirm-btn {
+    font-weight: $font-medium;
+    font-size: 1.25rem;
+    line-height: 2;
+    padding: 11px 50px;
+    border-radius: 400px;
+    border: 2px solid black;
+    text-align: center;
+    &:hover {
+      background-color: $light-grey;
+    }
+    &.confirm-go {
+      background-color: black;
+      color: white;
+      &:hover {
+        background-color: $dark-charcoal;
+      }
+    }
+  }
+  .confirm-help {
+    p {
+      font-weight: $font-medium;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .confirm-help-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 9px 0 11px 0;
+      width: fit-content;
+      border-top: 1px solid $line-color;
+      border-bottom: 1px solid $line-color;
+      margin-left: auto;
+      margin-right: auto;
+      @include mobile {
+        width: 100%;
+      }
+    }
+    .confirm-help-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 60px 3px 60px;
+      font-weight: $font-medium;
+      font-size: 14px;
+      border-left: 1px solid $line-color;
+      @include mobile {
+        flex: 1;
+        padding: 8px 20px 3px 20px;
+      }
+      img {
+        width: auto;
+        height: auto;
+        max-width: 17px;
+        max-height: 14px;
+      }
+      &:first-child {
+        border: none;
+      }
+    }
+  }
+}

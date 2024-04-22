@@ -145,6 +145,10 @@ class ContentService
 			
 			if (!empty($params['category'])) {
 				$query->where('tb_products.category', 'like', '%,' .$params['category']. ',%');
+			}
+
+			if (!empty($params['hienthi'])) {
+				$query->where('tb_products.hienthi', 'like', '%;' .$params['hienthi']. ';%');
 			} 
 			
 			if (!empty($params['alias'])) {

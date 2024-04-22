@@ -1,0 +1,336 @@
+.information {
+  margin-top: 60px;
+  @include landscape-phone {
+    margin-top: 10px;
+  }
+  .information-toggle-button {
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 8px 32px;
+    display: none;
+    width: fit-content;
+    @include tablet {
+      display: block;
+      margin-bottom: 15px;
+    }
+  }
+  .information-side {
+    @include tablet {
+      padding-right: 0;
+      margin-top: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 8;
+
+      width: 100%;
+      height: 100%;
+      padding: 80px 10.5px 0;
+
+      background-color: $white;
+      overflow-y: scroll;
+
+      transform: translateX(-100%);
+      transition: all cubic-bezier(0.77, 0, 0.175, 1) 0.75s;
+
+      &.active {
+        transform: translateX(0%);
+      }
+    }
+    .information-side-close {
+      display: none;
+      @include tablet {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10.5px;
+        padding: 10px 15px;
+        border-radius: 3px;
+        background-color: $black;
+        color: $white;
+        font-weight: $font-bold;
+      }
+    }
+  }
+  .information-nav {
+    .information-nav-item {
+      margin-bottom: 10px;
+    }
+    .information-nav-link {
+      padding: 10px 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: $black;
+      &.active {
+        font-weight: $font-extrabold;
+      }
+      @include tablet {
+        font-size: 14px;
+        padding: 5px 0;
+      }
+    }
+    .information-nav-line {
+      width: 100%;
+      height: 1px;
+      background-color: $grey-93;
+      margin-top: 17px;
+      margin-bottom: 23px;
+    }
+  }
+  .information-container {
+    margin-top: 33px;
+    margin-bottom: 143px;
+    .information-group {
+      padding-bottom: 30px;
+      border-bottom: 1px solid $grey-93;
+      margin-bottom: 45px;
+    }
+    h2 {
+      font-weight: $font-regular;
+      font-size: 32px;
+      padding-bottom: 13px;
+      position: relative;
+      margin-bottom: 36px;
+      &::after {
+        content: "";
+        width: 35px;
+        height: 3px;
+        background-color: $black;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+    h4 {
+      font-weight: $font-extrabold;
+      font-size: 16px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    h5 {
+      font-weight: $font-extrabold;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 14px;
+      line-height: 30px;
+      margin-bottom: 15px;
+    }
+    ol {
+      list-style-type: decimal;
+      padding-left: 40px;
+      li {
+        font-size: 14px;
+        line-height: 30px;
+        padding-left: 20px;
+        margin-bottom: 15px;
+      }
+    }
+    .information-address {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      img {
+        padding-right: 37px;
+        max-width: 200px;
+        width: auto;
+        height: auto;
+        @include mobile {
+          padding-right: 15px;
+          max-width: 150px;
+        }
+      }
+      .information-address-line {
+        height: 47px;
+        width: 1px;
+        background-color: $grey-76;
+        margin-right: 40px;
+        @include mobile {
+          margin-right: 15px;
+        }
+      }
+      .information-address-content {
+        max-width: 298px;
+        h6 {
+          font-weight: $font-semibold;
+          font-size: 14px;
+          line-height: 24px;
+          margin-bottom: 0;
+        }
+        p {
+          font-size: 14px;
+          line-height: 24px;
+          margin-bottom: 0;
+          @include mobile {
+            font-size: 12px;
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+    .information-contact {
+      max-width: 580px;
+    }
+  }
+  .information-account {
+    margin-bottom: 9rem;
+    h1 {
+      font-weight: $font-bold;
+      font-size: 2rem;
+      text-transform: capitalize;
+      padding-bottom: 16px;
+      margin-bottom: 3.375rem;
+      position: relative;
+      &::after {
+        content: "";
+        display: block;
+        width: 35px;
+        height: 3px;
+        background: black;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+  .information-header {
+    margin-bottom: 4rem;
+    .information-header-bg {
+      aspect-ratio: 897 / 201;
+      background-color: #4e4e4e;
+      border-radius: 100px 0 0 0;
+      overflow: hidden;
+      @include landscape-phone {
+        border-radius: 60px 0 0 0;
+      }
+    }
+    .information-header-container {
+      margin-top: -2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 5%;
+      @include mobile {
+        flex-wrap: wrap;
+      }
+    }
+    .information-header-main {
+      display: flex;
+      align-items: end;
+      gap: 36px;
+      @include tablet {
+        gap: 15px;
+      }
+    }
+    .information-avatar {
+      width: 132px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid white;
+      @include tablet {
+        width: 110px;
+      }
+    }
+    .information-header-info {
+      h3 {
+        font-weight: $font-semibold;
+        font-size: 1.375rem;
+        line-height: 1.1818;
+        margin-bottom: 6px;
+      }
+      h4 {
+        font-size: 1rem;
+        line-height: 1.625;
+        color: $grey-50;
+        margin-bottom: 1.375rem;
+      }
+    }
+    .information-header-edit {
+      font-weight: $font-semibold;
+      font-size: 14px;
+      line-height: 19px;
+      padding: 12px 30px;
+      background-color: black;
+      color: white;
+      border-radius: 500px;
+      overflow: hidden;
+      width: fit-content;
+      height: fit-content;
+      transition: all 0.45s ease-in-out;
+      @include mobile {
+        padding: 7px 20px;
+      }
+      &:hover {
+        background-color: $granite-grey;
+      }
+    }
+  }
+  .information-group {
+    margin-bottom: 3.875rem;
+    h2 {
+      font-weight: $font-bold;
+      font-size: 1.125rem;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+  }
+  .information-line {
+    display: flex;
+    padding: 26px 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid #ededed;
+    @include mobile {
+      padding: 12px 0;
+    }
+    &.information-no-line {
+      border: 0;
+    }
+    a {
+      font-weight: $font-semibold;
+    }
+    p,
+    .account-email,
+    .account-password,
+    input {
+      flex: 1;
+      position: relative;
+      button {
+        position: absolute;
+        left: 220px;
+        top: 50%;
+        transform: translateY(-50%);
+        @include tablet {
+          left: 170px;
+        }
+      }
+    }
+    .information-line-title {
+      flex: 0 0 222px;
+      align-self: self-start;
+      @include tablet {
+        flex: 0 0 150px;
+      }
+      @include mobile {
+        flex: 0 0 60px;
+      }
+    }
+  }
+  .show-data {
+    svg {
+      &:first-child {
+        display: none;
+      }
+    }
+  }
+  .hidden-data {
+    svg {
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+}

@@ -55,7 +55,11 @@ class Controller extends BaseController
         }
         $this->responseData['locale'] = App::getLocale();
 
-        $this->responseData['taxonomy_all'] = ContentService::getCmsTaxonomy(['status' => 'active', 'order_by' => ['iorder' => 'ASC']])->get();
+        $taxonomy_all = ContentService::getCmsTaxonomy(['status' => 'active', 'order_by' => ['iorder' => 'ASC']])->get();
+        foreach ($taxonomy_all as $taxonomy) {
+            $taxonomy->json_param = json_decode($taxonomy->json_param);
+        }
+        $this->responseData['taxonomy_all'] = $taxonomy_all;
 
         // Get page info and block default
         $params_page['route_name'] = Route::getCurrentRoute()->getName();
