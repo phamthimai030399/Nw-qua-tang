@@ -190,20 +190,20 @@ if (popupCart && addToCart) {
   });
 }
 
-const quickviewPopup = new bootstrap.Modal(
-  document.getElementById("fhm-quickview-popup")
-);
-// close quick view wishlist when click quick view wishlist (detail-wishlist)
-const quickviewWishlist = document.querySelectorAll(".detail-thumb-wishlist");
-if (quickviewWishlist) {
-  const tabWishlist = popupCart.querySelector("#pills-wishlist-tab");
-  Array.from(quickviewWishlist).forEach((wishlist) => {
-    wishlist.addEventListener("click", () => {
-      quickviewPopup.hide();
-      tabWishlist.click();
-    });
-  });
-}
+// const quickviewPopup = new bootstrap.Modal(
+//   document.getElementById("fhm-quickview-popup")
+// );
+// // close quick view wishlist when click quick view wishlist (detail-wishlist)
+// const quickviewWishlist = document.querySelectorAll(".detail-thumb-wishlist");
+// if (quickviewWishlist) {
+//   const tabWishlist = popupCart.querySelector("#pills-wishlist-tab");
+//   Array.from(quickviewWishlist).forEach((wishlist) => {
+//     wishlist.addEventListener("click", () => {
+//       quickviewPopup.hide();
+//       tabWishlist.click();
+//     });
+//   });
+// }
 // close quick view when click add to cart
 const quickviewCart = document.querySelector(".quickview-add-cart");
 if (quickviewCart) {

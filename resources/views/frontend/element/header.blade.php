@@ -226,7 +226,7 @@
                  </div>
                  <div class="header-wrapper">
                      <div class="header-right">
-                         <div class="grid__item">
+                         <div class="grid__item d-none d-lg-flex">
                              <div class="search-form-wrapper">
                                  <form id="search-collection-form" accept-charset="UTF-8"
                                      action="https://quatangdoanhnghiep.com.vn/search" class="search-form"
@@ -244,7 +244,7 @@
                                  </form>
                              </div>
                          </div>
-                         <div class="header-account header-icon d-none d-lg-block" data-bs-toggle="modal"
+                         <div class="header-account header-icon" data-bs-toggle="modal"
                              data-bs-target="#fhm-login-popup" aria-controls="fhm-login-popup">
                              <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -284,433 +284,55 @@
                          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                              aria-label="Close"></button>
                          <nav class="nav-mobile">
-                             <ul class="nav-list">
-                                 <li>
-                                     <a href="#" class="nav-item">New</a>
-                                     <ul class="nav-list-lv0 collapse" id="collapsesubmenu-1">
-                                         <li class="position-relative">
-                                             <a href="#" class="nav-item">Women’s Dress</a>
-                                             <ul class="nav-list-lv1 collapse" id="collapsesubmenu-lv1-1">
-                                                 <li>
-                                                     <a href="#" class="nav-item">Culotte dress</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Babydoll dress</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Wrap around dress</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Kimono dress</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Bubble dress</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Tutu dress</a>
-                                                 </li>
-                                             </ul>
-
-                                             <div class="close-sub-nav collapsed" data-bs-toggle="collapse"
-                                                 href="#collapsesubmenu-lv1-1" role="button" aria-expanded="false"
-                                                 aria-controls="collapsesubmenulv1-1">
-                                                 <svg version="1.1" id="Capa_1"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                     viewBox="0 0 512 512" style="enable-background: new 0 0 512 512"
-                                                     xml:space="preserve">
-                                                     <g>
-                                                         <g>
-                                                             <path
-                                                                 d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216			v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z" />
-                                                         </g>
-                                                     </g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                 </svg>
-
-                                                 <svg id="svg1591" height="24" viewBox="0 0 6.3499999 6.3500002"
-                                                     width="24" xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:svg="http://www.w3.org/2000/svg">
-                                                     <g id="layer1" transform="translate(0 -290.65)">
-                                                         <path id="path2047"
-                                                             d="m.79427278 293.56039a.2646485.2646485 0 0 0 0 .52917h4.76146822a.2646485.2646485 0 0 0 0-.52917z"
-                                                             font-variant-ligatures="normal"
-                                                             font-variant-position="normal" font-variant-caps="normal"
-                                                             font-variant-numeric="normal"
-                                                             font-variant-alternates="normal"
-                                                             font-feature-settings="normal" text-indent="0"
-                                                             text-align="start" text-decoration-line="none"
-                                                             text-decoration-style="solid"
-                                                             text-decoration-color="rgb(0,0,0)" text-transform="none"
-                                                             text-orientation="mixed" white-space="normal"
-                                                             shape-padding="0" isolation="auto"
-                                                             mix-blend-mode="normal" solid-color="rgb(0,0,0)"
-                                                             solid-opacity="1" vector-effect="none" />
-                                                     </g>
-                                                 </svg>
-                                             </div>
-                                         </li>
-
-                                         <li class="position-relative">
-                                             <a href="#" class="nav-item">Men’s Fashion</a>
-                                             <ul class="nav-list-lv1 collapse" id="collapsesubmenu-lv1-2">
-                                                 <li>
-                                                     <a href="#" class="nav-item">Suit</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Hawaiian shirt</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Singlet</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Business shoes</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Flip flops</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Shorts</a>
-                                                 </li>
-                                             </ul>
-
-                                             <div class="close-sub-nav collapsed" data-bs-toggle="collapse"
-                                                 href="#collapsesubmenu-lv1-2" role="button" aria-expanded="false"
-                                                 aria-controls="collapsesubmenu-lv1-2">
-                                                 <svg version="1.1" id="Capa_1"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                     viewBox="0 0 512 512" style="enable-background: new 0 0 512 512"
-                                                     xml:space="preserve">
-                                                     <g>
-                                                         <g>
-                                                             <path
-                                                                 d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216			v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z" />
-                                                         </g>
-                                                     </g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                 </svg>
-
-                                                 <svg id="svg1591" height="24" viewBox="0 0 6.3499999 6.3500002"
-                                                     width="24" xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:svg="http://www.w3.org/2000/svg">
-                                                     <g id="layer1" transform="translate(0 -290.65)">
-                                                         <path id="path2047"
-                                                             d="m.79427278 293.56039a.2646485.2646485 0 0 0 0 .52917h4.76146822a.2646485.2646485 0 0 0 0-.52917z"
-                                                             font-variant-ligatures="normal"
-                                                             font-variant-position="normal" font-variant-caps="normal"
-                                                             font-variant-numeric="normal"
-                                                             font-variant-alternates="normal"
-                                                             font-feature-settings="normal" text-indent="0"
-                                                             text-align="start" text-decoration-line="none"
-                                                             text-decoration-style="solid"
-                                                             text-decoration-color="rgb(0,0,0)" text-transform="none"
-                                                             text-orientation="mixed" white-space="normal"
-                                                             shape-padding="0" isolation="auto"
-                                                             mix-blend-mode="normal" solid-color="rgb(0,0,0)"
-                                                             solid-opacity="1" vector-effect="none" />
-                                                     </g>
-                                                 </svg>
-                                             </div>
-                                         </li>
-                                         <li class="position-relative">
-                                             <a href="#" class="nav-item">Accessories</a>
-                                             <ul class="nav-list-lv1 collapse" id="collapsesubmenu-lv1-3">
-                                                 <li>
-                                                     <a href="#" class="nav-item">Sunglasses</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Scarves</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Belts</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Shoes</a>
-                                                 </li>
-                                             </ul>
-
-                                             <div class="close-sub-nav collapsed" data-bs-toggle="collapse"
-                                                 href="#collapsesubmenu-lv1-3" role="button" aria-expanded="false"
-                                                 aria-controls="collapsesubmenu-lv1-3">
-                                                 <svg version="1.1" id="Capa_1"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                     viewBox="0 0 512 512" style="enable-background: new 0 0 512 512"
-                                                     xml:space="preserve">
-                                                     <g>
-                                                         <g>
-                                                             <path
-                                                                 d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216			v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z" />
-                                                         </g>
-                                                     </g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                 </svg>
-
-                                                 <svg id="svg1591" height="24" viewBox="0 0 6.3499999 6.3500002"
-                                                     width="24" xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:svg="http://www.w3.org/2000/svg">
-                                                     <g id="layer1" transform="translate(0 -290.65)">
-                                                         <path id="path2047"
-                                                             d="m.79427278 293.56039a.2646485.2646485 0 0 0 0 .52917h4.76146822a.2646485.2646485 0 0 0 0-.52917z"
-                                                             font-variant-ligatures="normal"
-                                                             font-variant-position="normal" font-variant-caps="normal"
-                                                             font-variant-numeric="normal"
-                                                             font-variant-alternates="normal"
-                                                             font-feature-settings="normal" text-indent="0"
-                                                             text-align="start" text-decoration-line="none"
-                                                             text-decoration-style="solid"
-                                                             text-decoration-color="rgb(0,0,0)" text-transform="none"
-                                                             text-orientation="mixed" white-space="normal"
-                                                             shape-padding="0" isolation="auto"
-                                                             mix-blend-mode="normal" solid-color="rgb(0,0,0)"
-                                                             solid-opacity="1" vector-effect="none" />
-                                                     </g>
-                                                 </svg>
-                                             </div>
-                                         </li>
-                                         <li class="position-relative">
-                                             <a href="#" class="nav-item">Swim</a>
-                                             <ul class="nav-list-lv1 collapse" id="collapsesubmenu-lv1-4">
-                                                 <li>
-                                                     <a href="#" class="nav-item">Aqua Apparel</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Go Exotic Swimwear</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Surf Goddess</a>
-                                                 </li>
-                                             </ul>
-
-                                             <div class="close-sub-nav collapsed" data-bs-toggle="collapse"
-                                                 href="#collapsesubmenu-lv1-4" role="button" aria-expanded="false"
-                                                 aria-controls="collapsesubmenu-lv1-4">
-                                                 <svg version="1.1" id="Capa_1"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                     viewBox="0 0 512 512" style="enable-background: new 0 0 512 512"
-                                                     xml:space="preserve">
-                                                     <g>
-                                                         <g>
-                                                             <path
-                                                                 d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216			v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z" />
-                                                         </g>
-                                                     </g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                 </svg>
-
-                                                 <svg id="svg1591" height="24" viewBox="0 0 6.3499999 6.3500002"
-                                                     width="24" xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:svg="http://www.w3.org/2000/svg">
-                                                     <g id="layer1" transform="translate(0 -290.65)">
-                                                         <path id="path2047"
-                                                             d="m.79427278 293.56039a.2646485.2646485 0 0 0 0 .52917h4.76146822a.2646485.2646485 0 0 0 0-.52917z"
-                                                             font-variant-ligatures="normal"
-                                                             font-variant-position="normal" font-variant-caps="normal"
-                                                             font-variant-numeric="normal"
-                                                             font-variant-alternates="normal"
-                                                             font-feature-settings="normal" text-indent="0"
-                                                             text-align="start" text-decoration-line="none"
-                                                             text-decoration-style="solid"
-                                                             text-decoration-color="rgb(0,0,0)" text-transform="none"
-                                                             text-orientation="mixed" white-space="normal"
-                                                             shape-padding="0" isolation="auto"
-                                                             mix-blend-mode="normal" solid-color="rgb(0,0,0)"
-                                                             solid-opacity="1" vector-effect="none" />
-                                                     </g>
-                                                 </svg>
-                                             </div>
-                                         </li>
-                                         <li class="position-relative">
-                                             <a href="#" class="nav-item">By Brands</a>
-                                             <ul class="nav-list-lv1 collapse" id="collapsesubmenu-lv1-5">
-                                                 <li>
-                                                     <a href="#" class="nav-item">Tiffany & Co</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Zara</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">H&M</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Cartier</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="nav-item">Lululemon</a>
-                                                 </li>
-                                             </ul>
-
-                                             <div class="close-sub-nav collapsed" data-bs-toggle="collapse"
-                                                 href="#collapsesubmenu-lv1-5" role="button" aria-expanded="false"
-                                                 aria-controls="collapsesubmenu-lv1-5">
-                                                 <svg version="1.1" id="Capa_1"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                     viewBox="0 0 512 512" style="enable-background: new 0 0 512 512"
-                                                     xml:space="preserve">
-                                                     <g>
-                                                         <g>
-                                                             <path
-                                                                 d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216			v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z" />
-                                                         </g>
-                                                     </g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                     <g></g>
-                                                 </svg>
-
-                                                 <svg id="svg1591" height="24" viewBox="0 0 6.3499999 6.3500002"
-                                                     width="24" xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:svg="http://www.w3.org/2000/svg">
-                                                     <g id="layer1" transform="translate(0 -290.65)">
-                                                         <path id="path2047"
-                                                             d="m.79427278 293.56039a.2646485.2646485 0 0 0 0 .52917h4.76146822a.2646485.2646485 0 0 0 0-.52917z"
-                                                             font-variant-ligatures="normal"
-                                                             font-variant-position="normal" font-variant-caps="normal"
-                                                             font-variant-numeric="normal"
-                                                             font-variant-alternates="normal"
-                                                             font-feature-settings="normal" text-indent="0"
-                                                             text-align="start" text-decoration-line="none"
-                                                             text-decoration-style="solid"
-                                                             text-decoration-color="rgb(0,0,0)" text-transform="none"
-                                                             text-orientation="mixed" white-space="normal"
-                                                             shape-padding="0" isolation="auto"
-                                                             mix-blend-mode="normal" solid-color="rgb(0,0,0)"
-                                                             solid-opacity="1" vector-effect="none" />
-                                                     </g>
-                                                 </svg>
-                                             </div>
-                                         </li>
-                                     </ul>
-                                     <div class="close-sub-nav collapsed" data-bs-toggle="collapse"
-                                         href="#collapsesubmenu-1" role="button" aria-expanded="false"
-                                         aria-controls="collapsesubmenu-1">
-                                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             viewBox="0 0 512 512" style="enable-background: new 0 0 512 512"
-                                             xml:space="preserve">
-                                             <g>
-                                                 <g>
-                                                     <path
-                                                         d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216			v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z" />
-                                                 </g>
-                                             </g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                             <g></g>
-                                         </svg>
-
-                                         <svg id="svg1591" height="24" viewBox="0 0 6.3499999 6.3500002"
-                                             width="24" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:svg="http://www.w3.org/2000/svg">
-                                             <g id="layer1" transform="translate(0 -290.65)">
-                                                 <path id="path2047"
-                                                     d="m.79427278 293.56039a.2646485.2646485 0 0 0 0 .52917h4.76146822a.2646485.2646485 0 0 0 0-.52917z"
-                                                     font-variant-ligatures="normal" font-variant-position="normal"
-                                                     font-variant-caps="normal" font-variant-numeric="normal"
-                                                     font-variant-alternates="normal" font-feature-settings="normal"
-                                                     text-indent="0" text-align="start" text-decoration-line="none"
-                                                     text-decoration-style="solid" text-decoration-color="rgb(0,0,0)"
-                                                     text-transform="none" text-orientation="mixed"
-                                                     white-space="normal" shape-padding="0" isolation="auto"
-                                                     mix-blend-mode="normal" solid-color="rgb(0,0,0)"
-                                                     solid-opacity="1" vector-effect="none" />
-                                             </g>
-                                         </svg>
-                                     </div>
-                                 </li>
-
-                                 <li>
-                                     <a href="#" class="nav-item">Best Sellers</a>
-                                 </li>
-                                 <li><a href="#">Brands</a></li>
-                                 <li><a href="#">Denim</a></li>
-                                 <li><a href="#">Men</a></li>
-                                 <li><a href="#">Swim</a></li>
-                                 <li><a href="#">Sale</a></li>
-                             </ul>
+                            <ul class="nav-list">
+                                <li>
+                                    <a href="#" class="nav-item">TRANG CHỦ</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-item">GIỚI THIỆU</a>
+                                </li>
+                                <li>
+                                    <a class="nav-item" href="#">SẢN PHẨM CÓ SẴN</a>
+                                    <ul class="submenu-header">
+                                        <li>
+                                            <a href="collections/hop-dung-ruou.html">Hộp đựng rượu, PKR</a>
+                                        </li>
+   
+                                        <li>
+                                            <a href="collections/hop-namecard-co-san.html">Hộp namecard</a>
+                                        </li>
+   
+                                        <li>
+                                            <a href="collections/goi-hoi-chu-u.html">Gối hơi</a>
+                                        </li>
+   
+                                        <li>
+                                            <a href="collections/coc-gap-co-san.html">Cốc gấp - Cốc xếp</a>
+                                        </li>
+   
+                                        <li>
+                                            <a href="collections/binh-giu-nhiet-binh-nuoc-co-san.html">Bình GN, Bình
+                                                nước</a>
+                                        </li>
+   
+                                        <li>
+                                            <a href="collections/but-ky-but-bi-co-san.html">Bút ký, Bút bi</a>
+                                        </li>
+   
+                                        <li>
+                                            <a href="collections/bien-ten-huy-hieu-co-san.html">Biển tên, Huy hiệu</a>
+                                        </li>
+   
+                                        <li>
+                                            <a href="collections/san-pham-khac-co-san.html">Sản phẩm khác</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="nav-item" href="#">TƯ VẤN SẢN PHẨM</a></li>
+                                <li><a class="nav-item" href="#">TIN TỨC</a></li>
+                                <li><a class="nav-item" href="#">VIDEO </a></li>
+                                <li><a class="nav-item" href="#">LIÊN HỆ</a></li>
+                            </ul>
                          </nav>
 
                          <div class="mobile-row">

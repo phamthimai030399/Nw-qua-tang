@@ -181,6 +181,61 @@ class ContentService
 
         return $query;
     }
+    public static function getPost($params)
+    {
+        $query = CmsPost::select('tb_cms_posts.*')
+            ->selectRaw('admins.name as admin_created, b.name as admin_updated, tb_cms_taxonomys.title as taxonomy_title, tb_cms_taxonomys.url_part as url_part')
+			->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_cms_posts.taxonomy_id')
+            ->leftJoin('admins', 'admins.id', '=', 'tb_cms_posts.admin_created_id')
+			->leftJoin('admins as b', 'b.id', '=', 'tb_cms_posts.admin_updated_id')
+			->when(!empty($params['keyword']), function ($query) use ($params) {
+                $keyword = $params['keyword'];
+                return $query->where(function ($where) use ($keyword) {
+                    return $where->where('tb_cms_posts.title', 'like', '%' . $keyword . '%')
+                        ->orWhere('tb_cms_posts.mota', 'like', '%' . $keyword . '%')
+						->orWhere('tb_cms_posts.mota', 'like', '%' . $keyword . '%')
+						->orWhere('tb_cms_posts.meta_description', 'like', '%' . $keyword . '%');
+                });
+            });
+			
+			if (!empty($params['category'])) {
+				$query->where('tb_cms_posts.category', 'like', '%,' .$params['category']. ',%');
+			}
+
+			if (!empty($params['hienthi'])) {
+				$query->where('tb_cms_posts.hienthi', 'like', '%;' .$params['hienthi']. ';%');
+			} 
+			
+			if (!empty($params['alias'])) {
+				$query->where('tb_cms_posts.alias', $params['alias']);
+			} 
+			
+			if (!empty($params['taxonomy_id'])) {
+				$query->where('tb_cms_posts.taxonomy_id', $params['taxonomy_id']);
+			} 
+			
+			if (!empty($params['different_id'])) {
+				$query->where('tb_cms_posts.id','!=',$params['different_id']);
+			}
+			
+			if (!empty($params['status'])) {
+				$query->where('tb_cms_posts.status', $params['status']);
+			}
+			
+			if (!empty($params['order_by'])) {
+				if (is_array($params['order_by'])) {
+					foreach ($params['order_by'] as $key => $value) {
+						$query->orderBy('tb_cms_posts.' . $key, $value);
+					}
+				} else {
+					$query->orderByRaw('tb_cms_posts.' . $params['order_by'] . ' desc');
+				}
+			} else {
+				$query->orderByRaw('tb_cms_posts.id DESC');
+			}
+
+        return $query;
+    }
 
 
     public static function getOption()

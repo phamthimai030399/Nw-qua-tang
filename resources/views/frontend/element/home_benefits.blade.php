@@ -6,7 +6,7 @@
                 @if ($item->block_code == 'service' && $item->parent_id == null)
                     <div class="col-6 col-md-4 col-lg-3 col-xl-3 benefits-box">
                         <div class="benefits-img">
-                            <i class="{{ $item->icon }}" aria-hidden="true"></i>
+                            <img src="{{$item->image}}" alt="">
                         </div>
                         <div class="vertical-line"></div>
                         <p>

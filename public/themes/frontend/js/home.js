@@ -13,7 +13,7 @@ const swiperSlider = new Swiper(".slider-container", {
 
 const swiperBestSeller = new Swiper(".justin-slider", {
   direction: "horizontal",
-  slidesPerView: 1,
+  slidesPerView: 1.5,
   spaceBetween: 10,
   speed: 800,
   autoplay: {

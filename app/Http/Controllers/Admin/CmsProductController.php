@@ -75,7 +75,8 @@ class CmsProductController extends Controller
      */
     public function store(Request $request)
     {
-		if(ContentService::checkRole($this->routeDefault,'create') == 0){
+		
+        if(ContentService::checkRole($this->routeDefault,'create') == 0){
 			$this->responseData['module_name'] = __('Bạn không có quyền truy cập chức năng này');
 			return $this->responseView($this->viewPart . '.404');
 		}
@@ -108,13 +109,11 @@ class CmsProductController extends Controller
 		} while ($taxonomy_id > 0);
 		
 		$params['category'] = ','.implode(',',$array_category).',';
-		
         //$params['is_type'] = Consts::POST_TYPE['product'];
+        unset($params['json_action']);
         $params['admin_created_id'] = Auth::guard('admin')->user()->id;
         $params['admin_updated_id'] = Auth::guard('admin')->user()->id;
-
         CmsProduct::create($params);
-
         return redirect()->route($this->routeDefault . '.index')->with('successMessage', __('Add new successfully!'));
     }
 
@@ -159,7 +158,7 @@ class CmsProductController extends Controller
      */
     public function update(Request $request, CmsProduct $cmsProduct)
     {
-		if(ContentService::checkRole($this->routeDefault,'update') == 0){
+        if(ContentService::checkRole($this->routeDefault,'update') == 0){
 			$this->responseData['module_name'] = __('Bạn không có quyền truy cập chức năng này');
 			return $this->responseView($this->viewPart . '.404');
 		}
@@ -167,7 +166,7 @@ class CmsProductController extends Controller
             'title' => 'required|max:255',
             'taxonomy_id' => 'required|max:255',
         ]);
-
+        
         $params = $request->all();
 		
 		$hienthi = isset($params['hienthi']) ? implode(';',$params['hienthi']) : '';
@@ -175,6 +174,7 @@ class CmsProductController extends Controller
 		$params['hienthi'] = ';'.$hienthi.';';
 		
 		$taxonomy_id = $params['taxonomy_id'];
+        
 		
 		// Lấy các danh mục cha của danh mục này
 		$array_category = array();

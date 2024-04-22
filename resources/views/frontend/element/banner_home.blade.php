@@ -1,5 +1,5 @@
  <!-- START HOME SLIDER -->
- <div id="banner-container">
+ <div id="banner-container" class="d-none d-lg-block">
      <div class="container">
          <div class="banner-home">
              <div class="banner-category">
@@ -17,7 +17,9 @@
                                              class="magamenu-category_title">
                                              <img src="{{ $taxonomy->json_params->image }}"
                                                  alt="{{ $taxonomy->title }}" />
-                                             {{ $taxonomy->title }}
+                                             <p>
+                                                 {{ $taxonomy->title }}
+                                             </p>
                                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                                          </a>
                                          <ul class="no-bullets">
@@ -35,12 +37,6 @@
                                  @endif
                              @endforeach
                          </ul>
-                         <span class="readmore-menu">Xem thêm</span>
-                         <script>
-                             $(".readmore-menu").click(function() {
-                                 $(".item-menu-readmore").slideToggle();
-                             });
-                         </script>
                      </div>
                  </div>
              </div>
@@ -54,7 +50,43 @@
                              <li>
                                  <a href="#" class="nav-item">GIỚI THIỆU</a>
                              </li>
-                             <li><a class="nav-item" href="#">SẢN PHẨM CÓ SẴN</a></li>
+                             <li>
+                                 <a class="nav-item" href="#">SẢN PHẨM CÓ SẴN</a>
+                                 <ul class="submenu-header">
+                                     <li>
+                                         <a href="collections/hop-dung-ruou.html">Hộp đựng rượu, PKR</a>
+                                     </li>
+
+                                     <li>
+                                         <a href="collections/hop-namecard-co-san.html">Hộp namecard</a>
+                                     </li>
+
+                                     <li>
+                                         <a href="collections/goi-hoi-chu-u.html">Gối hơi</a>
+                                     </li>
+
+                                     <li>
+                                         <a href="collections/coc-gap-co-san.html">Cốc gấp - Cốc xếp</a>
+                                     </li>
+
+                                     <li>
+                                         <a href="collections/binh-giu-nhiet-binh-nuoc-co-san.html">Bình GN, Bình
+                                             nước</a>
+                                     </li>
+
+                                     <li>
+                                         <a href="collections/but-ky-but-bi-co-san.html">Bút ký, Bút bi</a>
+                                     </li>
+
+                                     <li>
+                                         <a href="collections/bien-ten-huy-hieu-co-san.html">Biển tên, Huy hiệu</a>
+                                     </li>
+
+                                     <li>
+                                         <a href="collections/san-pham-khac-co-san.html">Sản phẩm khác</a>
+                                     </li>
+                                 </ul>
+                             </li>
                              <li><a class="nav-item" href="#">TƯ VẤN SẢN PHẨM</a></li>
                              <li><a class="nav-item" href="#">TIN TỨC</a></li>
                              <li><a class="nav-item" href="#">VIDEO </a></li>
@@ -94,11 +126,29 @@
          </div>
      </div>
  </div>
+ <div class="slider slider-banner d-block d-lg-none">
+    <div class="swiper slider-container">
+        <div class="swiper-wrapper">
+            @foreach ($blocksContent as $item)
+                @if ($item->block_code == 'banner_top' && $item->parent_id == null)
+                    <div class="swiper-slide">
+                        <div class="slider-item">
+                            <img src="{{ $item->image }}" alt="{{ $item->title }}"
+                                title="{{ $item->title }}" />
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+        <div class="swiper-pagination slider-pagination"></div>
+    </div>
+</div>
  <!-- END HOME SLIDER -->
  <style>
-    #banner-container {
-        background: #f5f5f5;
-    }
+     #banner-container {
+         background: #f5f5f5;
+     }
+
      .banner-home {
          display: flex;
          justify-content: space-between;
@@ -113,6 +163,10 @@
          width: 75%;
      }
 
+     .menu-banner .slider-banner {
+         display: block;
+     }
+
      #banner-container .banner-category .megamenu-wrapper .megamenu-head>span {
          height: 43px;
          line-height: 43px;
@@ -120,6 +174,22 @@
          background: #f07d00;
          color: #fff;
          display: block;
+     }
+
+     #banner-container .banner-category .megamenu-wrapper .megamenu-body {
+         max-height: 400px;
+         /* Thay đổi kích thước tối đa theo nhu cầu */
+         overflow-y: auto;
+         /* Thiết lập thanh cuộn dọc, sẽ hiển thị thanh cuộn khi cần thiết */
+         /* Ẩn thanh cuộn */
+         scrollbar-width: none;
+         /* Firefox  */
+         -ms-overflow-style: none;
+         /* Edge */
+     }
+
+     #banner-container .banner-category .megamenu-wrapper .megamenu-body::-webkit-scrollbar {
+         display: none;
      }
 
      .magamenu-item_category {
@@ -174,8 +244,8 @@
 
      #banner-container .dropdown-megamenu .magamenu-category_title {
          position: relative;
-         display: block;
-         height: 38px;
+         display: flex;
+         min-height: 38px;
          line-height: 38px;
          padding: 0 15px;
          color: #606062;
@@ -183,5 +253,27 @@
          -webkit-transition: all 0.3s ease;
          -moz-transition: all 0.3s ease;
          transition: all 0.3s ease;
+         align-items: center;
+     }
+
+     #banner-container .dropdown-megamenu .magamenu-category_title img {
+         width: 20px;
+         height: 20px;
+         margin-right: 10px;
+     }
+
+     #banner-container .dropdown-megamenu .magamenu-category_title p {
+         margin-right: 20px;
+         font-size: 15px;
+         transition: all 0.3s ease;
+     }
+     #banner-container .dropdown-megamenu .magamenu-category_title:hover p {
+        color: #f07d00;
+        transition: all 0.3s ease;
+     }
+     .header-container .grid__item .search-form-wrapper {
+        width: 100%;
+     }
+     @media (max-width: 991.99px) {
      }
  </style>
