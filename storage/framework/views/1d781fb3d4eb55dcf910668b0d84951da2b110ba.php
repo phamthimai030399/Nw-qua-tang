@@ -10,32 +10,34 @@
                      </div>
                      <div class="megamenu-body">
                          <ul class="dropdown-megamenu">
-                             @foreach ($taxonomy_all as $taxonomy)
-                                 @if (empty($taxonomy->parent_id) && $taxonomy->taxonomy == 'san-pham')
+                             <?php $__currentLoopData = $taxonomy_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $taxonomy): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                 <?php if(empty($taxonomy->parent_id) && $taxonomy->taxonomy == 'san-pham'): ?>
                                      <li class="magamenu-item_category">
-                                         <a href="{{ route('frontend.cms.product_category', $taxonomy->url_part) }}"
+                                         <a href="<?php echo e(route('frontend.cms.product_category', $taxonomy->url_part)); ?>"
                                              class="magamenu-category_title">
-                                             <img src="{{ $taxonomy->json_params->image }}"
-                                                 alt="{{ $taxonomy->title }}" />
+                                             <img src="<?php echo e($taxonomy->json_params->image); ?>"
+                                                 alt="<?php echo e($taxonomy->title); ?>" />
                                              <p>
-                                                 {{ $taxonomy->title }}
+                                                 <?php echo e($taxonomy->title); ?>
+
                                              </p>
                                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                                          </a>
                                          <ul class="no-bullets">
-                                             @foreach ($taxonomy_all as $taxonomy_child)
-                                                 @if ($taxonomy_child->parent_id == $taxonomy->id)
+                                             <?php $__currentLoopData = $taxonomy_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $taxonomy_child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                 <?php if($taxonomy_child->parent_id == $taxonomy->id): ?>
                                                      <li class="magamenu-subcategory">
                                                          <a
-                                                             href="{{ route('frontend.cms.product_category', $taxonomy_child->url_part) }}">{{ $taxonomy_child->title }}
+                                                             href="<?php echo e(route('frontend.cms.product_category', $taxonomy_child->url_part)); ?>"><?php echo e($taxonomy_child->title); ?>
+
                                                          </a>
                                                      </li>
-                                                 @endif
-                                             @endforeach
+                                                 <?php endif; ?>
+                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                          </ul>
                                      </li>
-                                 @endif
-                             @endforeach
+                                 <?php endif; ?>
+                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                          </ul>
                      </div>
                  </div>
@@ -51,15 +53,15 @@
                                  <a href="#" class="nav-item">GIỚI THIỆU</a>
                              </li>
                              <li>
-                                 <a class="nav-item" href="{{route('frontend.cms.product_all')}}">SẢN PHẨM</a>
+                                 <a class="nav-item" href="<?php echo e(route('frontend.cms.product_all')); ?>">SẢN PHẨM</a>
                                  <ul class="submenu-header">
-                                    @foreach ($taxonomy_all as $taxonomy)
-                                    @if (empty($taxonomy->parent_id) && $taxonomy->taxonomy == 'san-pham')
+                                    <?php $__currentLoopData = $taxonomy_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $taxonomy): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if(empty($taxonomy->parent_id) && $taxonomy->taxonomy == 'san-pham'): ?>
                                     <li>
-                                        <a href="{{ route('frontend.cms.product_category', ['alias' => $taxonomy->url_part]) }}">{{$taxonomy->title}}</a>
+                                        <a href="<?php echo e(route('frontend.cms.product_category', ['alias' => $taxonomy->url_part])); ?>"><?php echo e($taxonomy->title); ?></a>
                                     </li>
-                                    @endif
-                                @endforeach
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                  </ul>
                              </li>
                              <li><a class="nav-item" href="#">TƯ VẤN SẢN PHẨM</a></li>
@@ -73,26 +75,17 @@
                  <div class="slider slider-banner">
                      <div class="swiper slider-container">
                          <div class="swiper-wrapper">
-                             @foreach ($blocksContent as $item)
-                                 @if ($item->block_code == 'banner_top' && $item->parent_id == null)
+                             <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                 <?php if($item->block_code == 'banner_top' && $item->parent_id == null): ?>
                                      <div class="swiper-slide">
                                          <div class="slider-item">
-                                             <img src="{{ $item->image }}" alt="{{ $item->title }}"
-                                                 title="{{ $item->title }}" />
-                                             {{-- <div class="slider-item-content position-absolute">
-                                       <div class="container">
-                                           <h6>Summer isn’t over</h6>
-                                           <h2>
-                                               Latest<br />
-                                               Inspr Styles
-                                           </h2>
-                                           <a href="#" title="Shop Now">Shop Now</a>
-                                       </div>
-                                   </div> --}}
+                                             <img src="<?php echo e($item->image); ?>" alt="<?php echo e($item->title); ?>"
+                                                 title="<?php echo e($item->title); ?>" />
+                                             
                                          </div>
                                      </div>
-                                 @endif
-                             @endforeach
+                                 <?php endif; ?>
+                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                          </div>
                          <div class="swiper-pagination slider-pagination"></div>
                      </div>
@@ -104,16 +97,16 @@
  <div class="slider slider-banner d-block d-lg-none">
     <div class="swiper slider-container">
         <div class="swiper-wrapper">
-            @foreach ($blocksContent as $item)
-                @if ($item->block_code == 'banner_top' && $item->parent_id == null)
+            <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($item->block_code == 'banner_top' && $item->parent_id == null): ?>
                     <div class="swiper-slide">
                         <div class="slider-item">
-                            <img src="{{ $item->image }}" alt="{{ $item->title }}"
-                                title="{{ $item->title }}" />
+                            <img src="<?php echo e($item->image); ?>" alt="<?php echo e($item->title); ?>"
+                                title="<?php echo e($item->title); ?>" />
                         </div>
                     </div>
-                @endif
-            @endforeach
+                <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
         <div class="swiper-pagination slider-pagination"></div>
     </div>
@@ -252,3 +245,4 @@
      @media (max-width: 991.99px) {
      }
  </style>
+<?php /**PATH F:\NEWWAY\Nw_Quatang\resources\views/frontend/element/banner_home.blade.php ENDPATH**/ ?>

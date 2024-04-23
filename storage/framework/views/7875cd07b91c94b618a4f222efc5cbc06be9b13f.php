@@ -3,13 +3,13 @@ a<!-- START HOME JUST IN -->
     <section class="justin home-collection">
         <div class="container">
             <div class="home-collection-banners d-flex">
-                @foreach ($blocksContent as $item)
-                    @if ($item->block_code == 'banner_ads' && $item->parent_id == null)
+                <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($item->block_code == 'banner_ads' && $item->parent_id == null): ?>
                         <div class="home-collection-banner-img">
-                            <a href="#"><img src="{{ $item->image }}" alt="{{ $item->title }}" /></a>
+                            <a href="#"><img src="<?php echo e($item->image); ?>" alt="<?php echo e($item->title); ?>" /></a>
                         </div>
-                    @endif
-                @endforeach
+                    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
             <div class="title d-flex justify-content-between align-items-center">
                 <div class="home-collection_title">
@@ -23,42 +23,43 @@ a<!-- START HOME JUST IN -->
             </div>
             <div class="d-flex">
                 <div class="banner-product d-none d-lg-block">
-                    @foreach ($blocksContent as $item)
-                        @if ($item->block_code == 'banner_product_new' && $item->parent_id == null)
-                            <img class="hide-small" src="{{ $item->image }}" alt="">
-                        @endif
-                    @endforeach
+                    <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($item->block_code == 'banner_product_new' && $item->parent_id == null): ?>
+                            <img class="hide-small" src="<?php echo e($item->image); ?>" alt="">
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
                 <div class="swiper main-slider justin-container">
                     <div class="container">
                         <div class="justin-slider main-slider-container">
                             <div class="swiper-wrapper">
-                                @foreach ($new_products as $product)
+                                <?php $__currentLoopData = $new_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
-                                                    <img class="product-img-default" src="{{ $product->image }}"
-                                                        alt="{{ $product->title }}" title="{{ $product->title }}" />
+                                                <a href="">
+                                                    <img class="product-img-default" src="<?php echo e($product->image); ?>"
+                                                        alt="<?php echo e($product->title); ?>" title="<?php echo e($product->title); ?>" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
                                                 <span class="product-type">Denim</span>
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}" class="product-name" title="{{ $product->title }}">
-                                                    {{ $product->title }}
+                                                <a href="" class="product-name" title="<?php echo e($product->title); ?>">
+                                                    <?php echo e($product->title); ?>
+
                                                 </a>
-                                                @if ($product->gia != null)
+                                                <?php if($product->gia != null): ?>
                                                     <div class="product-price">
-                                                        <span class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
-                                                        @if ($product->giakm != null)
-                                                            <span class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
-                                                        @endif
+                                                        <span class="product-price_detail product-price-current"><?php echo e(formatCurrency($product->gia)); ?></span>
+                                                        <?php if($product->giakm != null): ?>
+                                                            <span class="product-price_detail product-price-old"><?php echo e(formatCurrency($product->giakm)); ?></span>
+                                                        <?php endif; ?>
                                                     </div>
-                                                @else
+                                                <?php else: ?>
                                                     <div class="product-price">
                                                         <span class="product-price-current">Liên hệ</span> 
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                             <button class="main-btn add-cart" data-bs-toggle="offcanvas"
                                                 data-bs-target="#cart-popup" aria-controls="cart-popup">
@@ -79,7 +80,7 @@ a<!-- START HOME JUST IN -->
                                             </button>
                                         </div>
                                     </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
                     </div>
@@ -117,42 +118,43 @@ a<!-- START HOME JUST IN -->
             </div>
             <div class="d-flex">
                 <div class="banner-product d-none d-lg-block">
-                    @foreach ($blocksContent as $item)
-                        @if ($item->block_code == 'banner_product_new' && $item->parent_id == null)
-                            <img class="hide-small" src="{{ $item->image }}" alt="">
-                        @endif
-                    @endforeach
+                    <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($item->block_code == 'banner_product_new' && $item->parent_id == null): ?>
+                            <img class="hide-small" src="<?php echo e($item->image); ?>" alt="">
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
                 <div class="swiper main-slider justin-container">
                     <div class="container">
                         <div class="justin-slider main-slider-container">
                             <div class="swiper-wrapper">
-                                @foreach ($feature_products as $product)
+                                <?php $__currentLoopData = $feature_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
-                                                    <img class="product-img-default" src="{{ $product->image }}"
-                                                        alt="{{ $product->title }}" title="{{ $product->title }}" />
+                                                <a href="">
+                                                    <img class="product-img-default" src="<?php echo e($product->image); ?>"
+                                                        alt="<?php echo e($product->title); ?>" title="<?php echo e($product->title); ?>" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
                                                 <span class="product-type">Denim</span>
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}" class="product-name" title="{{ $product->title }}">
-                                                    {{ $product->title }}
+                                                <a href="" class="product-name" title="<?php echo e($product->title); ?>">
+                                                    <?php echo e($product->title); ?>
+
                                                 </a>
-                                                @if ($product->gia != null)
+                                                <?php if($product->gia != null): ?>
                                                     <div class="product-price">
-                                                        <span class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
-                                                        @if ($product->giakm != null)
-                                                            <span class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
-                                                        @endif
+                                                        <span class="product-price_detail product-price-current"><?php echo e(formatCurrency($product->gia)); ?></span>
+                                                        <?php if($product->giakm != null): ?>
+                                                            <span class="product-price_detail product-price-old"><?php echo e(formatCurrency($product->giakm)); ?></span>
+                                                        <?php endif; ?>
                                                     </div>
-                                                @else
+                                                <?php else: ?>
                                                     <div class="product-price">
                                                         <span class="product-price-current">Liên hệ</span> 
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                             <button class="main-btn add-cart" data-bs-toggle="offcanvas"
                                                 data-bs-target="#cart-popup" aria-controls="cart-popup">
@@ -173,7 +175,7 @@ a<!-- START HOME JUST IN -->
                                             </button>
                                         </div>
                                     </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
                     </div>
@@ -211,42 +213,43 @@ a<!-- START HOME JUST IN -->
             </div>
             <div class="d-flex">
                 <div class="banner-product d-none d-lg-block">
-                    @foreach ($blocksContent as $item)
-                        @if ($item->block_code == 'banner_product_new' && $item->parent_id == null)
-                            <img class="hide-small" src="{{ $item->image }}" alt="">
-                        @endif
-                    @endforeach
+                    <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($item->block_code == 'banner_product_new' && $item->parent_id == null): ?>
+                            <img class="hide-small" src="<?php echo e($item->image); ?>" alt="">
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
                 <div class="swiper main-slider justin-container">
                     <div class="container">
                         <div class="justin-slider main-slider-container">
                             <div class="swiper-wrapper">
-                                @foreach ($ever_made_products as $product)
+                                <?php $__currentLoopData = $ever_made_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
-                                                    <img class="product-img-default" src="{{ $product->image }}"
-                                                        alt="{{ $product->title }}" title="{{ $product->title }}" />
+                                                <a href="">
+                                                    <img class="product-img-default" src="<?php echo e($product->image); ?>"
+                                                        alt="<?php echo e($product->title); ?>" title="<?php echo e($product->title); ?>" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
                                                 <span class="product-type">Denim</span>
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}" class="product-name" title="{{ $product->title }}">
-                                                    {{ $product->title }}
+                                                <a href="" class="product-name" title="<?php echo e($product->title); ?>">
+                                                    <?php echo e($product->title); ?>
+
                                                 </a>
-                                                @if ($product->gia != null)
+                                                <?php if($product->gia != null): ?>
                                                     <div class="product-price">
-                                                        <span class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
-                                                        @if ($product->giakm != null)
-                                                            <span class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
-                                                        @endif
+                                                        <span class="product-price_detail product-price-current"><?php echo e(formatCurrency($product->gia)); ?></span>
+                                                        <?php if($product->giakm != null): ?>
+                                                            <span class="product-price_detail product-price-old"><?php echo e(formatCurrency($product->giakm)); ?></span>
+                                                        <?php endif; ?>
                                                     </div>
-                                                @else
+                                                <?php else: ?>
                                                     <div class="product-price">
                                                         <span class="product-price-current">Liên hệ</span> 
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                             <button class="main-btn add-cart" data-bs-toggle="offcanvas"
                                                 data-bs-target="#cart-popup" aria-controls="cart-popup">
@@ -267,7 +270,7 @@ a<!-- START HOME JUST IN -->
                                             </button>
                                         </div>
                                     </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
                     </div>
@@ -305,42 +308,43 @@ a<!-- START HOME JUST IN -->
             </div>
             <div class="d-flex">
                 <div class="banner-product d-none d-lg-block">
-                    @foreach ($blocksContent as $item)
-                        @if ($item->block_code == 'banner_liquidation_gifts' && $item->parent_id == null)
-                            <img class="hide-small" src="{{ $item->image }}" alt="">
-                        @endif
-                    @endforeach
+                    <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($item->block_code == 'banner_liquidation_gifts' && $item->parent_id == null): ?>
+                            <img class="hide-small" src="<?php echo e($item->image); ?>" alt="">
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
                 <div class="swiper main-slider justin-container">
                     <div class="container">
                         <div class="justin-slider main-slider-container">
                             <div class="swiper-wrapper">
-                                @foreach ($liquidation_gifts as $product)
+                                <?php $__currentLoopData = $liquidation_gifts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
-                                                    <img class="product-img-default" src="{{ $product->image }}"
-                                                        alt="{{ $product->title }}" title="{{ $product->title }}" />
+                                                <a href="">
+                                                    <img class="product-img-default" src="<?php echo e($product->image); ?>"
+                                                        alt="<?php echo e($product->title); ?>" title="<?php echo e($product->title); ?>" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
                                                 <span class="product-type">Denim</span>
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}" class="product-name" title="{{ $product->title }}">
-                                                    {{ $product->title }}
+                                                <a href="" class="product-name" title="<?php echo e($product->title); ?>">
+                                                    <?php echo e($product->title); ?>
+
                                                 </a>
-                                                @if ($product->gia != null)
+                                                <?php if($product->gia != null): ?>
                                                     <div class="product-price">
-                                                        <span class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
-                                                        @if ($product->giakm != null)
-                                                            <span class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
-                                                        @endif
+                                                        <span class="product-price_detail product-price-current"><?php echo e(formatCurrency($product->gia)); ?></span>
+                                                        <?php if($product->giakm != null): ?>
+                                                            <span class="product-price_detail product-price-old"><?php echo e(formatCurrency($product->giakm)); ?></span>
+                                                        <?php endif; ?>
                                                     </div>
-                                                @else
+                                                <?php else: ?>
                                                     <div class="product-price">
                                                         <span class="product-price-current">Liên hệ</span> 
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                             <button class="main-btn add-cart" data-bs-toggle="offcanvas"
                                                 data-bs-target="#cart-popup" aria-controls="cart-popup">
@@ -361,7 +365,7 @@ a<!-- START HOME JUST IN -->
                                             </button>
                                         </div>
                                     </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
                     </div>
@@ -387,3 +391,4 @@ a<!-- START HOME JUST IN -->
     </section>
 </div>
 <!-- END HOME JUST IN -->
+<?php /**PATH F:\NEWWAY\Nw_Quatang\resources\views/frontend/element/home-collection.blade.php ENDPATH**/ ?>

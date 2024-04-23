@@ -55,8 +55,9 @@ Route::namespace('FrontEnd')->group(function () {
   Route::get('tag/{alias_category?}', 'CmsController@cmstag')->name('frontend.cms.tag');
 
   Route::post('tim-kiem', 'CmsController@productSearch')->name('frontend.cms.product_search');
+  Route::get('san-pham', 'CmsController@productAll')->name('frontend.cms.product_all');
   Route::get('san-pham/{alias}', 'CmsController@productCategory')->name('frontend.cms.product_category');
-  Route::get('chi-tiet-sp/{alias_detail}', 'CmsController@product')->name('frontend.cms.product');
+  Route::get('chi-tiet-san-pham/{alias_detail}', 'CmsController@product')->name('frontend.cms.product');
 
   // Bài viết giới thiệu
   Route::get('gioi-thieu/{alias}', 'CmsController@postIntroduction')->name('frontend.cms.post_introduction');

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Services;
 
 use App\Consts;
@@ -25,7 +26,7 @@ use App\Models\AdminMenu;
 
 class ContentService
 {
-	public static function getSearchDetail($params, $isPaginate = false)
+    public static function getSearchDetail($params, $isPaginate = false)
     {
         $query = SearchDetail::select('tb_group_search_detail.*')
             ->when(!empty($params['keyword']), function ($query) use ($params) {
@@ -37,18 +38,18 @@ class ContentService
 
         if (!empty($params['status'])) {
             $query->where('tb_group_search_detail.status', $params['status']);
-        } 
+        }
 
         if (!empty($params['taxonomy'])) {
             $query->where('tb_group_search_detail.taxonomy', $params['taxonomy']);
-        } 
+        }
 
         if (!empty($params['group_id'])) {
             $query->where('tb_group_search_detail.group_id', $params['group_id']);
-        } 
-       
+        }
+
         $query->orderByRaw('tb_group_search_detail.id DESC');
-        
+
         return $query;
     }
 
@@ -64,10 +65,10 @@ class ContentService
 
         if (!empty($params['status'])) {
             $query->where('tb_group_search.status', $params['status']);
-        } 
-       
+        }
+
         $query->orderByRaw('tb_group_search.id DESC');
-        
+
         return $query;
     }
 
@@ -80,9 +81,9 @@ class ContentService
                     return $where->where('tb_cms_translate.local', 'like', '%' . $keyword . '%');
                 });
             });
-       
+
         $query->orderByRaw('tb_cms_translate.id DESC');
-        
+
         return $query;
     }
 
@@ -125,59 +126,62 @@ class ContentService
         return $query;
     }
 
-	
+
     public static function getProducts($params)
     {
         $query = CmsProduct::select('tb_products.*')
             ->selectRaw('admins.name as admin_created, b.name as admin_updated, tb_cms_taxonomys.title as taxonomy_title, tb_cms_taxonomys.url_part as url_part')
-			->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_products.taxonomy_id')
+            ->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_products.taxonomy_id')
             ->leftJoin('admins', 'admins.id', '=', 'tb_products.admin_created_id')
-			->leftJoin('admins as b', 'b.id', '=', 'tb_products.admin_updated_id')
-			->when(!empty($params['keyword']), function ($query) use ($params) {
+            ->leftJoin('admins as b', 'b.id', '=', 'tb_products.admin_updated_id')
+            ->when(!empty($params['keyword']), function ($query) use ($params) {
                 $keyword = $params['keyword'];
                 return $query->where(function ($where) use ($keyword) {
                     return $where->where('tb_products.title', 'like', '%' . $keyword . '%')
                         ->orWhere('tb_products.mota', 'like', '%' . $keyword . '%')
-						->orWhere('tb_products.mota', 'like', '%' . $keyword . '%')
-						->orWhere('tb_products.meta_description', 'like', '%' . $keyword . '%');
+                        ->orWhere('tb_products.mota', 'like', '%' . $keyword . '%')
+                        ->orWhere('tb_products.meta_description', 'like', '%' . $keyword . '%');
                 });
             });
-			
-			if (!empty($params['category'])) {
-				$query->where('tb_products.category', 'like', '%,' .$params['category']. ',%');
-			}
 
-			if (!empty($params['hienthi'])) {
-				$query->where('tb_products.hienthi', 'like', '%;' .$params['hienthi']. ';%');
-			} 
-			
-			if (!empty($params['alias'])) {
-				$query->where('tb_products.alias', $params['alias']);
-			} 
-			
-			if (!empty($params['taxonomy_id'])) {
-				$query->where('tb_products.taxonomy_id', $params['taxonomy_id']);
-			} 
-			
-			if (!empty($params['different_id'])) {
-				$query->where('tb_products.id','!=',$params['different_id']);
-			}
-			
-			if (!empty($params['status'])) {
-				$query->where('tb_products.status', $params['status']);
-			}
-			
-			if (!empty($params['order_by'])) {
-				if (is_array($params['order_by'])) {
-					foreach ($params['order_by'] as $key => $value) {
-						$query->orderBy('tb_products.' . $key, $value);
-					}
-				} else {
-					$query->orderByRaw('tb_products.' . $params['order_by'] . ' desc');
-				}
-			} else {
-				$query->orderByRaw('tb_products.id DESC');
-			}
+        if (!empty($params['category'])) {
+            $query->where('tb_products.category', 'like', '%,' . $params['category'] . ',%');
+        }
+
+        if (!empty($params['hienthi'])) {
+            $query->where('tb_products.hienthi', 'like', '%;' . $params['hienthi'] . ';%');
+        }
+
+        if (!empty($params['alias'])) {
+            $query->where('tb_products.alias', $params['alias']);
+        }
+
+        if (!empty($params['taxonomy_id'])) {
+            $query->where('tb_products.taxonomy_id', $params['taxonomy_id']);
+        }
+        if (!empty($params['taxonomy_ids'])) {
+            $query->whereIn('tb_products.taxonomy_id', $params['taxonomy_ids']);
+        }
+
+        if (!empty($params['different_id'])) {
+            $query->where('tb_products.id', '!=', $params['different_id']);
+        }
+
+        if (!empty($params['status'])) {
+            $query->where('tb_products.status', $params['status']);
+        }
+
+        if (!empty($params['order_by'])) {
+            if (is_array($params['order_by'])) {
+                foreach ($params['order_by'] as $key => $value) {
+                    $query->orderBy('tb_products.' . $key, $value);
+                }
+            } else {
+                $query->orderByRaw('tb_products.' . $params['order_by'] . ' desc');
+            }
+        } else {
+            $query->orderByRaw('tb_products.id DESC');
+        }
 
         return $query;
     }
@@ -185,54 +189,54 @@ class ContentService
     {
         $query = CmsPost::select('tb_cms_posts.*')
             ->selectRaw('admins.name as admin_created, b.name as admin_updated, tb_cms_taxonomys.title as taxonomy_title, tb_cms_taxonomys.url_part as url_part')
-			->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_cms_posts.taxonomy_id')
+            ->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_cms_posts.taxonomy_id')
             ->leftJoin('admins', 'admins.id', '=', 'tb_cms_posts.admin_created_id')
-			->leftJoin('admins as b', 'b.id', '=', 'tb_cms_posts.admin_updated_id')
-			->when(!empty($params['keyword']), function ($query) use ($params) {
+            ->leftJoin('admins as b', 'b.id', '=', 'tb_cms_posts.admin_updated_id')
+            ->when(!empty($params['keyword']), function ($query) use ($params) {
                 $keyword = $params['keyword'];
                 return $query->where(function ($where) use ($keyword) {
                     return $where->where('tb_cms_posts.title', 'like', '%' . $keyword . '%')
                         ->orWhere('tb_cms_posts.mota', 'like', '%' . $keyword . '%')
-						->orWhere('tb_cms_posts.mota', 'like', '%' . $keyword . '%')
-						->orWhere('tb_cms_posts.meta_description', 'like', '%' . $keyword . '%');
+                        ->orWhere('tb_cms_posts.mota', 'like', '%' . $keyword . '%')
+                        ->orWhere('tb_cms_posts.meta_description', 'like', '%' . $keyword . '%');
                 });
             });
-			
-			if (!empty($params['category'])) {
-				$query->where('tb_cms_posts.category', 'like', '%,' .$params['category']. ',%');
-			}
 
-			if (!empty($params['hienthi'])) {
-				$query->where('tb_cms_posts.hienthi', 'like', '%;' .$params['hienthi']. ';%');
-			} 
-			
-			if (!empty($params['alias'])) {
-				$query->where('tb_cms_posts.alias', $params['alias']);
-			} 
-			
-			if (!empty($params['taxonomy_id'])) {
-				$query->where('tb_cms_posts.taxonomy_id', $params['taxonomy_id']);
-			} 
-			
-			if (!empty($params['different_id'])) {
-				$query->where('tb_cms_posts.id','!=',$params['different_id']);
-			}
-			
-			if (!empty($params['status'])) {
-				$query->where('tb_cms_posts.status', $params['status']);
-			}
-			
-			if (!empty($params['order_by'])) {
-				if (is_array($params['order_by'])) {
-					foreach ($params['order_by'] as $key => $value) {
-						$query->orderBy('tb_cms_posts.' . $key, $value);
-					}
-				} else {
-					$query->orderByRaw('tb_cms_posts.' . $params['order_by'] . ' desc');
-				}
-			} else {
-				$query->orderByRaw('tb_cms_posts.id DESC');
-			}
+        if (!empty($params['category'])) {
+            $query->where('tb_cms_posts.category', 'like', '%,' . $params['category'] . ',%');
+        }
+
+        if (!empty($params['hienthi'])) {
+            $query->where('tb_cms_posts.hienthi', 'like', '%;' . $params['hienthi'] . ';%');
+        }
+
+        if (!empty($params['alias'])) {
+            $query->where('tb_cms_posts.alias', $params['alias']);
+        }
+
+        if (!empty($params['taxonomy_id'])) {
+            $query->where('tb_cms_posts.taxonomy_id', $params['taxonomy_id']);
+        }
+
+        if (!empty($params['different_id'])) {
+            $query->where('tb_cms_posts.id', '!=', $params['different_id']);
+        }
+
+        if (!empty($params['status'])) {
+            $query->where('tb_cms_posts.status', $params['status']);
+        }
+
+        if (!empty($params['order_by'])) {
+            if (is_array($params['order_by'])) {
+                foreach ($params['order_by'] as $key => $value) {
+                    $query->orderBy('tb_cms_posts.' . $key, $value);
+                }
+            } else {
+                $query->orderByRaw('tb_cms_posts.' . $params['order_by'] . ' desc');
+            }
+        } else {
+            $query->orderByRaw('tb_cms_posts.id DESC');
+        }
 
         return $query;
     }
@@ -262,8 +266,7 @@ class ContentService
             })
             ->when(!empty($params['taxonomy_id']), function ($query) use ($params) {
                 return $query->where('tb_cms_posts.taxonomy_id', $params['taxonomy_id']);
-            })
-            ;
+            });
 
         if (!empty($params['is_type'])) {
             $query->where('tb_cms_posts.is_type', $params['is_type']);
@@ -293,9 +296,9 @@ class ContentService
             $query->orderByRaw('tb_cms_posts.iorder ASC, tb_cms_posts.id DESC');
         }
 
-        $query->where('tb_cms_posts.aproved_date',"<=", date('Y-m-d H:i:s'));
+        $query->where('tb_cms_posts.aproved_date', "<=", date('Y-m-d H:i:s'));
 
-        if (!empty($params['limit'])){
+        if (!empty($params['limit'])) {
             $query->limit($params['limit']);
         }
 
@@ -335,16 +338,16 @@ class ContentService
 
         return $query;
     }
-	
-	public static function getCmsTaxonomyParent($params, $isPaginate = false)
+
+    public static function getCmsTaxonomyParent($params, $isPaginate = false)
     {
-		$query = CmsTaxonomy::select('tb_cms_taxonomys.*')
-		->when(!empty($params['id']), function ($query) use ($params) {
-			return $query->where('tb_cms_taxonomys.id', $params['id']);
-		});
-		$query->where('tb_cms_taxonomys.parent_id', '>',0);
-		return $query;
-	}
+        $query = CmsTaxonomy::select('tb_cms_taxonomys.*')
+            ->when(!empty($params['id']), function ($query) use ($params) {
+                return $query->where('tb_cms_taxonomys.id', $params['id']);
+            });
+        $query->where('tb_cms_taxonomys.parent_id', '>', 0);
+        return $query;
+    }
 
     public static function getCmsTaxonomy($params, $isPaginate = false)
     {
@@ -362,8 +365,8 @@ class ContentService
             ->when(!empty($params['parent_id']), function ($query) use ($params) {
                 return $query->where('tb_cms_taxonomys.parent_id', $params['parent_id']);
             })
-            
-			->when(!empty($params['id']), function ($query) use ($params) {
+
+            ->when(!empty($params['id']), function ($query) use ($params) {
                 return $query->where('tb_cms_taxonomys.id', $params['id']);
             })
             ->when(!empty($params['different_id']), function ($query) use ($params) {
@@ -416,9 +419,8 @@ class ContentService
                 return $query->where('tb_cms_posts.id', '!=', $params['different_id']);
             })
             ->when(!empty($params['taxonomy_id']), function ($query) use ($params) {
-                return $query->where('tb_cms_posts.taxonomy_id',$params['taxonomy_id']);
-            })
-            ;
+                return $query->where('tb_cms_posts.taxonomy_id', $params['taxonomy_id']);
+            });
 
         if (!empty($params['is_type'])) {
             $query->where('tb_cms_posts.is_type', $params['is_type']);
@@ -430,13 +432,13 @@ class ContentService
         } else {
             $query->where('tb_cms_posts.status', "!=", Consts::STATUS_DELETE);
         }
-        
+
         if (!empty($params['url_part'])) {
             $query->where('tb_cms_posts.url_part', $params['url_part']);
         }
 
         if (!empty($params['aproved_date'])) {
-            $query->where('tb_cms_posts.aproved_date', '<=' , $params['aproved_date']);
+            $query->where('tb_cms_posts.aproved_date', '<=', $params['aproved_date']);
         }
 
         if (isset($params['news_position'])) {
@@ -463,7 +465,7 @@ class ContentService
         } else {
             $query->orderByRaw('tb_cms_posts.iorder ASC, tb_cms_posts.id DESC');
         }
-        if (!empty($params['limit'])){
+        if (!empty($params['limit'])) {
             $query->limit($params['limit']);
         }
         return $query;
@@ -482,13 +484,12 @@ class ContentService
                 });
             })
             ->when(!empty($params['id']), function ($query) use ($params) {
-                return $query->where('tb_cms_posts.id','!=',$params['id']);
+                return $query->where('tb_cms_posts.id', '!=', $params['id']);
             })
             ->when(!empty($params['taxonomy_id']), function ($query) use ($params) {
                 //return $query->where('tb_cms_posts.taxonomy_id', $params['taxonomy_id']);
-                return $query->where('tb_cms_posts.category','LIKE' ,'%,'.$params['taxonomy_id'].',%');
-            })
-            ;
+                return $query->where('tb_cms_posts.category', 'LIKE', '%,' . $params['taxonomy_id'] . ',%');
+            });
 
         if (!empty($params['is_type'])) {
             $query->where('tb_cms_posts.is_type', $params['is_type']);
@@ -496,7 +497,7 @@ class ContentService
             $query->where('tb_cms_posts.is_type', Consts::POST_TYPE['post']);
         }
         if (isset($params['post_id']) and is_array($params['post_id'])) {
-            $query->whereIn('tb_cms_posts.id',$params['post_id']);
+            $query->whereIn('tb_cms_posts.id', $params['post_id']);
         }
         if (!empty($params['status'])) {
             $query->where('tb_cms_posts.status', $params['status']);
@@ -505,7 +506,7 @@ class ContentService
         }
 
         if (isset($params['news_position'])) {
-            $query->where('tb_cms_posts.news_position','>',$params['news_position']);
+            $query->where('tb_cms_posts.news_position', '>', $params['news_position']);
         }
 
         // Check with order_by params
@@ -520,7 +521,7 @@ class ContentService
         } else {
             $query->orderByRaw('tb_cms_posts.aproved_date DESC, tb_cms_posts.id DESC');
         }
-        if (!empty($params['limit'])){
+        if (!empty($params['limit'])) {
             $query->limit($params['limit']);
         }
         return $query;
@@ -536,7 +537,7 @@ class ContentService
                 return $query->where(function ($where) use ($keyword) {
                     return $where->where('tb_cms_posts.title', 'like', '%' . $keyword . '%')
                         //->orWhere('tb_cms_posts.json_params->title->vi', 'like', '%' . $keyword . '%')
-                        ;
+                    ;
                 });
             })
             ->when(!empty($params['id']), function ($query) use ($params) {
@@ -547,9 +548,8 @@ class ContentService
             })
             ->when(!empty($params['taxonomy_id']), function ($query) use ($params) {
                 //return $query->where('tb_cms_posts.taxonomy_id', $params['taxonomy_id']);
-                return $query->where('tb_cms_posts.cms_tag','LIKE' ,'%,'.$params['taxonomy_id'].',%');
-            })
-            ;
+                return $query->where('tb_cms_posts.cms_tag', 'LIKE', '%,' . $params['taxonomy_id'] . ',%');
+            });
 
         if (!empty($params['is_type'])) {
             $query->where('tb_cms_posts.is_type', $params['is_type']);
@@ -578,7 +578,7 @@ class ContentService
         } else {
             $query->orderByRaw('tb_cms_posts.iorder ASC, tb_cms_posts.id DESC');
         }
-        if (!empty($params['limit'])){
+        if (!empty($params['limit'])) {
             $query->limit($params['limit']);
         }
         return $query;
@@ -780,8 +780,8 @@ class ContentService
 
         return $query;
     }
-    
-    public static function getCmsPostLoading($params,$articles)
+
+    public static function getCmsPostLoading($params, $articles)
     {
         $query = CmsPost::selectRaw('tb_cms_posts.* ,admins.avatar as avatar,admins.name as fullname, tb_cms_taxonomys.title AS taxonomy_title, tb_cms_taxonomys.taxonomy AS taxonomy, tb_cms_taxonomys.json_params AS taxonomy_json_params')
             ->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_cms_posts.taxonomy_id')
@@ -822,10 +822,10 @@ class ContentService
             $query->where('tb_cms_posts.news_position', $params['news_position']);
         }
 
-        $query->where('tb_cms_posts.aproved_date','<=',date('Y-m-d H:i:s'));
+        $query->where('tb_cms_posts.aproved_date', '<=', date('Y-m-d H:i:s'));
 
-        $query->whereRaw('tb_cms_posts.id NOT IN ('.$articles.')');
-        
+        $query->whereRaw('tb_cms_posts.id NOT IN (' . $articles . ')');
+
         // Check with order_by params
         if (!empty($params['order_by'])) {
             if (is_array($params['order_by'])) {
@@ -838,18 +838,18 @@ class ContentService
         } else {
             $query->orderByRaw('tb_cms_posts.iorder ASC, tb_cms_posts.id DESC');
         }
-        if (!empty($params['limit'])){
+        if (!empty($params['limit'])) {
             $query->limit($params['limit']);
         }
         return $query;
     }
-	
+
     public static function getComment($params)
     {
         $query = Comment::select('tb_post_comment.*')
             ->selectRaw('users.name as comment_name, users.avatar')
             ->leftJoin('users', 'users.id', '=', 'tb_post_comment.user_id');
-        
+
         $query->where('tb_post_comment.post_id', $params['post_id']);
         $query->where('tb_post_comment.status', 0);
         if (!empty($params['order_by'])) {
@@ -870,98 +870,98 @@ class ContentService
     public static function getBlockContentByParams($params)
     {
         $query = BlockContent::select('tb_block_contents.*');
-            
+
         $query->where('tb_block_contents.status', 'active');
-		
-		if (!empty($params['block_code'])) {
+
+        if (!empty($params['block_code'])) {
             $query->where('tb_block_contents.block_code', $params['block_code']);
         }
-		
+
         $query->orderByRaw('tb_block_contents.iorder asc');
 
         return $query;
     }
 
-    public static function postTime($date_at){
-        
+    public static function postTime($date_at)
+    {
+
         $first_date = time();
         $secon_date = strtotime($date_at);
         $diff = abs($first_date - $secon_date);
         $phut = $diff / 24;
-        
-        if($phut >= 60){
-            $gio = floor($phut/60);
-            if($gio < 10){
-                $hienthingay = floor($gio).' giờ trước';
-            }else{
-                $hienthingay = date('H:i d/m/Y',strtotime($date_at));
+
+        if ($phut >= 60) {
+            $gio = floor($phut / 60);
+            if ($gio < 10) {
+                $hienthingay = floor($gio) . ' giờ trước';
+            } else {
+                $hienthingay = date('H:i d/m/Y', strtotime($date_at));
             }
-        }else{
-            $hienthingay = floor($phut).' phút trước';
+        } else {
+            $hienthingay = floor($phut) . ' phút trước';
         }
         return $hienthingay;
     }
 
-    public static function checkRole($routeDefault,$function){
-        
-        if(Auth::guard('admin')->user()->is_super_admin == 1){
-           return true;
-        }else{
+    public static function checkRole($routeDefault, $function)
+    {
+
+        if (Auth::guard('admin')->user()->is_super_admin == 1) {
+            return true;
+        } else {
             //dd($routeDefault);
             //$url_full = url()->full();
             //$routeDefault = str_replace(Consts::url_admin,'',$url_full);
 
-            $menu_admin = AdminMenu::where('url_link',$routeDefault)->first();
-            
+            $menu_admin = AdminMenu::where('url_link', $routeDefault)->first();
+
             $role_id = Auth::guard('admin')->user()->role;
             $menu_id = '';
-            if($menu_admin){
+            if ($menu_admin) {
                 $menu_id = $menu_admin->id;
             }
-            
-            $check_role = UserRole::where('role_id',$role_id)->first();
+
+            $check_role = UserRole::where('role_id', $role_id)->first();
 
             $array_role_action = (array)$check_role->json_action;
-            
-            if(isset($array_role_action[$menu_id])){
+
+            if (isset($array_role_action[$menu_id])) {
                 $arrayRoleAction = $array_role_action[$menu_id];
-            }else{
+            } else {
                 $arrayRoleAction = array();
             }
             $check_true = 0;
-            foreach($arrayRoleAction as $checkAction){
-                if($checkAction == $function){
+            foreach ($arrayRoleAction as $checkAction) {
+                if ($checkAction == $function) {
                     $check_true = 1;
                 }
             }
             return $check_true;
         }
-        
     }
 
-	public static function stringTruncate($string, $length = 100, $etc = '...', $break_words = false, $middle = false) {
+    public static function stringTruncate($string, $length = 100, $etc = '...', $break_words = false, $middle = false)
+    {
 
-		if ($length == 0) {
-			return '';
-		}
+        if ($length == 0) {
+            return '';
+        }
 
-		$charset = 'UTF-8';
-		$_UTF8_MODIFIER = 'u';
+        $charset = 'UTF-8';
+        $_UTF8_MODIFIER = 'u';
 
-		if (mb_strlen ( $string, $charset ) > $length) {
-			$length -= min ( $length, mb_strlen ( $etc, $charset ) );
-			if (! $break_words && ! $middle) {
-				$string = preg_replace ( '/\s+?(\S+)?$/' . $_UTF8_MODIFIER, '', mb_substr ( $string, 0, $length + 1, $charset ) );
-			}
-			if (! $middle) {
-				return mb_substr ( $string, 0, $length, $charset ) . $etc;
-			}
+        if (mb_strlen($string, $charset) > $length) {
+            $length -= min($length, mb_strlen($etc, $charset));
+            if (!$break_words && !$middle) {
+                $string = preg_replace('/\s+?(\S+)?$/' . $_UTF8_MODIFIER, '', mb_substr($string, 0, $length + 1, $charset));
+            }
+            if (!$middle) {
+                return mb_substr($string, 0, $length, $charset) . $etc;
+            }
 
-			return mb_substr ( $string, 0, $length / 2, $charset ) . $etc . mb_substr ( $string, - $length / 2, $length, $charset );
-		}
+            return mb_substr($string, 0, $length / 2, $charset) . $etc . mb_substr($string, -$length / 2, $length, $charset);
+        }
 
-		return $string;
-	}
-	
-
+        return $string;
+    }
 }

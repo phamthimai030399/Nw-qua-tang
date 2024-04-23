@@ -1,25 +1,24 @@
-@extends('frontend.layouts.default')
 
-@php
+
+<?php
     $page_title = $taxonomy->title ?? ($page->title ?? ($page->name ?? null));
     $image_background =
         $taxonomy->json_params->image_background ?? ($web_information->image->background_breadcrumbs ?? '');
-@endphp
+?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <main id="fhm-list-product" class="position-relative">
 
-       @include('frontend.element.banner_home')
+       <?php echo $__env->make('frontend.element.banner_home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-       @include('frontend.element.banner_product')
+       <?php echo $__env->make('frontend.element.banner_product', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <!-- START BREADCRUMB -->
         <section class="breadcrumb">
             <div class="container">
                 <div class="breadcrumb-list">
                     <a href="/" title="Trang chủ" class="breadcrumb-link">Trang chủ</a>
-                    <a href="{{route('frontend.cms.product_all')}}" title="Sản phẩm" class="breadcrumb-link">Sản phẩm</a>
-                    <a href="{{route('frontend.cms.product_category', ['alias' => $taxonomy_product->url_part])}}" title="{{$taxonomy_product->title}}" class="breadcrumb-link breadcrumb-link-current">{{$taxonomy_product->title}}</a>
+                    <a href="<?php echo e(route('frontend.cms.product_all')); ?>" title="Tất cả sản phẩm" class="breadcrumb-link breadcrumb-link-current">Tất cả sản phẩm</a>
                 </div>
             </div>
         </section>
@@ -27,7 +26,7 @@
 
         <!-- ============================================= -->
 
-        @include('frontend.element.list_product')
+        <?php echo $__env->make('frontend.element.list_product', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     </main>
     <style>
@@ -52,4 +51,6 @@
             display: block;
         }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\NEWWAY\Nw_Quatang\resources\views/frontend/pages/product/default.blade.php ENDPATH**/ ?>

@@ -10,14 +10,14 @@
                                  <i class="fas fa-phone"></i>
                              </div>
                              <a href=""
-                                 title="{{ $web_information->information->phone }}">{{ $web_information->information->phone }}</a>
+                                 title="<?php echo e($web_information->information->phone); ?>"><?php echo e($web_information->information->phone); ?></a>
                          </div>
                          <div class="header-topbar-info-item">
                              <div class="header-topbar-info-icon">
                                  <i class="fas fa-envelope"></i>
                              </div>
                              <a href=""
-                                 title="{{ $web_information->information->email }}">{{ $web_information->information->email }}"</a>
+                                 title="<?php echo e($web_information->information->email); ?>"><?php echo e($web_information->information->email); ?>"</a>
                          </div>
                      </div>
                  </div>
@@ -27,17 +27,20 @@
                              <div class="swiper-wrapper">
                                  <div class="swiper-slide header-topbar-slide">
                                      <p>
-                                         {{ $web_information->information->site_name }}
+                                         <?php echo e($web_information->information->site_name); ?>
+
                                      </p>
                                  </div>
                                  <div class="swiper-slide header-topbar-slide">
                                      <p>
-                                         {{ $web_information->information->site_name }}
+                                         <?php echo e($web_information->information->site_name); ?>
+
                                      </p>
                                  </div>
                                  <div class="swiper-slide header-topbar-slide">
                                      <p>
-                                         {{ $web_information->information->site_name }}
+                                         <?php echo e($web_information->information->site_name); ?>
+
                                      </p>
                                  </div>
                              </div>
@@ -68,161 +71,13 @@
              <div class="header-main">
                  <div class="header-left">
                      <div class="header-logo">
-                         <a href="/" title="{{ $web_information->information->site_name }}">
-                             <img src="{{ $web_information->image->logo }}"
-                                 alt="{{ $web_information->information->site_name }}"
-                                 title="{{ $web_information->information->site_name }}" />
+                         <a href="/" title="<?php echo e($web_information->information->site_name); ?>">
+                             <img src="<?php echo e($web_information->image->logo); ?>"
+                                 alt="<?php echo e($web_information->information->site_name); ?>"
+                                 title="<?php echo e($web_information->information->site_name); ?>" />
                          </a>
                      </div>
-                     {{-- <div class="header-nav">
-                         <nav>
-                             <ul class="nav-list">
-                                 <li>
-                                     <a href="#" class="nav-item">TRANG CHỦ</a>
-                                     <div class="mega-menu">
-                                         <div class="container">
-                                             <div class="mega-menu-main">
-                                                 <div class="mega-menu-list">
-                                                     <div class="mega-menu-col">
-                                                         <a href="#" class="nav-item-parent">Women’s Dress</a>
-                                                         <ul>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Culotte dress</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Babydoll dress</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Wrap around
-                                                                     dress</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Kimono dress</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Bubble dress</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Tutu dress</a>
-                                                             </li>
-                                                         </ul>
-                                                     </div>
-
-                                                     <div class="mega-menu-col">
-                                                         <a href="#" class="nav-item-parent">Men’s Fashion</a>
-                                                         <ul>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Suit</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Hawaiian shirt</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Singlet</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Business shoes</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Flip flops</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Shorts</a>
-                                                             </li>
-                                                         </ul>
-                                                     </div>
-
-                                                     <div class="mega-menu-col">
-                                                         <a href="#" class="nav-item-parent">By Brands</a>
-                                                         <ul>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Tiffany & Co</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Zara</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">H&M</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Cartier</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Lululemon</a>
-                                                             </li>
-                                                         </ul>
-                                                     </div>
-
-                                                     <div class="mega-menu-col">
-                                                         <a href="#" class="nav-item-parent">Accessories</a>
-                                                         <ul>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Sunglasses</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Scarves</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Belts</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Shoes</a>
-                                                             </li>
-                                                         </ul>
-                                                     </div>
-
-                                                     <div class="mega-menu-col">
-                                                         <a href="#" class="nav-item-parent">Swim</a>
-                                                         <ul>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Aqua Apparel</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Go Exotic
-                                                                     Swimwear</a>
-                                                             </li>
-                                                             <li>
-                                                                 <a href="#" class="nav-item">Surf Goddess</a>
-                                                             </li>
-                                                         </ul>
-                                                     </div>
-                                                 </div>
-                                                 <div class="mega-menu-side">
-                                                     <div class="mega-menu-image">
-                                                         <img src="./assets/image/mega-menu.png" alt="FHM" />
-                                                     </div>
-                                                     <a href="#" title="Shop Now"><span>Shop Now</span><svg
-                                                             width="16" height="8" viewBox="0 0 16 8"
-                                                             fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                             <g clip-path="url(#clip0_48_13374)">
-                                                                 <path
-                                                                     d="M11.937 7.99984C11.6858 7.88884 11.5797 7.75851 11.6323 7.56738C11.6617 7.46044 11.7406 7.35661 11.8217 7.27523C12.547 6.54688 13.2775 5.82383 14.0069 5.09954C14.2426 4.86569 14.4797 4.63309 14.7546 4.36183H14.5239C9.936 4.36183 5.34847 4.36183 0.760624 4.36183C0.641004 4.36183 0.52107 4.36557 0.40145 4.3609C0.16127 4.35092 -0.000624474 4.20032 1.81067e-06 3.99392C0.000628095 3.79437 0.155007 3.6472 0.387672 3.62787C0.43934 3.62351 0.491635 3.62631 0.54393 3.62631C5.19941 3.62631 9.8549 3.62631 14.5101 3.62631H14.7387C14.672 3.55585 14.6319 3.51095 14.5893 3.46886C13.6546 2.53878 12.7198 1.60901 11.7851 0.678615C11.6004 0.494969 11.5703 0.30571 11.6962 0.14233C11.8183 -0.016061 12.0328 -0.0472403 12.1934 0.0728002C12.2432 0.109904 12.289 0.152931 12.3331 0.196582C13.4936 1.34866 14.6541 2.50074 15.8124 3.655C15.8848 3.72702 15.938 3.81775 16 3.89975V4.08621C15.9264 4.17912 15.8616 4.28045 15.7783 4.3637C14.6422 5.49676 13.5046 6.62795 12.3635 7.75602C12.2667 7.85143 12.1424 7.91909 12.0309 7.99953H11.9373L11.937 7.99984Z"
-                                                                     fill="black" />
-                                                             </g>
-                                                             <defs>
-                                                                 <clipPath id="clip0_48_13374">
-                                                                     <rect width="16" height="8"
-                                                                         fill="white" />
-                                                                 </clipPath>
-                                                             </defs>
-                                                         </svg>
-                                                     </a>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </li>
-                                 <li>
-                                     <a href="#" class="nav-item">GIỚI THIỆU</a>
-                                 </li>
-                                 <li><a class="nav-item" href="#">SẢN PHẨM CÓ SẴN</a></li>
-                                 <li><a class="nav-item" href="#">TƯ VẤN SẢN PHẨM</a></li>
-                                 <li><a class="nav-item" href="#">TIN TỨC</a></li>
-                                 <li><a class="nav-item" href="#">VIDEO </a></li>
-                                 <li><a class="nav-item" href="#">LIÊN HỆ</a></li>
-                             </ul>
-                         </nav>
-                     </div> --}}
+                     
                  </div>
                  <div class="header-wrapper">
                      <div class="header-right">
@@ -357,3 +212,4 @@
  </header>
  <!-- END HEADER-->
  <!-- ============================================= -->
+<?php /**PATH F:\NEWWAY\Nw_Quatang\resources\views/frontend/element/header.blade.php ENDPATH**/ ?>
