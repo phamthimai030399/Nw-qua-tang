@@ -353,4 +353,23 @@ $(document).ready(function () {
       },
     });
   });
+
+  $(document).on("change", "#filter-category input[type=checkbox]", function (event) {
+    handleFilter('#filter-category');
+  });
 });
+
+function handleFilter(id) {
+  // Lấy tất cả các ô checkbox đã chọn
+  var checked = $(id + " input[type=checkbox]:checked");
+  var checkedValues = checked.map(function() {
+      return this.value;
+  }).get();
+
+  var url = new URL(window.location.href);
+  url.searchParams.delete('taxonomy_ids[]');
+  checkedValues.forEach(function(value) {
+      url.searchParams.append('taxonomy_ids[]', value);
+  });
+  window.location.href = url.href.replaceAll('%5B%5D', '[]');
+}

@@ -15,12 +15,15 @@
                                  <div class="line"></div>
                              </div>
                          </div>
-                         <div id="filter-category" class="collapse show">
+                         <div id="filter-category" class="filter-item collapse show">
                              <ul class="products-filter-criteria">
+                                @php
+                                    $taxonomy_filter = request()->input('taxonomy_ids') ?? [];
+                                @endphp
                                  @foreach ($taxonomy_all as $taxonomy)
                                      @if (empty($taxonomy->parent_id) && $taxonomy->taxonomy == 'san-pham')
                                          <li>
-                                             <input type="checkbox" name="type" value="{{ $taxonomy->id }}" />
+                                             <input type="checkbox" name="taxonomy_ids" value="{{ $taxonomy->id }}" {{ in_array($taxonomy->id, request()->input('taxonomy_ids') ?? []) ? 'checked' : '' }} />
                                              <label>
                                                  {{ $taxonomy->title }}
                                              </label>
@@ -53,7 +56,7 @@
                                      <div class="line"></div>
                                  </div>
                              </div>
-                             <div id="filter-{{ $item_seach->id }}" class="collapse show">
+                             <div id="filter-{{ $item_seach->id }}" class="filter-item collapse show">
                                  <ul class="products-filter-criteria">
                                      @foreach ($seach_detail as $item)
                                          @if ($item->group_id == $item_seach->id)
@@ -210,7 +213,9 @@
              checkList = this.parentElement.querySelectorAll('input[type="checkbox"]');
              Array.from(checkList).forEach((check) => {
                  check.checked = false;
+                 check.dispatchEvent(new Event('change'));
              });
+             handleFilter('#' + this.parentElement.id);
          });
      });
  </script>
