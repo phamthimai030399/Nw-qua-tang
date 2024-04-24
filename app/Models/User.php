@@ -46,11 +46,4 @@ class User extends Authenticatable
         'json_profiles' => 'object',
     ];
 
-    /**
-     * Add a mutator to ensure hashed passwords
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
 }

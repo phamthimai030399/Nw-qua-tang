@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -47,11 +48,16 @@ class LoginController extends Controller
     public function loginAjax(Request $request)
     {
         if (Auth::guard('web')->check()) {
-            return redirect()->route('frontend.home');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Bạn đã đăng nhập trước đó'
+            ], 200);
         }
         $email = $request->email;
         $password = $request->password;
         $user = User::where('email', $email)->first();
+
+        
 
         $attempt = Auth::guard('web')->attempt([
             'email' => $email,
@@ -59,16 +65,43 @@ class LoginController extends Controller
             'status' => Consts::USER_STATUS['active']
         ]);
         if ($attempt) {
-            $token = $user->createToken('email')->accessToken;
-            $user->remember_token = $token;
-            $user->save();
-            return view('frontend.element.user');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Đăng nhập thành công'
+            ], 200);
         } else {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Đăng nhập không thành công, vui lòng thử lại!'
             ], 401);
         }
+    }
+    public function registerAjax(Request $request)
+    {
+        $params = $request->all();
+        // dd($params);
+        $count = User::where('email', $params['email'])->get()->count();
+        if ($count == 0) {
+            $user_register = new User;
+            $user_register->name = $params['fullname'];
+            $user_register->email = $params['email'];
+            $user_register->password = Hash::make($params['password']);;
+            $user_register->status = 'active';
+            $emailParts = explode('@', $params['email']);
+            $user_register->username = $emailParts[0];
+            $user_register->save();
+
+            if ($user_register->save() == true) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Đăng ký thành công, vui lòng đăng nhập để tiếp tục!'
+                ], 200);
+            }
+        } 
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Đăng ký không thành công, vui lòng thử lại!'
+        ], 400);
     }
 
     public function logout()

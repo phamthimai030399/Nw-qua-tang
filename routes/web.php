@@ -26,6 +26,7 @@ Route::namespace('FrontEnd')->group(function () {
   Route::get('/login', 'LoginController@index')->name('frontend.login');
   Route::post('/login', 'LoginController@login')->name('frontend.login.post');
   Route::post('/login-ajax', 'LoginController@loginAjax')->name('frontend.login.ajax');
+  Route::post('/register-ajax', 'LoginController@registerAjax')->name('frontend.register.ajax');
 
   Route::post('/register', 'UsersController@register')->name('frontend.register');
   Route::post('/register-post', 'UsersController@register')->name('frontend.register.post');

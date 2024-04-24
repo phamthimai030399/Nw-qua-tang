@@ -264,3 +264,93 @@ if (buttonPopupSale) {
     buttonPopupSale.classList.remove("d-none");
   }, 1000);
 }
+
+$(document).ready(function () {
+  $(document).on("click", ".btn-login", function (event) {
+    event.preventDefault();
+    let _this = $(this);
+    _this.prop("disabled", true);
+    let form = $("#fhm-login-popup form");
+    var formData = form.serializeArray();
+    let action = form.attr("action");
+    let method = form.attr("method");
+    $.ajax({
+      url: action,
+      type: method,
+      data: formData,
+      success: function (data) {
+        $("#fhm-login-popup").modal("hide");
+        // $("#box-login").html(data);
+        $("[data-bs-target='#fhm-login-popup']").removeAttr(
+          "data-bs-target data-bs-toggle"
+        );
+        setTimeout(function () {
+          alert("Đăng nhập thành công");
+        });
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        // Kiểm tra nếu mã trạng thái là 401 Unauthorized và là JSON
+        if (xhr.responseJSON) {
+          if (xhr.responseJSON.status == "success") {
+            $("#fhm-login-popup .notification .success").html(
+              xhr.responseJSON.message
+            );
+          } else {
+            $("#fhm-login-popup .notification .error").html(
+              xhr.responseJSON.message
+            );
+          }
+        } else {
+          // Xử lý lỗi khác nếu có
+          alert("Lỗi: " + textStatus);
+        }
+        _this.prop("disabled", false);
+      },
+    });
+  });
+
+  $(document).on("click", ".btn-register", function (event) {
+    event.preventDefault();
+    let _this = $(this);
+    _this.prop("disabled", true);
+    let form = $("#fhm-register-popup form");
+    var formData = form.serializeArray();
+    let action = form.attr("action");
+    let method = form.attr("method");
+    $.ajax({
+      url: action,
+      type: method,
+      data: formData,
+      success: function (data, textStatus, errorThrown) {
+        $("#fhm-register-popup").modal("hide");
+        setTimeout(function () {
+          $("#fhm-login-popup .notification .success").html(
+            data?.message
+          );
+          $("#fhm-login-popup .notification .error").html("");
+          $("#fhm-login-popup").modal("show");
+        });
+      },
+      error: function (data, textStatus, errorThrown) {
+        // Kiểm tra nếu mã trạng thái là 401 Unauthorized và là JSON
+        if (data) {
+          if (data.status == "success") {
+            $("#fhm-login-popup .notification .success").html(
+              data.message
+            );
+            $("#fhm-login-popup .notification .error").html("");
+          } else {
+            $("#fhm-register-popup .notification .error").html(
+              data.message
+            );
+            $("#fhm-register-popup .notification .success").html("");
+          }
+        } else {
+          // Xử lý lỗi khác nếu có
+          alert("Lỗi: " + textStatus);
+        }
+        _this.prop("disabled", false);
+      },
+    });
+  });
+});

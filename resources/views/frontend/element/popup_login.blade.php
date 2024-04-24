@@ -12,11 +12,11 @@
             </button>
             <div class="login-container">
                 <h2>Đăng nhập tài khoản</h2>
-                <form class="login-form main-form" accept-charset='UTF-8' action="{{ route('frontend.login.ajax') }}"
+                <form class="register-form main-form" accept-charset='UTF-8' action="{{ route('frontend.login.ajax') }}"
                     method='post'>
                     @csrf
                     <div class="main-form-wrapper">
-                        <input type="text" class="form-control main-form-control login-form-input"
+                        <input type="text" class="form-control main-form-control login-form-input" name="email"
                             placeholder="Email or Phone" />
                         <div class="clear-input d-none">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="main-form-wrapper">
-                        <input type="password" class="form-control main-form-control login-form-input"
+                        <input type="password" class="form-control main-form-control login-form-input" name="password"
                             placeholder="Password" />
                         <div class="password-input position-absolute">
                             <svg width="18" height="15" viewBox="0 0 18 15" fill="none"
@@ -64,7 +64,7 @@
                                 @endif
                             </i></p>
                     </div>
-                    <button type="submit" class="main-btn main-btn-full login-form-submit">
+                    <button type="submit" class="main-btn main-btn-full login-form-submit btn-login">
                         Đăng nhập
                     </button>
                 </form>
@@ -95,7 +95,7 @@
             </button>
             <div class="login-container">
                 <h2>Đăng ký tài khoản mới</h2>
-                <form class="login-form main-form" accept-charset='UTF-8' action="{{ route('frontend.register') }}"
+                <form class="login-form main-form" accept-charset='UTF-8' action="{{ route('frontend.register.ajax') }}"
                     method='post'>
                     @csrf
                     <div class="main-form-wrapper">
@@ -156,7 +156,7 @@
                             <p><i style="color: brown">{{ Session::get('errorMessageEmail') }}</i></p>
                         @endif
                     </div>
-                    <button type="submit" class="main-btn main-btn-full login-form-submit">
+                    <button type="submit" class="main-btn main-btn-full login-form-submit btn-register">
                         Đăng ký
                     </button>
                 </form>
@@ -172,14 +172,14 @@
     </div>
 </section>
 <!-- END REGISTER POPUP-->
-<script>
+{{-- <script>
     @if (Session::has('loginErrorMessage') || Session::has('errorMessageEmail') || Session::has('registerSuccessMessage'))
         $("#fhm-login-popup").modal('show');
     @endif
     @if (Session::has('registerErrorMessage'))
         $("#fhm-register-popup").modal('show');
     @endif
-</script>
+</script> --}}
 <style>
     .modal .notification {
         margin: 10px 0;
