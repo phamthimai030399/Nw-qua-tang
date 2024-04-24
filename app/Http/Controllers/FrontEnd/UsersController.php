@@ -11,6 +11,7 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 class UsersController extends Controller
@@ -128,20 +129,35 @@ class UsersController extends Controller
     public function register(Request $request)
     {
         $params = $request->all();
+        // dd($params);
+        $count = User::where('email', $params['email'])->get()->count();
+        if ($count == 0) {
+            $user_register = new User;
+            $user_register->name = $params['fullname'];
+            $user_register->email = $params['email'];
+            $user_register->password = Hash::make($params['password']);;
+            $user_register->status = 'active';
+            $emailParts = explode('@', $params['email']);
+            $user_register->username = $emailParts[0];
+            $user_register->save();
 
-        $user_register = new User;
-        $user_register->name = $params['name'];
-        $user_register->email = $params['email'];
-        $user_register->password = $params['password'];
-        // $user_register -> sex = $params['Sex'];
-        // $user_register -> birthday = $params['DateOfBirth'];
-        // $user_register -> phone = $params['Phone'];
-        $user_register->status = 'active';
-        $user_register->save();
-        
-        Auth::login($user_register);
-        return redirect()->route('frontend.home');
-        
+            if ($user_register->save() == true) {
+                return redirect()->back()->with(
+                    'registerSuccessMessage',
+                    'Đăng kí tài khoản thành công, đăng nhập để tiếp tục!'
+                );
+            }
+        } else {
+            return redirect()->back()->with(
+                'errorMessageEmail',
+                'Email đã được sử dụng, vui lòng sử dụng email khác!'
+            );
+        }
+
+        return redirect()->back()->with(
+            'registerErrorMessage',
+            'Đăng kí không thành công, vui lòng thử lại!'
+        );
     }
 
     /**

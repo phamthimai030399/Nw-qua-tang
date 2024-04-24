@@ -11,11 +11,14 @@
 </html>
 
 <body>
+      
     @include('frontend.element.header')
     
     @yield('content')
 
     @include('frontend.element.footer')
+
+    @include('frontend.element.popup_login')
 
     @include('frontend.panels.scripts')
 </body>

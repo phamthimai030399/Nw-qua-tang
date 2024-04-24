@@ -115,40 +115,12 @@ class CmsController extends Controller
         return $data_post;
     }
 
-    public function postCategory($alias = null, Request $request)
+    public function postCategory(Request $request)
     {
-        //$id = $request->get('id')  ?? null;
-
-        if ($alias != "") {
-            $params['url_part'] = str_replace('.html', '', $alias);
-            //dd($params['url_part']);
-            //echo 'AAAAAAAA'.$id;die;
-            //$params['id'] = $id;
-            $params['status'] = Consts::TAXONOMY_STATUS['active'];
-            $params['taxonomy'] = Consts::CATEGORY['tin-tuc'];
-            $taxonomy = ContentService::getCmsTaxonomy($params)->first();
-            if ($taxonomy) {
-                $id = $taxonomy->id;
-                $this->responseData['taxonomy'] = $taxonomy;
-                if ($taxonomy->sub_taxonomy_id != null) {
-                    $str_taxonomy_id = $id . ',' . $taxonomy->sub_taxonomy_id;
-                    $paramPost['taxonomy_id'] = array_map('intval', explode(',', $str_taxonomy_id));
-                } else {
-                    $paramPost['taxonomy_id'] = $id;
-                }
-                $paramPost['status'] = Consts::POST_STATUS['active'];
-                $paramPost['is_type'] = Consts::POST_TYPE['post'];
-                $this->responseData['posts'] = ContentService::getCmsPost($paramPost)->paginate(Consts::POST_PAGINATE_LIMIT);
-                return $this->responseView('frontend.pages.post.category');
-            } else {
-                return redirect()->back()->with('errorMessage', __('not_found'));
-            }
-        } else {
-            $paramPost['status'] = Consts::POST_STATUS['active'];
-            $paramPost['is_type'] = Consts::POST_TYPE['post'];
-            $this->responseData['posts'] = ContentService::getCmsPost($paramPost)->paginate(Consts::POST_PAGINATE_LIMIT);
-        }
-
+        $paramPost['status'] = Consts::POST_STATUS['active'];
+        $paramPost['is_type'] = Consts::POST_TYPE['post'];
+        $this->responseData['posts'] = ContentService::getCmsPost($paramPost)->paginate(Consts::POST_PAGINATE_LIMIT);
+        // dd($this->responseData['posts']);
         return $this->responseView('frontend.pages.post.default');
     }
 
@@ -247,25 +219,15 @@ class CmsController extends Controller
 
     public function post($alias_detail = null, Request $request)
     {
-
-        //$id = $request->get('id')  ?? null;
-
         if ($alias_detail != '') {
             $params['url_part'] = str_replace('.html', '', $alias_detail);
-            //$params['url_part'] = $alias_detail;
             $params['status'] = Consts::POST_STATUS['active'];
             $params['is_type'] = Consts::POST_TYPE['post'];
             $params['aproved_date'] = date('Y-m-d H:i:s');
-            //dd($params);
             $detail = ContentService::getCmsPost($params)->first();
 
             if ($detail) {
-                //dd($alias_detail);
                 $id = $detail->id;
-                //$detail->number_view = $detail->number_view + 1;
-
-                //$detail->save();
-
                 $this->responseData['detail'] = $detail;
 
                 $id = $detail->id;
@@ -430,17 +392,15 @@ class CmsController extends Controller
             $params['status'] = 1;
 
             $detail = ContentService::getProducts($params)->first();
-            // dd($detail);   
 
             if ($detail) {
 
                 $this->responseData['detail'] = $detail;
 
-                $params_relative['different_id'] = $detail->id;
-                $params_relative['taxonomy_id'] = $detail->taxonomy_id;
+                $params_relative['status'] = 1;
+                // $params_relative['taxonomy_id'] = $detail->taxonomy_id;
 
-                $this->responseData['posts'] = ContentService::getProducts($params_relative)->limit(Consts::DEFAULT_OTHER_LIMIT)->get();
-                //dd($alias_detail);
+                $this->responseData['products_related'] = ContentService::getProducts($params_relative)->limit(Consts::POST_PAGINATE_LIMIT)->get();
                 return $this->responseView('frontend.pages.product.detail');
             }
         }
@@ -490,24 +450,24 @@ class CmsController extends Controller
         return $this->responseView('pages.gallery.default');
     }
 
-    public function gallery($alias = null, $id = null, Request $request)
-    {
-        $id = $request->get('id')  ?? $id;
-        if ($id > 0) {
-            $params['id'] = $id;
-            $params['status'] = Consts::POST_STATUS['active'];
-            $params['is_type'] = Consts::POST_TYPE['gallery'];
-            $detail = ContentService::getCmsPost($params)->first();
-            if ($detail) {
-                $detail->count_visited = $detail->count_visited + 1;
-                $detail->save();
-                $this->responseData['detail'] = $detail;
-                return $this->responseView('pages.gallery.detail');
-            }
-        }
+    // public function gallery($alias = null, $id = null, Request $request)
+    // {
+    //     $id = $request->get('id')  ?? $id;
+    //     if ($id > 0) {
+    //         $params['id'] = $id;
+    //         $params['status'] = Consts::POST_STATUS['active'];
+    //         $params['is_type'] = Consts::POST_TYPE['gallery'];
+    //         $detail = ContentService::getCmsPost($params)->first();
+    //         if ($detail) {
+    //             $detail->count_visited = $detail->count_visited + 1;
+    //             $detail->save();
+    //             $this->responseData['detail'] = $detail;
+    //             return $this->responseView('pages.gallery.detail');
+    //         }
+    //     }
 
-        return redirect()->back()->with('errorMessage', __('not_found'));
-    }
+    //     return redirect()->back()->with('errorMessage', __('not_found'));
+    // }
 
 
     public function department($alias = null, Request $request)
@@ -591,5 +551,14 @@ class CmsController extends Controller
         }
 
         return redirect()->back()->with('errorMessage', __('not_found'));
+    }
+    public function introduce()
+    {
+        $this->responseData['posts'] = ContentService::getCmsPost(['status' => 'active', 'is_type' => 'intro'])->get();
+        return $this->responseView('frontend.pages.post.introduce');
+    }
+    public function gallery()
+    {
+        return $this->responseView('frontend.pages.gallery.index');
     }
 }

@@ -53,13 +53,13 @@
                              <div class="header-topbar-info-icon">
                                  <i class="fas fa-globe"></i>
                              </div>
-                             <a href="#" title="Đơn hàng của bạn">Đơn hàng của bạn</a>
+                             <a href="#" title="Điều khoản chính sách">Điều khoản chính sách</a>
                          </div>
                          <div class="header-topbar-info-item">
                              <div class="header-topbar-info-icon">
                                  <i class="fas fa-headset"></i>
                              </div>
-                             <a href="#" title="Trợ giúp">Trợ giúp</a>
+                             <a href="#" title="Liên hệ">Liên hệ</a>
                          </div>
                      </div>
                  </div>
@@ -84,7 +84,7 @@
                          <div class="grid__item d-none d-lg-flex">
                              <div class="search-form-wrapper">
                                  <form id="search-collection-form" accept-charset="UTF-8"
-                                     action="https://quatangdoanhnghiep.com.vn/search" class="search-form"
+                                     action="" class="search-form"
                                      method="get">
                                      <div class="input-group">
                                          <input type="text" value=""
@@ -139,55 +139,31 @@
                          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                              aria-label="Close"></button>
                          <nav class="nav-mobile">
-                            <ul class="nav-list">
-                                <li>
-                                    <a href="#" class="nav-item">TRANG CHỦ</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-item">GIỚI THIỆU</a>
-                                </li>
-                                <li>
-                                    <a class="nav-item" href="#">SẢN PHẨM CÓ SẴN</a>
-                                    <ul class="submenu-header">
-                                        <li>
-                                            <a href="collections/hop-dung-ruou.html">Hộp đựng rượu, PKR</a>
-                                        </li>
-   
-                                        <li>
-                                            <a href="collections/hop-namecard-co-san.html">Hộp namecard</a>
-                                        </li>
-   
-                                        <li>
-                                            <a href="collections/goi-hoi-chu-u.html">Gối hơi</a>
-                                        </li>
-   
-                                        <li>
-                                            <a href="collections/coc-gap-co-san.html">Cốc gấp - Cốc xếp</a>
-                                        </li>
-   
-                                        <li>
-                                            <a href="collections/binh-giu-nhiet-binh-nuoc-co-san.html">Bình GN, Bình
-                                                nước</a>
-                                        </li>
-   
-                                        <li>
-                                            <a href="collections/but-ky-but-bi-co-san.html">Bút ký, Bút bi</a>
-                                        </li>
-   
-                                        <li>
-                                            <a href="collections/bien-ten-huy-hieu-co-san.html">Biển tên, Huy hiệu</a>
-                                        </li>
-   
-                                        <li>
-                                            <a href="collections/san-pham-khac-co-san.html">Sản phẩm khác</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a class="nav-item" href="#">TƯ VẤN SẢN PHẨM</a></li>
-                                <li><a class="nav-item" href="#">TIN TỨC</a></li>
-                                <li><a class="nav-item" href="#">VIDEO </a></li>
-                                <li><a class="nav-item" href="#">LIÊN HỆ</a></li>
-                            </ul>
+                             <ul class="nav-list">
+                                 <li>
+                                     <a href="/" class="nav-item">TRANG CHỦ</a>
+                                 </li>
+                                 <li>
+                                     <a href="<?php echo e(route('frontend.introduce')); ?>" class="nav-item">GIỚI THIỆU</a>
+                                 </li>
+                                 <li>
+                                     <a class="nav-item" href="<?php echo e(route('frontend.cms.product_all')); ?>">SẢN PHẨM CÓ SẴN</a>
+
+                                     <ul class="submenu-header">
+                                         <?php $__currentLoopData = $taxonomy_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $taxonomy): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                             <?php if(empty($taxonomy->parent_id) && $taxonomy->taxonomy == 'san-pham'): ?>
+                                                 <li>
+                                                     <a
+                                                         href="<?php echo e(route('frontend.cms.product_category', ['alias' => $taxonomy->url_part])); ?>"><?php echo e($taxonomy->title); ?></a>
+                                                 </li>
+                                             <?php endif; ?>
+                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                     </ul>
+                                 </li>
+                                 <li><a class="nav-item" href="<?php echo e(route('frontend.cms.post_category')); ?>">TƯ VẤN SẢN PHẨM</a></li>
+                                 <li><a class="nav-item" href="<?php echo e(route('frontend.gallery')); ?>">THƯ VIỆN HÌNH ẢNH </a></li>
+                                 <li><a class="nav-item" href="<?php echo e(route('frontend.contact')); ?>">LIÊN HỆ</a></li>
+                             </ul>
                          </nav>
 
                          <div class="mobile-row">

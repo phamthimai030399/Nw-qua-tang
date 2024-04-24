@@ -17,7 +17,6 @@ class LoginController extends Controller
         if (Auth::guard('web')->check()) {
             return redirect()->route('frontend.home');
         }
-        // return redirect()->route('frontend.home');
         return $this->responseView('frontend.pages.user.login');
     }
 
@@ -44,6 +43,32 @@ class LoginController extends Controller
             'errorMessage',
             'Tài khoản hoặc mật khẩu không chính xác!'
         );
+    }
+    public function loginAjax(Request $request)
+    {
+        if (Auth::guard('web')->check()) {
+            return redirect()->route('frontend.home');
+        }
+        $email = $request->email;
+        $password = $request->password;
+        $user = User::where('email', $email)->first();
+
+        $attempt = Auth::guard('web')->attempt([
+            'email' => $email,
+            'password' => $password,
+            'status' => Consts::USER_STATUS['active']
+        ]);
+        if ($attempt) {
+            $token = $user->createToken('email')->accessToken;
+            $user->remember_token = $token;
+            $user->save();
+            return view('frontend.element.user');
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Đăng nhập không thành công, vui lòng thử lại!'
+            ], 401);
+        }
     }
 
     public function logout()

@@ -25,8 +25,9 @@ Route::namespace('FrontEnd')->group(function () {
 
   Route::get('/login', 'LoginController@index')->name('frontend.login');
   Route::post('/login', 'LoginController@login')->name('frontend.login.post');
+  Route::post('/login-ajax', 'LoginController@loginAjax')->name('frontend.login.ajax');
 
-  Route::get('/register', 'LoginController@register')->name('frontend.register');
+  Route::post('/register', 'UsersController@register')->name('frontend.register');
   Route::post('/register-post', 'UsersController@register')->name('frontend.register.post');
 
   Route::get('auth/google', 'LoginController@redirectToGoogle')->name('login.google');
@@ -36,6 +37,9 @@ Route::namespace('FrontEnd')->group(function () {
   Route::get('auth/facebook/callback', 'LoginController@handleFacebookCallback');
 
   Route::get('/', 'HomeController@index')->name('frontend.home');
+  Route::get('/gioi-thieu', 'CmsController@introduce')->name('frontend.introduce');
+  Route::get('/thu-vien-hinh-anh', 'CmsController@gallery')->name('frontend.gallery');
+  Route::get('/lien-he', 'ContactControllerr@index')->name('frontend.contact');
   Route::get('search', 'CmsController@search')->name('frontend.search.index');
 
   // CMS
@@ -50,7 +54,7 @@ Route::namespace('FrontEnd')->group(function () {
   Route::get('thu-vien/{alias_category}/{alias_detail}', 'CmsController@resource')->name('frontend.cms.resource');
 
   Route::get('xem-them-bai-viet', 'CmsController@viewMore')->name('frontend.cms.view_more');
-  Route::get('tin-tuc/{alias?}', 'CmsController@postCategory')->name('frontend.cms.post_category');
+  Route::get('tin-tuc', 'CmsController@postCategory')->name('frontend.cms.post_category');
   Route::get('chi-tiet/{alias_detail}', 'CmsController@post')->name('frontend.cms.post');
   Route::get('tag/{alias_category?}', 'CmsController@cmstag')->name('frontend.cms.tag');
 

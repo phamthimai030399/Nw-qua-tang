@@ -50,24 +50,26 @@
                                  <a href="/" class="nav-item">TRANG CHỦ</a>
                              </li>
                              <li>
-                                 <a href="#" class="nav-item">GIỚI THIỆU</a>
+                                 <a href="<?php echo e(route('frontend.introduce')); ?>" class="nav-item">GIỚI THIỆU</a>
                              </li>
                              <li>
-                                 <a class="nav-item" href="<?php echo e(route('frontend.cms.product_all')); ?>">SẢN PHẨM</a>
+                                 <a class="nav-item" href="<?php echo e(route('frontend.cms.product_all')); ?>">SẢN PHẨM QUÀ
+                                     TẶNG</a>
                                  <ul class="submenu-header">
-                                    <?php $__currentLoopData = $taxonomy_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $taxonomy): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if(empty($taxonomy->parent_id) && $taxonomy->taxonomy == 'san-pham'): ?>
-                                    <li>
-                                        <a href="<?php echo e(route('frontend.cms.product_category', ['alias' => $taxonomy->url_part])); ?>"><?php echo e($taxonomy->title); ?></a>
-                                    </li>
-                                    <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                     <?php $__currentLoopData = $taxonomy_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $taxonomy): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                         <?php if(empty($taxonomy->parent_id) && $taxonomy->taxonomy == 'san-pham'): ?>
+                                             <li>
+                                                 <a
+                                                     href="<?php echo e(route('frontend.cms.product_category', ['alias' => $taxonomy->url_part])); ?>"><?php echo e($taxonomy->title); ?></a>
+                                             </li>
+                                         <?php endif; ?>
+                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                  </ul>
                              </li>
-                             <li><a class="nav-item" href="#">TƯ VẤN SẢN PHẨM</a></li>
-                             <li><a class="nav-item" href="#">TIN TỨC</a></li>
-                             <li><a class="nav-item" href="#">VIDEO </a></li>
-                             <li><a class="nav-item" href="#">LIÊN HỆ</a></li>
+                             <li><a class="nav-item" href="<?php echo e(route('frontend.cms.post_category')); ?>">TƯ VẤN SẢN
+                                     PHẨM</a></li>
+                             <li><a class="nav-item" href="<?php echo e(route('frontend.gallery')); ?>">THƯ VIỆN HÌNH ẢNH </a></li>
+                             <li><a class="nav-item" href="<?php echo e(route('frontend.contact')); ?>">LIÊN HỆ</a></li>
                          </ul>
                      </nav>
                  </div>
@@ -95,22 +97,21 @@
      </div>
  </div>
  <div class="slider slider-banner d-block d-lg-none">
-    <div class="swiper slider-container">
-        <div class="swiper-wrapper">
-            <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($item->block_code == 'banner_top' && $item->parent_id == null): ?>
-                    <div class="swiper-slide">
-                        <div class="slider-item">
-                            <img src="<?php echo e($item->image); ?>" alt="<?php echo e($item->title); ?>"
-                                title="<?php echo e($item->title); ?>" />
-                        </div>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
-        <div class="swiper-pagination slider-pagination"></div>
-    </div>
-</div>
+     <div class="swiper slider-container">
+         <div class="swiper-wrapper">
+             <?php $__currentLoopData = $blocksContent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                 <?php if($item->block_code == 'banner_top' && $item->parent_id == null): ?>
+                     <div class="swiper-slide">
+                         <div class="slider-item">
+                             <img src="<?php echo e($item->image); ?>" alt="<?php echo e($item->title); ?>" title="<?php echo e($item->title); ?>" />
+                         </div>
+                     </div>
+                 <?php endif; ?>
+             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+         </div>
+         <div class="swiper-pagination slider-pagination"></div>
+     </div>
+ </div>
  <!-- END HOME SLIDER -->
  <style>
      #banner-container {
@@ -235,14 +236,16 @@
          font-size: 15px;
          transition: all 0.3s ease;
      }
+
      #banner-container .dropdown-megamenu .magamenu-category_title:hover p {
-        color: #f07d00;
-        transition: all 0.3s ease;
+         color: #f07d00;
+         transition: all 0.3s ease;
      }
+
      .header-container .grid__item .search-form-wrapper {
-        width: 100%;
+         width: 100%;
      }
-     @media (max-width: 991.99px) {
-     }
+
+     @media (max-width: 991.99px) {}
  </style>
 <?php /**PATH F:\NEWWAY\Nw_Quatang\resources\views/frontend/element/banner_home.blade.php ENDPATH**/ ?>

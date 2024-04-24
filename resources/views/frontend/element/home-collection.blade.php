@@ -16,7 +16,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM MỚI</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="{{route('frontend.cms.product_all')}}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -110,7 +110,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM NỔI BẬT</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="{{route('frontend.cms.product_all')}}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -204,7 +204,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM TỪNG THỰC HIỆN</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="{{route('frontend.cms.product_all')}}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -298,7 +298,7 @@ a<!-- START HOME JUST IN -->
                     <h3>QUÀ TẶNG THANH LÝ</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="{{route('frontend.cms.product_all')}}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>

@@ -18,9 +18,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $params['status'] = Consts::TAXONOMY_STATUS['active'];
-        $params['taxonomy'] = Consts::TAXONOMY['department'];
-        $this->responseData['departments'] = ContentService::getCmsTaxonomy($params)->get();
+        // $params['status'] = Consts::TAXONOMY_STATUS['active'];
+        // $params['taxonomy'] = Consts::TAXONOMY['department'];
+        // $this->responseData['departments'] = ContentService::getCmsTaxonomy($params)->get();
 
         return $this->responseView('frontend.pages.contact.index');
     }

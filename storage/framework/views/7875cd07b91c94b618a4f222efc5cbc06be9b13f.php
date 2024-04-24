@@ -16,7 +16,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM MỚI</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="<?php echo e(route('frontend.cms.product_all')); ?>">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -37,14 +37,14 @@ a<!-- START HOME JUST IN -->
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="">
+                                                <a href="<?php echo e(route('frontend.cms.product', ['alias_detail' => $product->alias])); ?>">
                                                     <img class="product-img-default" src="<?php echo e($product->image); ?>"
                                                         alt="<?php echo e($product->title); ?>" title="<?php echo e($product->title); ?>" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
                                                 <span class="product-type">Denim</span>
-                                                <a href="" class="product-name" title="<?php echo e($product->title); ?>">
+                                                <a href="<?php echo e(route('frontend.cms.product', ['alias_detail' => $product->alias])); ?>" class="product-name" title="<?php echo e($product->title); ?>">
                                                     <?php echo e($product->title); ?>
 
                                                 </a>
@@ -111,7 +111,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM NỔI BẬT</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="<?php echo e(route('frontend.cms.product_all')); ?>">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -132,14 +132,14 @@ a<!-- START HOME JUST IN -->
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="">
+                                                <a href="<?php echo e(route('frontend.cms.product', ['alias_detail' => $product->alias])); ?>">
                                                     <img class="product-img-default" src="<?php echo e($product->image); ?>"
                                                         alt="<?php echo e($product->title); ?>" title="<?php echo e($product->title); ?>" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
                                                 <span class="product-type">Denim</span>
-                                                <a href="" class="product-name" title="<?php echo e($product->title); ?>">
+                                                <a href="<?php echo e(route('frontend.cms.product', ['alias_detail' => $product->alias])); ?>" class="product-name" title="<?php echo e($product->title); ?>">
                                                     <?php echo e($product->title); ?>
 
                                                 </a>
@@ -206,7 +206,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM TỪNG THỰC HIỆN</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="<?php echo e(route('frontend.cms.product_all')); ?>">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -227,14 +227,14 @@ a<!-- START HOME JUST IN -->
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="">
+                                                <a href="<?php echo e(route('frontend.cms.product', ['alias_detail' => $product->alias])); ?>">
                                                     <img class="product-img-default" src="<?php echo e($product->image); ?>"
                                                         alt="<?php echo e($product->title); ?>" title="<?php echo e($product->title); ?>" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
                                                 <span class="product-type">Denim</span>
-                                                <a href="" class="product-name" title="<?php echo e($product->title); ?>">
+                                                <a href="<?php echo e(route('frontend.cms.product', ['alias_detail' => $product->alias])); ?>" class="product-name" title="<?php echo e($product->title); ?>">
                                                     <?php echo e($product->title); ?>
 
                                                 </a>
@@ -301,7 +301,7 @@ a<!-- START HOME JUST IN -->
                     <h3>QUÀ TẶNG THANH LÝ</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="<?php echo e(route('frontend.cms.product_all')); ?>">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -322,14 +322,14 @@ a<!-- START HOME JUST IN -->
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="">
+                                                <a href="<?php echo e(route('frontend.cms.product', ['alias_detail' => $product->alias])); ?>">
                                                     <img class="product-img-default" src="<?php echo e($product->image); ?>"
                                                         alt="<?php echo e($product->title); ?>" title="<?php echo e($product->title); ?>" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
                                                 <span class="product-type">Denim</span>
-                                                <a href="" class="product-name" title="<?php echo e($product->title); ?>">
+                                                <a href="<?php echo e(route('frontend.cms.product', ['alias_detail' => $product->alias])); ?>" class="product-name" title="<?php echo e($product->title); ?>">
                                                     <?php echo e($product->title); ?>
 
                                                 </a>

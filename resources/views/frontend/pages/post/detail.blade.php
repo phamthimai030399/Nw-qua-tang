@@ -1,101 +1,226 @@
 @extends('frontend.layouts.default')
-@php
-$title_detail = $detail->title;
-$brief_detail = $detail->brief;
-$content = $detail->content;
-$image = $detail->image != '' ? $detail->image : null;
-
-// For taxonomy
-$taxonomy_title = $detail->taxonomy_title ?? $detail->taxonomy_title;
-
-$url_link_category = route('frontend.cms.post_category', ['alias' => $detail->taxonomy_url_part]) . '.html';
-
-$seo_title = $detail->meta_title ?? $title_detail;
-$seo_keyword = $detail->meta_keyword ?? null;
-$seo_description = $detail->meta_description ?? $brief_detail;
-$seo_image = $image ?? ($image_thumb ?? null);
-//echo "AAAAAAAAAAAA".$content;die;
-
-@endphp
 
 @section('content')
+    <main id="fhm-post-detail-page" class="position-relative">
 
-{{-- session('successMessage') ?? 'aaaa' --}}
+        @include('frontend.element.banner_home')
 
-@if (session('successMessage'))
-<div id="snackbar">{{ session('successMessage') }}</div>
-<script>
-    $(document).ready(function() {
-    var x = document.getElementById("snackbar");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
-    });
-</script>
-@endif
+        @include('frontend.element.banner_product')
 
-<div class="breadcrumb full-width">
-    <div class="background-breadcrumb"></div>
-    <div class="background">
-        <div class="shadow"></div>
-        <div class="pattern">
+        <!-- START BREADCRUMB -->
+        <section class="breadcrumb">
             <div class="container">
-                <div class="clearfix">
-                    <ul class="breadcrumb" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                        <li class="item"><a itemprop="url" title="Trang chủ" href="{{ route('frontend.home') }}"><span itemprop="title">Trang chủ</span></a></li>
-						<li class="item"><span itemprop="title"><a itemprop="url" href="{{ $url_link_category  }}" title="{{ $taxonomy_title }}">{{ $taxonomy_title }}</a></span></li>
-                    </ul>
+                <div class="breadcrumb-list">
+                    <a href="/" title="Trang chủ" class="breadcrumb-link">Trang chủ</a>
+                    <a href="{{ route('frontend.cms.post_category') }}" title="Tư vấn sản phẩm" class="breadcrumb-link">Tư vấn
+                        sản phẩm</a>
+                    <a href="{{ route('frontend.cms.post', ['alias_detail' => $detail->url_part]) }}"
+                        title="{{ $detail->title }}"
+                        class="breadcrumb-link breadcrumb-link-current">{{ $detail->title }}</a>
+                </div>
+            </div>
+        </section>
+        <!-- END BREADCRUMB -->
+
+        <!-- START BLOG DETAIL -->
+        <div class="container blog-space">
+            <div class="row flex-lg-row-reverse">
+                <div class="col-12 col-lg-9">
+                    <div class="blog-detail">
+                        <h1>
+                            {{ $detail->title }}
+                        </h1>
+                        <div class="">
+                            @if ($detail->author != null)
+                                <p>
+									{{ $detail->author }}
+								</p>
+                            @else
+                                <p>Admin</p>
+                            @endif
+                            <p>{{ date('Y-m-d', strtotime($detail->aproved_date)) }}</p>
+                        </div>
+                        <article class="blog-content">
+                            <p>
+                                Commodo labore ut nisi laborum amet eu qui magna ullamco ut
+                                labore. Aliquip consectetur labore consectetur dolor
+                                exercitation est minim quis. Magna non irure qui ex est
+                                laborum nulla excepteur qui. Anim Lorem dolore cupidatat
+                                pariatur ex tempor. Duis ea excepteur proident ex commodo
+                                irure est.
+                            </p>
+                            <p>
+                                Nisi commodo qui pariatur enim sint laborum consequat enim in
+                                officia. Officia fugiat incididunt commodo et mollit aliqua
+                                non aute. Enim dolor eiusmod aliqua amet ipsum in enim
+                                eiusmod. Quis exercitation sit velit duis.
+                            </p>
+                            <p>
+                                Est Lorem labore consectetur minim sit eu eiusmod mollit
+                                velit. Consectetur voluptate ex amet id eiusmod laborum irure.
+                                Aliquip ad qui id exercitation irure amet commodo nisi quis.
+                                Occaecat minim incididunt eiusmod nostrud veniam quis culpa.
+                            </p>
+                            <p>
+                                Nisi ipsum et consequat id deserunt excepteur. Cillum non
+                                pariatur culpa ut occaecat laboris eu. Ullamco ad Lorem et
+                                elit laboris eu qui irure nulla qui culpa et. Cupidatat sunt
+                                ipsum proident aute exercitation do tempor aliqua cupidatat
+                                quis non exercitation. Adipisicing do minim dolore nulla
+                                mollit. Adipisicing incididunt irure ipsum et in esse ipsum
+                                elit tempor.
+                            </p>
+                            <p>
+                                Aliquip mollit sunt qui irure. Irure ullamco Lorem excepteur
+                                dolor qui ea ad quis. Enim fugiat cillum enim ad occaecat sint
+                                qui elit labore mollit sunt laborum fugiat consequat.
+                                Voluptate labore sunt duis eu deserunt. Occaecat do ut ut
+                                labore cillum enim dolore ad enim enim id. Aliquip do veniam
+                                ad excepteur ad cillum qui deserunt nostrud sunt aliqua duis
+                                sunt occaecat. Laborum incididunt commodo ullamco proident
+                                quis.
+                            </p>
+                            <img src="assets/image/blog.png"
+                                alt="What's different about Japan winter specialties year-end atmosphere "
+                                title="What's different about Japan winter specialties year-end atmosphere " />
+                            <blockquote>
+                                Nisi commodo qui pariatur enim sint laborum consequat enim in
+                                officia. Officia fugiat incididunt commodo et mollit aliqua
+                                non aute. Enim dolor eiusmod aliqua amet ipsum in enim
+                                eiusmod. Quis exercitation sit velit duis
+                            </blockquote>
+                            <h3>Your imagination, our creation</h3>
+                            <p>
+                                Complexion-perfecting natural foundation enriched with
+                                antioxidant-packed superfruits, vitamins, and other
+                                skin-nourishing nutrients. Creamy liquid formula sets with a
+                                pristine matte finish for soft, velvety smooth skin. Made
+                                using clean, non-toxic ingredients, our products are designed
+                                for everyone…
+                            </p>
+                            <div class="blog-img-group">
+                                <img src="assets/image/blog-2.png"
+                                    alt="What's different about Japan winter specialties year-end atmosphere "
+                                    title="What's different about Japan winter specialties year-end atmosphere " /><img
+                                    src="assets/image/blog-3.png"
+                                    alt="What's different about Japan winter specialties year-end atmosphere "
+                                    title="What's different about Japan winter specialties year-end atmosphere " />
+                            </div>
+                            <p>
+                                Complexion-perfecting natural foundation enriched with
+                                antioxidant-packed superfruits, vitamins, and other
+                                skin-nourishing nutrients. Creamy liquid formula sets with a
+                                pristine matte finish for soft, velvety smooth skin. Made
+                                using clean, non-toxic ingredients, our products are designed
+                                for everyone…
+                            </p>
+                        </article>
+                        <div class="blog-action">
+                            <div class="blog-tag">
+                                <a href="#" title="#Cleansing">#Cleansing</a>
+                                <a href="#" title="#Coffee">#Coffee</a>
+                                <a href="#" title="#Cream">#Cream</a>
+                                <a href="#" title="#BeanEye">#BeanEye</a>
+                            </div>
+                            <div class="blog-share">
+                                <p>Share</p>
+                                <a href="#" title="facebook"><img src="assets/image/blog-fb.svg" alt="facebook"
+                                        title="facebook" /></a>
+                                <a href="#" title="instagram"><img src="assets/image/blog-ig.svg" alt="instagram"
+                                        title="instagram" /></a>
+                                <a href="#" title="pinterest"><img src="assets/image/blog-pin.svg" alt="pinterest"
+                                        title="pinterest" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="blog-related">
+                        <h2>Related Blogs</h2>
+                        <div class="blog-related-list">
+                            <div class="news news-full">
+                                <div class="news-img">
+                                    <img src="assets/image/news-full-1.png" alt="Spectacular photos the desert at sunset"
+                                        title="Spectacular photos the desert at sunset" />
+                                </div>
+                                <div class="news-reference">
+                                    <span class="news-date"> Sep 25.2022 - </span>
+                                    <span class="news-tag">Fashion</span>
+                                </div>
+                                <a href="#" class="news-title"
+                                    title="Spectacular photos the desert at sunset">Spectacular photos the desert at
+                                    sunset</a>
+                                <p class="news-des">
+                                    Many years ago, I worked for my parents who own a video
+                                    production company.
+                                </p>
+                            </div>
+                            <div class="news news-full">
+                                <div class="news-img">
+                                    <img src="assets/image/news-full-2.png" alt="Spectacular photos the desert at sunset"
+                                        title="Spectacular photos the desert at sunset" />
+                                </div>
+                                <div class="news-reference">
+                                    <span class="news-date"> Sep 25.2022 - </span>
+                                    <span class="news-tag">Fashion</span>
+                                </div>
+                                <a href="#" class="news-title"
+                                    title="Spectacular photos the desert at sunset">Spectacular photos the desert at
+                                    sunset</a>
+                                <p class="news-des">
+                                    Many years ago, I worked for my parents who own a video
+                                    production company.
+                                </p>
+                            </div>
+                            <div class="news news-full">
+                                <div class="news-img">
+                                    <img src="assets/image/news-full-3.png" alt="Spectacular photos the desert at sunset"
+                                        title="Spectacular photos the desert at sunset" />
+                                </div>
+                                <div class="news-reference">
+                                    <span class="news-date"> Sep 25.2022 - </span>
+                                    <span class="news-tag">Fashion</span>
+                                </div>
+                                <a href="#" class="news-title"
+                                    title="Spectacular photos the desert at sunset">Spectacular photos the desert at
+                                    sunset</a>
+                                <p class="news-des">
+                                    Many years ago, I worked for my parents who own a video
+                                    production company.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="main-content full-width inner-page">
-    <div class="background">
-        <div class="pattern">
-            <div class="container">
-                <div class="row">
-				
-					@include('frontend.element.menuleft')
-                    
-					<div class="col-md-9">
-						<div class="row">
-							<div class="col-md-12 center-column " id="content">
-								<div class="post">
-									<div class="post-entry">
-										<h1 class="post-title">{{ $title_detail }}</h1>
-										<div class="post-content">
-											{!! $content !!}
-										</div>
-									</div>
-								</div>
-								<section class="news clearfix" id="news">
-									<div class="itemnews">
-										<h2><span>Tin tức liên quan</span>
-										</h2>
-										<nav class="listnew">
-											<ul>
-												@foreach ($posts as $item)
-												@php
-												  $title = $item->title;
-												  $url_link = route('frontend.cms.post', ['alias_detail' => $item->url_part]) . '.html';
-												  @endphp
-												<li>
-													<a class="nw_other" href="{{ $url_link }}" title="{{ $title }}">{{ $title }}</a>
-												</li>
-												@endforeach
-											</ul>
-										</nav>
-									</div>
-								</section>
-							</div>
-						</div>
-					</div>
+        <!-- END BLOG DETAIL -->
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-  {{-- End content --}}
+    </main>
+    <style>
+        #fhm-post-detail-page #banner-container .banner-category .megamenu-wrapper {
+            position: relative;
+        }
+
+        #fhm-post-detail-page #banner-container .banner-category .megamenu-wrapper .megamenu-body {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 999;
+            background: #fff;
+            width: 100%;
+            max-height: unset;
+            overflow: unset;
+        }
+
+        #fhm-post-detail-page .menu-banner .slider-banner {
+            display: none;
+        }
+
+        #fhm-post-detail-page #banner-container .banner-category .megamenu-wrapper:hover .megamenu-body {
+            display: block;
+        }
+    </style>
 @endsection
