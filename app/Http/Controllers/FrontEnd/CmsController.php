@@ -9,7 +9,6 @@ use App\Models\CmsTaxonomy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use PhpOffice\PhpSpreadsheet\Writer\Ods\Content;
 
 class CmsController extends Controller
 {
@@ -115,7 +114,7 @@ class CmsController extends Controller
         return $data_post;
     }
 
-    public function postCategory(Request $request)
+    public function postCategory()
     {
         $paramPost['status'] = Consts::POST_STATUS['active'];
         $paramPost['is_type'] = Consts::POST_TYPE['post'];
@@ -358,9 +357,11 @@ class CmsController extends Controller
         }
     }
 
-    public function productAll()
+    public function productAll(Request $request)
     {
-        $products = ContentService::getProducts(['status' => 1])->paginate(Consts::POST_PAGINATE_LIMIT);
+        $params = $request->all();
+        $params['status'] = 1;
+        $products = ContentService::getProducts($params)->paginate(Consts::POST_PAGINATE_LIMIT);
         $this->responseData['products'] = $products;
         return $this->responseView('frontend.pages.product.default');
     }

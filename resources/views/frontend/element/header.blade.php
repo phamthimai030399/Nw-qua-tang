@@ -229,12 +229,12 @@
                          <div class="grid__item d-none d-lg-flex">
                              <div class="search-form-wrapper">
                                  <form id="search-collection-form" accept-charset="UTF-8"
-                                     action="" class="search-form"
+                                     action="{{ route('frontend.cms.product_all') }}" class="search-form"
                                      method="get">
                                      <div class="input-group">
-                                         <input type="text" value=""
+                                         <input type="text" value="{{ request()->input('keyword') ?? "" }}"
                                              placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn..."
-                                             name="q" />
+                                             name="keyword" />
                                          <div class="input-group-btn">
                                              <button type="submit" class="btnType1">
                                                  <i class="fa fa-search" aria-hidden="true"></i>
@@ -289,10 +289,11 @@
                                      <a href="/" class="nav-item">TRANG CHỦ</a>
                                  </li>
                                  <li>
-                                     <a href="{{route('frontend.introduce')}}" class="nav-item">GIỚI THIỆU</a>
+                                     <a href="{{ route('frontend.introduce') }}" class="nav-item">GIỚI THIỆU</a>
                                  </li>
                                  <li>
-                                     <a class="nav-item" href="{{route('frontend.cms.product_all')}}">SẢN PHẨM CÓ SẴN</a>
+                                     <a class="nav-item" href="{{ route('frontend.cms.product_all') }}">SẢN PHẨM CÓ
+                                         SẴN</a>
 
                                      <ul class="submenu-header">
                                          @foreach ($taxonomy_all as $taxonomy)
@@ -305,9 +306,11 @@
                                          @endforeach
                                      </ul>
                                  </li>
-                                 <li><a class="nav-item" href="{{ route('frontend.cms.post_category')}}">TƯ VẤN SẢN PHẨM</a></li>
-                                 <li><a class="nav-item" href="{{route('frontend.gallery')}}">THƯ VIỆN HÌNH ẢNH </a></li>
-                                 <li><a class="nav-item" href="{{route('frontend.contact')}}">LIÊN HỆ</a></li>
+                                 <li><a class="nav-item" href="{{ route('frontend.cms.post_category') }}">TƯ VẤN SẢN
+                                         PHẨM</a></li>
+                                 <li><a class="nav-item" href="{{ route('frontend.gallery') }}">THƯ VIỆN HÌNH ẢNH
+                                     </a></li>
+                                 <li><a class="nav-item" href="{{ route('frontend.contact') }}">LIÊN HỆ</a></li>
                              </ul>
                          </nav>
 
