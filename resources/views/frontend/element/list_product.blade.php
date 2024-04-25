@@ -62,7 +62,8 @@
                                     @foreach ($item_search->searchDetails as $item)
                                         <li>
                                             <input type="checkbox" name="{{ toVariableParam($item_search->title) }}[]"
-                                                value="{{ $item->id }}" {{ in_array($item->id, request()->input(toVariableParam($item_search->title)) ?? []) ? 'checked' : '' }} />
+                                                value="{{ $item->id }}"
+                                                {{ in_array($item->id, request()->input(toVariableParam($item_search->title)) ?? []) ? 'checked' : '' }} />
                                             <label>
                                                 {{ $item->title }}
                                             </label>
@@ -120,7 +121,13 @@
                                     </a>
                                 </div>
                                 <div class="product-info">
-                                    <span class="product-type">Denim</span>
+                                    <span class="product-type">
+                                        @foreach ($taxonomy_all as $taxonomy)
+                                            @if ($taxonomy->id == $product->taxonomy_id)
+                                                {{ $taxonomy->title }}
+                                            @endif
+                                        @endforeach
+                                    </span>
                                     <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}"
                                         class="product-name" title="{{ $product->title }}">
                                         {{ $product->title }}
@@ -140,7 +147,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <button class="main-btn add-cart" data-id="{{$product->id}}">
+                                <button class="main-btn add-cart" data-id="{{ $product->id }}">
                                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path

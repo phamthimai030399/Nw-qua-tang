@@ -337,13 +337,9 @@ $(document).ready(function () {
       error: function (xhr, textStatus, errorThrown) {
         // Kiểm tra nếu mã trạng thái là 401 Unauthorized và là JSON
         if (xhr) {
-          if (xhr.status == "success") {
-            $("#fhm-login-popup .notification .success").html(xhr.message);
-            $("#fhm-login-popup .notification .error").html("");
-          } else {
-            $("#fhm-register-popup .notification .error").html(xhr.message);
+            $("#fhm-register-popup .notification .error").html(xhr?.responseJSON?.message);
             $("#fhm-register-popup .notification .success").html("");
-          }
+          
         } else {
           // Xử lý lỗi khác nếu có
           alert("Lỗi: " + textStatus);
@@ -382,7 +378,7 @@ $(document).ready(function () {
       },
       error: function (xhr, textStatus, errorThrown) {
         if (xhr) {
-          alert(xhr.message);
+          alert(xhr?.responseJSON?.message);
         } else {
           // Xử lý lỗi khác nếu có
           alert("Lỗi: " + textStatus);

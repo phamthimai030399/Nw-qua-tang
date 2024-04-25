@@ -278,7 +278,10 @@
                                              fill="black" />
                                      </svg>
                                  </div>
-                                 <div class="header-cart-quantity">{{ Auth::guard('web')->user()->carts()->count() ?? 0 }}</div>
+                                 @if (Auth::guard('web')->check())
+                                     <div class="header-cart-quantity">
+                                         {{ Auth::guard('web')->user()->carts()->count() ?? 0 }}</div>
+                                 @endif
                              </a>
                          </div>
 

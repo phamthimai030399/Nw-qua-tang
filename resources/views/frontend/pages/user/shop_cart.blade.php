@@ -23,7 +23,7 @@
         <section class="shopping-cart">
             <div class="container">
                 <div class="shopping-cart-heading title">
-                    <h1>Giỏ hàng <span>(5)</span></h1>
+                    <h1>Giỏ hàng <span>({{ Auth::guard('web')->user()->carts()->count() ?? 0 }})</span></h1>
                     <div class="line"></div>
                 </div>
                 <div class="row">

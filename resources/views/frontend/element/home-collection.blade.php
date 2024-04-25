@@ -16,7 +16,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM MỚI</h3>
                 </div>
                 <div class="view-more">
-                    <a href="{{route('frontend.cms.product_all')}}">
+                    <a href="{{ route('frontend.cms.product_all') }}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -37,30 +37,40 @@ a<!-- START HOME JUST IN -->
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
+                                                <a
+                                                    href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
                                                     <img class="product-img-default" src="{{ $product->image }}"
                                                         alt="{{ $product->title }}" title="{{ $product->title }}" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
-                                                <span class="product-type">Denim</span>
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}" class="product-name" title="{{ $product->title }}">
+                                                <span class="product-type">
+                                                    @foreach ($taxonomy_all as $taxonomy)
+                                                        @if ($taxonomy->id == $product->taxonomy_id)
+                                                            {{ $taxonomy->title }}
+                                                        @endif
+                                                    @endforeach
+                                                </span>
+                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}"
+                                                    class="product-name" title="{{ $product->title }}">
                                                     {{ $product->title }}
                                                 </a>
                                                 @if ($product->gia != null)
                                                     <div class="product-price">
-                                                        <span class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
+                                                        <span
+                                                            class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
                                                         @if ($product->giakm != null)
-                                                            <span class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
+                                                            <span
+                                                                class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
                                                         @endif
                                                     </div>
                                                 @else
                                                     <div class="product-price">
-                                                        <span class="product-price-current">Liên hệ</span> 
+                                                        <span class="product-price-current">Liên hệ</span>
                                                     </div>
                                                 @endif
                                             </div>
-                                            <button class="main-btn add-cart" data-id="{{$product->id}}">
+                                            <button class="main-btn add-cart" data-id="{{ $product->id }}">
                                                 <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -109,7 +119,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM NỔI BẬT</h3>
                 </div>
                 <div class="view-more">
-                    <a href="{{route('frontend.cms.product_all')}}">
+                    <a href="{{ route('frontend.cms.product_all') }}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -130,32 +140,42 @@ a<!-- START HOME JUST IN -->
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
+                                                <a
+                                                    href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
                                                     <img class="product-img-default" src="{{ $product->image }}"
                                                         alt="{{ $product->title }}" title="{{ $product->title }}" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
-                                                <span class="product-type">Denim</span>
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}" class="product-name" title="{{ $product->title }}">
+                                                <span class="product-type">
+                                                    @foreach ($taxonomy_all as $taxonomy)
+                                                        @if ($taxonomy->id == $product->taxonomy_id)
+                                                            {{ $taxonomy->title }}
+                                                        @endif
+                                                    @endforeach
+                                                </span>
+                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}"
+                                                    class="product-name" title="{{ $product->title }}">
                                                     {{ $product->title }}
                                                 </a>
                                                 @if ($product->gia != null)
                                                     <div class="product-price">
-                                                        <span class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
+                                                        <span
+                                                            class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
                                                         @if ($product->giakm != null)
-                                                            <span class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
+                                                            <span
+                                                                class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
                                                         @endif
                                                     </div>
                                                 @else
                                                     <div class="product-price">
-                                                        <span class="product-price-current">Liên hệ</span> 
+                                                        <span class="product-price-current">Liên hệ</span>
                                                     </div>
                                                 @endif
                                             </div>
-                                            <button class="main-btn add-cart" data-id="{{$product->id}}">
-                                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                            <button class="main-btn add-cart" data-id="{{ $product->id }}">
+                                                <svg width="16" height="17" viewBox="0 0 16 17"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M1.72117 1.54131C1.33081 1.54131 0.949755 1.54596 0.568694 1.54131C0.159752 1.53666 -0.109779 1.14631 0.0435745 0.77919C0.131869 0.560777 0.303811 0.435306 0.540812 0.430659C1.10776 0.426012 1.67935 0.421365 2.24629 0.430659C2.53906 0.435306 2.75282 0.649072 2.78535 0.946485C2.8597 1.62496 2.92941 2.30808 2.99912 2.98655C3.00841 3.05626 3.0177 3.12596 3.03165 3.21426C3.106 3.21426 3.18035 3.21426 3.2547 3.21426C7.11643 3.21426 10.9781 3.21426 14.8399 3.21426C15.4347 3.21426 15.9041 3.56279 15.9877 4.11579C16.0202 4.33885 15.9831 4.57585 15.9366 4.79891C15.5137 6.79251 15.0908 8.78611 14.654 10.7797C14.4774 11.5976 13.8175 12.1181 12.981 12.1181C10.1184 12.1181 7.25119 12.1181 4.38859 12.1181C3.45918 12.1181 2.77141 11.4768 2.67847 10.5566C2.51582 8.9534 2.33923 7.35016 2.17194 5.75156C2.02788 4.38068 1.88382 3.00979 1.7444 1.63425C1.73511 1.61566 1.73046 1.59243 1.72117 1.54131ZM3.13853 4.3342C3.20823 4.97085 3.27329 5.58427 3.33835 6.20233C3.48706 7.61969 3.63577 9.03705 3.78912 10.4544C3.83094 10.8262 4.03541 11.0074 4.41647 11.0074C7.26513 11.0074 10.1091 11.0074 12.9578 11.0074C13.311 11.0074 13.5062 10.8494 13.5805 10.5009C13.9383 8.83258 14.2962 7.15963 14.654 5.49133C14.7376 5.11027 14.8166 4.72456 14.9003 4.3342C10.9735 4.3342 7.06531 4.3342 3.13853 4.3342Z"
                                                         fill="white" />
@@ -202,7 +222,7 @@ a<!-- START HOME JUST IN -->
                     <h3>SẢN PHẨM TỪNG THỰC HIỆN</h3>
                 </div>
                 <div class="view-more">
-                    <a href="{{route('frontend.cms.product_all')}}">
+                    <a href="{{ route('frontend.cms.product_all') }}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -223,32 +243,42 @@ a<!-- START HOME JUST IN -->
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
+                                                <a
+                                                    href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
                                                     <img class="product-img-default" src="{{ $product->image }}"
                                                         alt="{{ $product->title }}" title="{{ $product->title }}" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
-                                                <span class="product-type">Denim</span>
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}" class="product-name" title="{{ $product->title }}">
+                                                <span class="product-type">
+                                                    @foreach ($taxonomy_all as $taxonomy)
+                                                        @if ($taxonomy->id == $product->taxonomy_id)
+                                                            {{ $taxonomy->title }}
+                                                        @endif
+                                                    @endforeach
+                                                </span>
+                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}"
+                                                    class="product-name" title="{{ $product->title }}">
                                                     {{ $product->title }}
                                                 </a>
                                                 @if ($product->gia != null)
                                                     <div class="product-price">
-                                                        <span class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
+                                                        <span
+                                                            class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
                                                         @if ($product->giakm != null)
-                                                            <span class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
+                                                            <span
+                                                                class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
                                                         @endif
                                                     </div>
                                                 @else
                                                     <div class="product-price">
-                                                        <span class="product-price-current">Liên hệ</span> 
+                                                        <span class="product-price-current">Liên hệ</span>
                                                     </div>
                                                 @endif
                                             </div>
-                                            <button class="main-btn add-cart" data-id="{{$product->id}}">
-                                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                            <button class="main-btn add-cart" data-id="{{ $product->id }}">
+                                                <svg width="16" height="17" viewBox="0 0 16 17"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M1.72117 1.54131C1.33081 1.54131 0.949755 1.54596 0.568694 1.54131C0.159752 1.53666 -0.109779 1.14631 0.0435745 0.77919C0.131869 0.560777 0.303811 0.435306 0.540812 0.430659C1.10776 0.426012 1.67935 0.421365 2.24629 0.430659C2.53906 0.435306 2.75282 0.649072 2.78535 0.946485C2.8597 1.62496 2.92941 2.30808 2.99912 2.98655C3.00841 3.05626 3.0177 3.12596 3.03165 3.21426C3.106 3.21426 3.18035 3.21426 3.2547 3.21426C7.11643 3.21426 10.9781 3.21426 14.8399 3.21426C15.4347 3.21426 15.9041 3.56279 15.9877 4.11579C16.0202 4.33885 15.9831 4.57585 15.9366 4.79891C15.5137 6.79251 15.0908 8.78611 14.654 10.7797C14.4774 11.5976 13.8175 12.1181 12.981 12.1181C10.1184 12.1181 7.25119 12.1181 4.38859 12.1181C3.45918 12.1181 2.77141 11.4768 2.67847 10.5566C2.51582 8.9534 2.33923 7.35016 2.17194 5.75156C2.02788 4.38068 1.88382 3.00979 1.7444 1.63425C1.73511 1.61566 1.73046 1.59243 1.72117 1.54131ZM3.13853 4.3342C3.20823 4.97085 3.27329 5.58427 3.33835 6.20233C3.48706 7.61969 3.63577 9.03705 3.78912 10.4544C3.83094 10.8262 4.03541 11.0074 4.41647 11.0074C7.26513 11.0074 10.1091 11.0074 12.9578 11.0074C13.311 11.0074 13.5062 10.8494 13.5805 10.5009C13.9383 8.83258 14.2962 7.15963 14.654 5.49133C14.7376 5.11027 14.8166 4.72456 14.9003 4.3342C10.9735 4.3342 7.06531 4.3342 3.13853 4.3342Z"
                                                         fill="white" />
@@ -295,7 +325,7 @@ a<!-- START HOME JUST IN -->
                     <h3>QUÀ TẶNG THANH LÝ</h3>
                 </div>
                 <div class="view-more">
-                    <a href="{{route('frontend.cms.product_all')}}">
+                    <a href="{{ route('frontend.cms.product_all') }}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -316,32 +346,42 @@ a<!-- START HOME JUST IN -->
                                     <div class="swiper-slide justin-item">
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
+                                                <a
+                                                    href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}">
                                                     <img class="product-img-default" src="{{ $product->image }}"
                                                         alt="{{ $product->title }}" title="{{ $product->title }}" />
                                                 </a>
                                             </div>
                                             <div class="product-info">
-                                                <span class="product-type">Denim</span>
-                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}" class="product-name" title="{{ $product->title }}">
+                                                <span class="product-type">
+                                                    @foreach ($taxonomy_all as $taxonomy)
+                                                        @if ($taxonomy->id == $product->taxonomy_id)
+                                                            {{ $taxonomy->title }}
+                                                        @endif
+                                                    @endforeach
+                                                </span>
+                                                <a href="{{ route('frontend.cms.product', ['alias_detail' => $product->alias]) }}"
+                                                    class="product-name" title="{{ $product->title }}">
                                                     {{ $product->title }}
                                                 </a>
                                                 @if ($product->gia != null)
                                                     <div class="product-price">
-                                                        <span class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
+                                                        <span
+                                                            class="product-price_detail product-price-current">{{ formatCurrency($product->gia) }}</span>
                                                         @if ($product->giakm != null)
-                                                            <span class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
+                                                            <span
+                                                                class="product-price_detail product-price-old">{{ formatCurrency($product->giakm) }}</span>
                                                         @endif
                                                     </div>
                                                 @else
                                                     <div class="product-price">
-                                                        <span class="product-price-current">Liên hệ</span> 
+                                                        <span class="product-price-current">Liên hệ</span>
                                                     </div>
                                                 @endif
                                             </div>
-                                            <button class="main-btn add-cart" data-id="{{$product->id}}">
-                                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                            <button class="main-btn add-cart" data-id="{{ $product->id }}">
+                                                <svg width="16" height="17" viewBox="0 0 16 17"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M1.72117 1.54131C1.33081 1.54131 0.949755 1.54596 0.568694 1.54131C0.159752 1.53666 -0.109779 1.14631 0.0435745 0.77919C0.131869 0.560777 0.303811 0.435306 0.540812 0.430659C1.10776 0.426012 1.67935 0.421365 2.24629 0.430659C2.53906 0.435306 2.75282 0.649072 2.78535 0.946485C2.8597 1.62496 2.92941 2.30808 2.99912 2.98655C3.00841 3.05626 3.0177 3.12596 3.03165 3.21426C3.106 3.21426 3.18035 3.21426 3.2547 3.21426C7.11643 3.21426 10.9781 3.21426 14.8399 3.21426C15.4347 3.21426 15.9041 3.56279 15.9877 4.11579C16.0202 4.33885 15.9831 4.57585 15.9366 4.79891C15.5137 6.79251 15.0908 8.78611 14.654 10.7797C14.4774 11.5976 13.8175 12.1181 12.981 12.1181C10.1184 12.1181 7.25119 12.1181 4.38859 12.1181C3.45918 12.1181 2.77141 11.4768 2.67847 10.5566C2.51582 8.9534 2.33923 7.35016 2.17194 5.75156C2.02788 4.38068 1.88382 3.00979 1.7444 1.63425C1.73511 1.61566 1.73046 1.59243 1.72117 1.54131ZM3.13853 4.3342C3.20823 4.97085 3.27329 5.58427 3.33835 6.20233C3.48706 7.61969 3.63577 9.03705 3.78912 10.4544C3.83094 10.8262 4.03541 11.0074 4.41647 11.0074C7.26513 11.0074 10.1091 11.0074 12.9578 11.0074C13.311 11.0074 13.5062 10.8494 13.5805 10.5009C13.9383 8.83258 14.2962 7.15963 14.654 5.49133C14.7376 5.11027 14.8166 4.72456 14.9003 4.3342C10.9735 4.3342 7.06531 4.3342 3.13853 4.3342Z"
                                                         fill="white" />
