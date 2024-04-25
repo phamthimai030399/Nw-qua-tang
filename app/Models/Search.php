@@ -9,4 +9,9 @@ class Search extends Model
     protected $table = 'tb_group_search';
 
     protected $guarded = [];
+
+    public function searchDetails()
+    {
+        return $this->hasMany(SearchDetail::class, 'group_id', 'id');
+    }
 }

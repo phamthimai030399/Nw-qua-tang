@@ -93,9 +93,7 @@ class Controller extends BaseController
 
         $this->responseData['array_translate'] = $array_translate;
 
-        $this->responseData['seach'] = ContentService::getSearch(['status' => 'true'])->get();
-        $this->responseData['seach_detail'] = ContentService::getSearchDetail(['status' => 'true'])->get();
-        
+        $this->responseData['search'] = ContentService::getSearch(['status' => 'true'])->get();
         return view($view, $this->responseData);
     }
 

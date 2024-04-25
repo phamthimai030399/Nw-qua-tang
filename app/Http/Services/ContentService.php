@@ -56,6 +56,9 @@ class ContentService
     public static function getSearch($params, $isPaginate = false)
     {
         $query = Search::select('tb_group_search.*')
+            ->with(['searchDetails' => function ($query) {
+                $query->where('status', 'true');
+            }])
             ->when(!empty($params['keyword']), function ($query) use ($params) {
                 $keyword = $params['keyword'];
                 return $query->where(function ($where) use ($keyword) {
@@ -188,14 +191,14 @@ class ContentService
     public static function getPost($params)
     {
         $query = CmsPost::selectRaw('tb_cms_posts.* ,admins.avatar as avatar,admins.name as fullname, tb_cms_taxonomys.title AS taxonomy_title, tb_cms_taxonomys.taxonomy AS taxonomy, tb_cms_taxonomys.json_params AS taxonomy_json_params')
-        ->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_cms_posts.taxonomy_id')
-        ->leftJoin('admins', 'admins.id', '=', 'tb_cms_posts.admin_created_id')
-        ->when(!empty($params['keyword']), function ($query) use ($params) {
-            $keyword = $params['keyword'];
-            return $query->where(function ($where) use ($keyword) {
-                return $where->where('tb_cms_posts.title', 'like', '%' . $keyword . '%');
+            ->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_cms_posts.taxonomy_id')
+            ->leftJoin('admins', 'admins.id', '=', 'tb_cms_posts.admin_created_id')
+            ->when(!empty($params['keyword']), function ($query) use ($params) {
+                $keyword = $params['keyword'];
+                return $query->where(function ($where) use ($keyword) {
+                    return $where->where('tb_cms_posts.title', 'like', '%' . $keyword . '%');
+                });
             });
-        });
 
         if (!empty($params['category'])) {
             $query->where('tb_cms_posts.category', 'like', '%,' . $params['category'] . ',%');

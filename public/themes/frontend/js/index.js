@@ -353,9 +353,9 @@ $(document).ready(function () {
 
   $(document).on(
     "change",
-    "#filter-category input[type=checkbox]",
+    ".products-filter-list input[type=checkbox]",
     function (event) {
-      handleFilter("#filter-category");
+      handleFilter();
     }
   );
   $(document).on("click", "#dropdown-user", function (event) {
@@ -364,19 +364,24 @@ $(document).ready(function () {
   });
 });
 
-function handleFilter(id) {
-  // Lấy tất cả các ô checkbox đã chọn
-  var checked = $(id + " input[type=checkbox]:checked");
+function handleFilter() {
+  var url = new URL(window.location.href);
+  url.searchParams.forEach(function (value, key) {
+    if (key !== "keyword") {
+      url.searchParams.delete(key);
+    }
+  });
+  var checked = $(".products-filter-list input[type=checkbox]:checked");
   var checkedValues = checked
     .map(function () {
-      return this.value;
+      return {
+        name: this.name,
+        value: this.value,
+      };
     })
     .get();
-
-  var url = new URL(window.location.href);
-  url.searchParams.delete("taxonomy_ids[]");
-  checkedValues.forEach(function (value) {
-    url.searchParams.append("taxonomy_ids[]", value);
+  checkedValues.forEach(function (item) {
+    url.searchParams.append(item.name, item.value);
   });
   window.location.href = url.href.replaceAll("%5B%5D", "[]");
 }
