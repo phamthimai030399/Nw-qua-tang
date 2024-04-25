@@ -140,8 +140,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <button class="main-btn add-cart" data-bs-toggle="offcanvas"
-                                    data-bs-target="#cart-popup" aria-controls="cart-popup">
+                                <button class="main-btn add-cart" data-id="{{$product->id}}">
                                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -155,7 +154,7 @@
                                             fill="white" />
                                     </svg>
 
-                                    Add to Cart
+                                    Thêm vào giỏ hàng
                                 </button>
                             </div>
                         @endforeach

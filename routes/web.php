@@ -27,6 +27,7 @@ Route::namespace('FrontEnd')->group(function () {
   Route::post('/login-ajax', 'LoginController@loginAjax')->name('frontend.login.ajax');
   Route::post('/register-ajax', 'LoginController@registerAjax')->name('frontend.register.ajax');
 
+
   Route::post('/register', 'UsersController@register')->name('frontend.register');
   Route::post('/register-post', 'UsersController@register')->name('frontend.register.post');
 
@@ -74,8 +75,7 @@ Route::namespace('FrontEnd')->group(function () {
   // Order
   Route::post('order-service', 'OrderController@storeOrderService')->name('frontend.order.store.service');
   // Cart
-  Route::get('add-to-cart', 'OrderController@addToCart')->name('frontend.order.add_to_cart');
-  Route::get('gio-hang', 'OrderController@cart')->name('frontend.order.cart');
+  Route::post('/add-cart', 'OrderController@addCart')->name('frontend.addCart')->withoutMiddleware(['verifyCsrfToken']);
   Route::get('update-cart', 'OrderController@updateCart')->name('frontend.order.cart.update');
   Route::get('remove-from-cart', 'OrderController@removeCart')->name('frontend.order.cart.remove');
   Route::post('order-product', 'OrderController@storeOrderProduct')->name('frontend.order.store.product');

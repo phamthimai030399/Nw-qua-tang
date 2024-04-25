@@ -159,7 +159,7 @@ const quickviewThumb = new Swiper(".quickview-thumb", {
   },
 });
 
-// click wishlist, add to cart
+// click wishlist, Thêm vào giỏ hàng
 const popupCart = document.querySelector("#fhm-cart-popup");
 const productWishlist = document.querySelectorAll(".product-wishlist");
 if (popupCart && productWishlist) {
@@ -204,7 +204,7 @@ if (popupCart && addToCart) {
 //     });
 //   });
 // }
-// close quick view when click add to cart
+// close quick view when click Thêm vào giỏ hàng
 const quickviewCart = document.querySelector(".quickview-add-cart");
 if (quickviewCart) {
   const tabCart = popupCart.querySelector("#pills-cart-tab");
@@ -284,9 +284,10 @@ $(document).ready(function () {
         $("[data-bs-target='#fhm-login-popup']").removeAttr(
           "data-bs-target data-bs-toggle"
         );
-        $("#icon-login").addClass("d-none");
-        $("#icon-logout").removeClass("d-none");
-        $(".user-name").html(xhr?.data?.name);
+        $("#box-before-login").addClass("d-none");
+        $("#box-after-login").removeClass("d-none");
+        $(".user-name").html(xhr?.data?.user?.name);
+        $(".header-cart-quantity").html(xhr?.data?.carts_count);
         setTimeout(function () {
           alert("Đăng nhập thành công");
         });
@@ -324,22 +325,23 @@ $(document).ready(function () {
       url: action,
       type: method,
       data: formData,
-      success: function (data, textStatus, errorThrown) {
+      success: function (xhr, textStatus, errorThrown) {
         $("#fhm-register-popup").modal("hide");
         setTimeout(function () {
-          $("#fhm-login-popup .notification .success").html(data?.message);
+          $("#fhm-login-popup .notification .success").html(xhr?.message);
           $("#fhm-login-popup .notification .error").html("");
           $("#fhm-login-popup").modal("show");
         });
+        _this.prop("disabled", false);
       },
-      error: function (data, textStatus, errorThrown) {
+      error: function (xhr, textStatus, errorThrown) {
         // Kiểm tra nếu mã trạng thái là 401 Unauthorized và là JSON
-        if (data) {
-          if (data.status == "success") {
-            $("#fhm-login-popup .notification .success").html(data.message);
+        if (xhr) {
+          if (xhr.status == "success") {
+            $("#fhm-login-popup .notification .success").html(xhr.message);
             $("#fhm-login-popup .notification .error").html("");
           } else {
-            $("#fhm-register-popup .notification .error").html(data.message);
+            $("#fhm-register-popup .notification .error").html(xhr.message);
             $("#fhm-register-popup .notification .success").html("");
           }
         } else {
@@ -361,6 +363,33 @@ $(document).ready(function () {
   $(document).on("click", "#dropdown-user", function (event) {
     event.preventDefault();
     $(".acount-info-home").toggleClass("d-none");
+  });
+  $(document).on("click", ".add-cart", function (event) {
+    event.preventDefault();
+    let _this = $(this);
+    _this.prop("disabled", true);
+    var productId = $(this).data("id");
+    $.ajax({
+      url: "/add-cart",
+      type: "POST",
+      data: {
+        product_id: productId,
+      },
+      success: function (xhr, textStatus, errorThrown) {
+        $(".header-cart-quantity").html(xhr?.data?.carts_count);
+        alert(xhr?.message);
+        _this.prop("disabled", false);
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        if (xhr) {
+          alert(xhr.message);
+        } else {
+          // Xử lý lỗi khác nếu có
+          alert("Lỗi: " + textStatus);
+        }
+        _this.prop("disabled", false);
+      },
+    });
   });
 });
 

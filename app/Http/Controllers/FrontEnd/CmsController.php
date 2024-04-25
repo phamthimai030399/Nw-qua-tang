@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Consts;
 use App\Http\Services\ContentService;
+use App\Models\Cart;
 use App\Models\CmsPost;
 use App\Models\CmsTaxonomy;
 use Illuminate\Http\Request;

@@ -11,9 +11,9 @@
 </html>
 
 <body>
-      
+
     @include('frontend.element.header')
-    
+
     @yield('content')
 
     @include('frontend.element.footer')
@@ -22,3 +22,8 @@
 
     @include('frontend.panels.scripts')
 </body>
+@if (Session::has('logoutStatus') && Session::get('logoutStatus') == 'success')
+    <script>
+        alert('Đăng xuất thành công');
+    </script>
+@endif

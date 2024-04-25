@@ -7,6 +7,7 @@ use App\Consts;
 use App\Http\Services\ContentService;
 use App\Http\Services\PageBuilderService;
 use App\Models\Admin;
+use App\Models\Cart;
 //use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -169,6 +170,7 @@ class UsersController extends Controller
 
     public function shopCart()
     {
+        $this->responseData['carts'] = Cart::where('customer_id', Auth::guard('web')->user()->id)->with('product')->get();
         return $this->responseView('frontend.pages.user.shop_cart');
     }
 }

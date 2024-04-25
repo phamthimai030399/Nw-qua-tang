@@ -1,4 +1,4 @@
-// Click add to cart
+// Click Thêm vào giỏ hàng
 const addToCartBtn = document.querySelector(".side-btn-cart");
 if (addToCartBtn) {
   addToCartBtn.addEventListener("click", () => {

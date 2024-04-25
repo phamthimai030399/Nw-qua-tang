@@ -46,4 +46,9 @@ class User extends Authenticatable
         'json_profiles' => 'object',
     ];
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'customer_id', 'id');
+    }
+
 }

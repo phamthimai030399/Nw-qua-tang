@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Consts;
 use App\Http\Requests\LoginRequest;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
@@ -51,7 +52,10 @@ class LoginController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Bạn đã đăng nhập trước đó',
-                'data' => Auth::user()
+                'data' => (object)[
+                    'user' => Auth::guard('web')->user(),
+                    'carts_count' => Cart::where('customer_id', Auth::guard('web')->user()->id)->count() ?? 0
+                ]
             ], 200);
         }
         $email = $request->email;
@@ -69,7 +73,10 @@ class LoginController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Đăng nhập thành công',
-                'dta' => Auth::user()
+                'data' => (object)[
+                    'user' => Auth::guard('web')->user(),
+                    'carts_count' => Cart::where('customer_id', Auth::guard('web')->user()->id)->count() ?? 0
+                ]
             ], 200);
         } else {
             return response()->json([
@@ -110,7 +117,7 @@ class LoginController extends Controller
     {
         Auth::guard('web')->logout();
 
-        return redirect()->route('frontend.home');
+        return redirect()->route('frontend.home')->with('logoutStatus', 'success');
     }
 
     public function register()

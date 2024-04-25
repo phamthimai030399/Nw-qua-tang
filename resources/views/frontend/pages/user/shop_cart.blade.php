@@ -31,196 +31,49 @@
                         <div class="shopping-cart-table">
                             <table class="table">
                                 <tbody>
-                                    <tr class="cart-product">
-                                        <td class="cart-checkbox">
-                                            <div class="checkbox">
-                                                <input type="checkbox"
-                                                    value="Bfgoodrich® 84194 - Advantage T/A Sport LT (255/50R20 109H)" />
-                                                <span class="checkmark">
-                                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M11.9999 0.56561C11.9172 0.67643 11.8473 0.800397 11.7505 0.896191C9.20965 3.44004 6.66713 5.98248 4.12297 8.52351C4.03047 8.61601 3.93514 8.69842 3.79756 8.71486C3.61935 8.73622 3.48177 8.66626 3.35851 8.54276C2.29946 7.48199 1.23931 6.422 0.178071 5.36279C0.161635 5.34636 0.144965 5.32992 0.129469 5.31231C0.005032 5.17144 -0.0348819 5.01085 0.0308586 4.83475C0.0965992 4.65866 0.229254 4.55841 0.415441 4.53423C0.475718 4.52661 0.536922 4.53166 0.595138 4.54904C0.653355 4.56642 0.707304 4.59576 0.753535 4.63519C0.792327 4.66783 0.829321 4.70255 0.864355 4.7392C1.78691 5.66082 2.70908 6.58275 3.63086 7.505C3.65895 7.53747 3.68447 7.57209 3.70716 7.60854L3.7607 7.62262C3.78746 7.58013 3.80765 7.53035 3.84217 7.4956C6.27676 5.0607 8.71198 2.62626 11.1478 0.192297C11.2493 0.0906339 11.3568 0.00634509 11.5096 0.0004754C11.7679 -0.00938568 11.9099 0.135009 11.9999 0.35477V0.56561Z"
-                                                            fill="white" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td class="cart-img">
-                                            <img src="./assets/image/product-1.png" title="Bát giấy 13" alt="Bát giấy 13" />
-                                        </td>
-                                        <td class="cart-info">
-                                            <div class="cart-info-content">
-                                                <a href="#" title="Bát giấy 13"> Bát giấy 13 </a>
-                                            </div>
-                                        </td>
-                                        <td class="cart-quantity">
-                                            <div class="cart-quantity-form">
-                                                <input type="button" value="-" class="qtyminus minus"
-                                                    field="quantity" />
-                                                <input type="text" name="quantity" value="0" class="qty" />
-                                                <input type="button" value="+" class="qtyplus plus"
-                                                    field="quantity" />
-                                            </div>
-                                        </td>
-                                        <td class="cart-delete">
-                                            <button>
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="cart-product">
-                                        <td class="cart-checkbox">
-                                            <div class="checkbox">
-                                                <input type="checkbox" value="Replace® Long Block Engine" />
-                                                <span class="checkmark">
-                                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M11.9999 0.56561C11.9172 0.67643 11.8473 0.800397 11.7505 0.896191C9.20965 3.44004 6.66713 5.98248 4.12297 8.52351C4.03047 8.61601 3.93514 8.69842 3.79756 8.71486C3.61935 8.73622 3.48177 8.66626 3.35851 8.54276C2.29946 7.48199 1.23931 6.422 0.178071 5.36279C0.161635 5.34636 0.144965 5.32992 0.129469 5.31231C0.005032 5.17144 -0.0348819 5.01085 0.0308586 4.83475C0.0965992 4.65866 0.229254 4.55841 0.415441 4.53423C0.475718 4.52661 0.536922 4.53166 0.595138 4.54904C0.653355 4.56642 0.707304 4.59576 0.753535 4.63519C0.792327 4.66783 0.829321 4.70255 0.864355 4.7392C1.78691 5.66082 2.70908 6.58275 3.63086 7.505C3.65895 7.53747 3.68447 7.57209 3.70716 7.60854L3.7607 7.62262C3.78746 7.58013 3.80765 7.53035 3.84217 7.4956C6.27676 5.0607 8.71198 2.62626 11.1478 0.192297C11.2493 0.0906339 11.3568 0.00634509 11.5096 0.0004754C11.7679 -0.00938568 11.9099 0.135009 11.9999 0.35477V0.56561Z"
-                                                            fill="white" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td class="cart-img">
-                                            <img src="./assets/image/product-2.png" title="Bình giữ nhiệt 49"
-                                                alt="Bình giữ nhiệt 49" />
-                                        </td>
-                                        <td class="cart-info">
-                                            <div class="cart-info-content">
-                                                <a href="#" title="Bình giữ nhiệt 49">Bình giữ nhiệt 49</a>
-                                            </div>
-                                        </td>
-                                        <td class="cart-quantity">
-                                            <div class="cart-quantity-form">
-                                                <input type="button" value="-" class="qtyminus minus"
-                                                    field="quantity" />
-                                                <input type="text" name="quantity" value="0" class="qty" />
-                                                <input type="button" value="+" class="qtyplus plus"
-                                                    field="quantity" />
-                                            </div>
-                                        </td>
-                                        <td class="cart-delete">
-                                            <button>
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="cart-product">
-                                        <td class="cart-checkbox">
-                                            <div class="checkbox">
-                                                <input type="checkbox" value="Seat Cover® RADIAL T/A SPEC" />
-                                                <span class="checkmark">
-                                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M11.9999 0.56561C11.9172 0.67643 11.8473 0.800397 11.7505 0.896191C9.20965 3.44004 6.66713 5.98248 4.12297 8.52351C4.03047 8.61601 3.93514 8.69842 3.79756 8.71486C3.61935 8.73622 3.48177 8.66626 3.35851 8.54276C2.29946 7.48199 1.23931 6.422 0.178071 5.36279C0.161635 5.34636 0.144965 5.32992 0.129469 5.31231C0.005032 5.17144 -0.0348819 5.01085 0.0308586 4.83475C0.0965992 4.65866 0.229254 4.55841 0.415441 4.53423C0.475718 4.52661 0.536922 4.53166 0.595138 4.54904C0.653355 4.56642 0.707304 4.59576 0.753535 4.63519C0.792327 4.66783 0.829321 4.70255 0.864355 4.7392C1.78691 5.66082 2.70908 6.58275 3.63086 7.505C3.65895 7.53747 3.68447 7.57209 3.70716 7.60854L3.7607 7.62262C3.78746 7.58013 3.80765 7.53035 3.84217 7.4956C6.27676 5.0607 8.71198 2.62626 11.1478 0.192297C11.2493 0.0906339 11.3568 0.00634509 11.5096 0.0004754C11.7679 -0.00938568 11.9099 0.135009 11.9999 0.35477V0.56561Z"
-                                                            fill="white" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td class="cart-img">
-                                            <img src="./assets/image/product-3.png" title="Móc khóa cao su 01"
-                                                alt="Móc khóa cao su 01" />
-                                        </td>
-                                        <td class="cart-info">
-                                            <div class="cart-info-content">
-                                                <a href="#" title="Móc khóa cao su 01">Móc khóa cao su 01</a>
-                                            </div>
-                                        </td>
-                                        <td class="cart-quantity">
-                                            <div class="cart-quantity-form">
-                                                <input type="button" value="-" class="qtyminus minus"
-                                                    field="quantity" />
-                                                <input type="text" name="quantity" value="0" class="qty" />
-                                                <input type="button" value="+" class="qtyplus plus"
-                                                    field="quantity" />
-                                            </div>
-                                        </td>
-                                        <td class="cart-delete">
-                                            <button>
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="cart-product">
-                                        <td class="cart-checkbox">
-                                            <div class="checkbox">
-                                                <input type="checkbox" value="Car® Phone Mobile Phone" />
-                                                <span class="checkmark">
-                                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M11.9999 0.56561C11.9172 0.67643 11.8473 0.800397 11.7505 0.896191C9.20965 3.44004 6.66713 5.98248 4.12297 8.52351C4.03047 8.61601 3.93514 8.69842 3.79756 8.71486C3.61935 8.73622 3.48177 8.66626 3.35851 8.54276C2.29946 7.48199 1.23931 6.422 0.178071 5.36279C0.161635 5.34636 0.144965 5.32992 0.129469 5.31231C0.005032 5.17144 -0.0348819 5.01085 0.0308586 4.83475C0.0965992 4.65866 0.229254 4.55841 0.415441 4.53423C0.475718 4.52661 0.536922 4.53166 0.595138 4.54904C0.653355 4.56642 0.707304 4.59576 0.753535 4.63519C0.792327 4.66783 0.829321 4.70255 0.864355 4.7392C1.78691 5.66082 2.70908 6.58275 3.63086 7.505C3.65895 7.53747 3.68447 7.57209 3.70716 7.60854L3.7607 7.62262C3.78746 7.58013 3.80765 7.53035 3.84217 7.4956C6.27676 5.0607 8.71198 2.62626 11.1478 0.192297C11.2493 0.0906339 11.3568 0.00634509 11.5096 0.0004754C11.7679 -0.00938568 11.9099 0.135009 11.9999 0.35477V0.56561Z"
-                                                            fill="white" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td class="cart-img">
-                                            <img src="./assets/image/product-4.png" title="Bát giấy 13"
-                                                alt="Bát giấy 13" />
-                                        </td>
-                                        <td class="cart-info">
-                                            <div class="cart-info-content">
-                                                <a href="#" title="Bát giấy 13">Bát giấy 13</a>
-                                            </div>
-                                        </td>
-                                        <td class="cart-quantity">
-                                            <div class="cart-quantity-form">
-                                                <input type="button" value="-" class="qtyminus minus"
-                                                    field="quantity" />
-                                                <input type="text" name="quantity" value="0" class="qty" />
-                                                <input type="button" value="+" class="qtyplus plus"
-                                                    field="quantity" />
-                                            </div>
-                                        </td>
-                                        <td class="cart-delete">
-                                            <button>
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="cart-product">
-                                        <td class="cart-checkbox">
-                                            <div class="checkbox">
-                                                <input type="checkbox" value="MICKEY THOMPSON TIRES®" />
-                                                <span class="checkmark">
-                                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M11.9999 0.56561C11.9172 0.67643 11.8473 0.800397 11.7505 0.896191C9.20965 3.44004 6.66713 5.98248 4.12297 8.52351C4.03047 8.61601 3.93514 8.69842 3.79756 8.71486C3.61935 8.73622 3.48177 8.66626 3.35851 8.54276C2.29946 7.48199 1.23931 6.422 0.178071 5.36279C0.161635 5.34636 0.144965 5.32992 0.129469 5.31231C0.005032 5.17144 -0.0348819 5.01085 0.0308586 4.83475C0.0965992 4.65866 0.229254 4.55841 0.415441 4.53423C0.475718 4.52661 0.536922 4.53166 0.595138 4.54904C0.653355 4.56642 0.707304 4.59576 0.753535 4.63519C0.792327 4.66783 0.829321 4.70255 0.864355 4.7392C1.78691 5.66082 2.70908 6.58275 3.63086 7.505C3.65895 7.53747 3.68447 7.57209 3.70716 7.60854L3.7607 7.62262C3.78746 7.58013 3.80765 7.53035 3.84217 7.4956C6.27676 5.0607 8.71198 2.62626 11.1478 0.192297C11.2493 0.0906339 11.3568 0.00634509 11.5096 0.0004754C11.7679 -0.00938568 11.9099 0.135009 11.9999 0.35477V0.56561Z"
-                                                            fill="white" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td class="cart-img">
-                                            <img src="./assets/image/product-5.png" title="Culotte dress"
-                                                alt="Culotte dress" />
-                                        </td>
-                                        <td class="cart-info">
-                                            <div class="cart-info-content">
-                                                <a href="#" title="Culotte dress">Culotte dress</a>
-                                            </div>
-                                        </td>
-                                        <td class="cart-quantity">
-                                            <div class="cart-quantity-form">
-                                                <input type="button" value="-" class="qtyminus minus"
-                                                    field="quantity" />
-                                                <input type="text" name="quantity" value="0" class="qty" />
-                                                <input type="button" value="+" class="qtyplus plus"
-                                                    field="quantity" />
-                                            </div>
-                                        </td>
-                                        <td class="cart-delete">
-                                            <button>
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($carts as $cart)
+                                        <tr class="cart-product">
+                                            <td class="cart-checkbox">
+                                                <div class="checkbox">
+                                                    <input type="checkbox"
+                                                        value="Bfgoodrich® 84194 - Advantage T/A Sport LT (255/50R20 109H)" />
+                                                    <span class="checkmark">
+                                                        <svg width="12" height="9" viewBox="0 0 12 9" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M11.9999 0.56561C11.9172 0.67643 11.8473 0.800397 11.7505 0.896191C9.20965 3.44004 6.66713 5.98248 4.12297 8.52351C4.03047 8.61601 3.93514 8.69842 3.79756 8.71486C3.61935 8.73622 3.48177 8.66626 3.35851 8.54276C2.29946 7.48199 1.23931 6.422 0.178071 5.36279C0.161635 5.34636 0.144965 5.32992 0.129469 5.31231C0.005032 5.17144 -0.0348819 5.01085 0.0308586 4.83475C0.0965992 4.65866 0.229254 4.55841 0.415441 4.53423C0.475718 4.52661 0.536922 4.53166 0.595138 4.54904C0.653355 4.56642 0.707304 4.59576 0.753535 4.63519C0.792327 4.66783 0.829321 4.70255 0.864355 4.7392C1.78691 5.66082 2.70908 6.58275 3.63086 7.505C3.65895 7.53747 3.68447 7.57209 3.70716 7.60854L3.7607 7.62262C3.78746 7.58013 3.80765 7.53035 3.84217 7.4956C6.27676 5.0607 8.71198 2.62626 11.1478 0.192297C11.2493 0.0906339 11.3568 0.00634509 11.5096 0.0004754C11.7679 -0.00938568 11.9099 0.135009 11.9999 0.35477V0.56561Z"
+                                                                fill="white" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="cart-img">
+                                                <img src="{{ asset($cart->product->image) }}" title="{{ $cart->product->title }}"
+                                                    alt="{{ $cart->product->title }}" />
+                                            </td>
+                                            <td class="cart-info">
+                                                <div class="cart-info-content">
+                                                    <a href="#" title="{{ $cart->product->title }}">
+                                                        {{ $cart->product->title }} </a>
+                                                </div>
+                                            </td>
+                                            <td class="cart-quantity">
+                                                <div class="cart-quantity-form">
+                                                    <input type="button" value="-" class="qtyminus minus"
+                                                        field="quantity" />
+                                                    <input type="text" name="quantity" value="{{ $cart->quantity }}" class="qty" />
+                                                    <input type="button" value="+" class="qtyplus plus"
+                                                        field="quantity" />
+                                                </div>
+                                            </td>
+                                            <td class="cart-delete">
+                                                <button>
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
