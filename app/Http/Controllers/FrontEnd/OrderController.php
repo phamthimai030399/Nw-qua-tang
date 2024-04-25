@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Consts;
+use App\Models\Cart;
 use App\Models\CmsProduct;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -79,36 +80,31 @@ class OrderController extends Controller
         return $this->responseView('frontend.pages.cart.index');
     }
 
-    public function addToCart(Request $request)
+    public function addCart(Request $request)
     {
-        $quantity = request('quantity') ?? '1';
-        $id = request('id') ?? '';
-
-        $product = CmsProduct::findOrFail($id);
-
-        if($quantity <= 0){
-            //số lượng không đủ
-            echo 1;
-
-        }else{
-            $price = $product->giakm ?? $product->gia;
-            
-            $cart = session()->get('cart', []);
-
-            if (isset($cart[$id])) {
-                $cart[$id]['quantity'] = $cart[$id]['quantity'] + $quantity;
+        if (Auth::guard('web')->check()) {
+            $params = $request->all();
+            $params['customer_id'] = Auth::guard('web')->user()->id;
+            $params['quantity'] = 1;
+            $cart = Cart::where('customer_id', Auth::guard('web')->user()->id)->where('product_id', $params['product_id'])->first();
+            if ($cart) {
+                $cart->quantity = $cart->quantity + $params['quantity'];
+                $cart->save();
             } else {
-                $cart[$id] = [
-                    "title" => $product->title,
-                    "quantity" => $quantity,
-                    "price" => $price,
-                    "image" => $product->image,
-                    "image_thumb" => $product->image_thumb
-                ];
+                Cart::create($params);
             }
-            session()->put('cart', $cart);
-
-            echo 2;
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Thêm vào giỏ hàng thành công',
+                'data' => (object)[
+                    'carts_count' => Cart::where('customer_id', Auth::guard('web')->user()->id)->count()
+                ]
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Vui lòng đăng nhập để thêm vào giỏ hàng'
+            ], 401);
         }
     }
 
@@ -137,13 +133,11 @@ class OrderController extends Controller
     public function removeCart(Request $request)
     {
         if ($request->id) {
-            $cart = session()->get('cart');
-            if (isset($cart[$request->id])) {
-                unset($cart[$request->id]);
-                session()->put('cart', $cart);
-            }
-            session()->flash('successMessage', 'Product removed successfully!');
+            $cart = Cart::find($request->id);
+            $cart->delete();
+            return back()->with('successMessage', "Xóa giỏ hàng thành công");
         }
+        return back()->with('errorMessage', "Xóa giỏ hàng không thành công");
     }
 
     public function storeOrderProduct(Request $request)

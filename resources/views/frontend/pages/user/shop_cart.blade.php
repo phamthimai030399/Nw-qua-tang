@@ -48,8 +48,8 @@
                                                 </div>
                                             </td>
                                             <td class="cart-img">
-                                                <img src="{{ asset($cart->product->image) }}" title="{{ $cart->product->title }}"
-                                                    alt="{{ $cart->product->title }}" />
+                                                <img src="{{ asset($cart->product->image) }}"
+                                                    title="{{ $cart->product->title }}" alt="{{ $cart->product->title }}" />
                                             </td>
                                             <td class="cart-info">
                                                 <div class="cart-info-content">
@@ -61,15 +61,20 @@
                                                 <div class="cart-quantity-form">
                                                     <input type="button" value="-" class="qtyminus minus"
                                                         field="quantity" />
-                                                    <input type="text" name="quantity" value="{{ $cart->quantity }}" class="qty" />
+                                                    <input type="text" name="quantity" value="{{ $cart->quantity }}"
+                                                        class="qty" />
                                                     <input type="button" value="+" class="qtyplus plus"
                                                         field="quantity" />
                                                 </div>
                                             </td>
                                             <td class="cart-delete">
-                                                <button>
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
+                                                <form method="POST" action="{{ route('frontend.order.cart.remove') }}">
+                                                    <input type="hidden" name="id" value="{{ $cart->id }}">
+                                                    @csrf
+                                                    <button>
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -170,4 +175,12 @@
             display: block;
         }
     </style>
+    <script>
+        @if(Session::has('successMessage'))
+            alert("{{ Session::get('successMessage') }}");
+        @endif
+        @if(Session::has('errorMessage'))
+            alert("{{ Session::get('errorMessage') }}");
+        @endif
+    </script>
 @endsection

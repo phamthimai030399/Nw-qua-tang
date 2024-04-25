@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Consts;
 use App\Http\Services\ContentService;
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
@@ -139,31 +140,5 @@ class OrderController extends Controller
 
         return $id;
     }
-    public function addCart(Request $request)
-    {
-        if (Auth::guard('web')->check()) {
-            $params = $request->all();
-            $params['customer_id'] = Auth::guard('web')->user()->id;
-            $params['quantity'] = 1;
-            $cart = Cart::where('customer_id', Auth::guard('web')->user()->id)->where('product_id', $params['product_id'])->first();
-            if ($cart) {
-                $cart->quantity = $cart->quantity + $params['quantity'];
-                $cart->save();
-            } else {
-                Cart::create($params);
-            }
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Thêm vào giỏ hàng thành công',
-                'data' => (object)[
-                    'carts_count' => Cart::where('customer_id', Auth::guard('web')->user()->id)->count()
-                ]
-            ], 200);
-        } else {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Vui lòng đăng nhập để thêm vào giỏ hàng'
-            ], 401);
-        }
-    }
+    
 }

@@ -75,9 +75,9 @@ Route::namespace('FrontEnd')->group(function () {
   // Order
   Route::post('order-service', 'OrderController@storeOrderService')->name('frontend.order.store.service');
   // Cart
-  Route::post('/add-cart', 'OrderController@addCart')->name('frontend.addCart')->withoutMiddleware(['verifyCsrfToken']);
+  Route::post('add-cart', 'OrderController@addCart')->name('frontend.addCart')->withoutMiddleware(['verifyCsrfToken']);
   Route::get('update-cart', 'OrderController@updateCart')->name('frontend.order.cart.update');
-  Route::get('remove-from-cart', 'OrderController@removeCart')->name('frontend.order.cart.remove');
+  Route::post('remove-from-cart', 'OrderController@removeCart')->name('frontend.order.cart.remove');
   Route::post('order-product', 'OrderController@storeOrderProduct')->name('frontend.order.store.product');
   // Theo dõi đơn hàng
   Route::get('order-tracking', 'OrderController@orderTracking')->name('frontend.order.tracking');
