@@ -45,31 +45,50 @@
                             Nếu có bất cứ thắc mắc nào về sản phẩm và dịch vụ, Quý khách vui
                             lòng để lại thông tin theo form liên hệ bên dưới.
                         </p>
-                        <form>
+                        <form action="{{ route('frontend.contact.store') }}" method="post">
+                            @csrf
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="text" id="form-control1" class="form-control" placeholder="Họ và tên *" />
+                                <input type="text" id="form-control1" class="form-control" placeholder="Họ và tên *"
+                                    name="name" />
+                                    @error('name')
+                                        <div class="error text-danger">{{ $message }}</div>
+                                    @enderror
                             </div>
 
                             <div class="row mb-4">
                                 <div class="col">
                                     <div class="form-outline">
-                                        <input type="text" id="form-control2" class="form-control" placeholder="Số điện thoại *"/>
+                                        <input type="text" id="form-control2" class="form-control"
+                                            placeholder="Số điện thoại *" name="phone" />
+                                            @error('phone')
+                                                <div class="error text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <input type="email" id="form-control3" class="form-control" placeholder="Email *" />
+                                        <input type="email" id="form-control3" class="form-control" placeholder="Email *"
+                                            name="email" />
+                                            @error('email')
+                                                <div class="error text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <textarea class="form-control" id="form-control4" rows="2" placeholder="Nội dung"></textarea>
+                                <textarea class="form-control" id="form-control4" rows="2" placeholder="Nội dung" name="content"></textarea>
                             </div>
+                            @error('content')
+                                <div class="error text-danger">{{ $message }}</div>
+                            @enderror
 
                             <!-- Submit button -->
+                            @if (Session::has('contactPostSuccessMessage'))
+                            <p><i style="color: #f07d00">{{ Session::get('contactPostSuccessMessage') }}</i></p>
+                        @endif
                             <button type="submit" class="btn btn-primary btn-block mb-4">
                                 Gửi yêu cầu
                             </button>

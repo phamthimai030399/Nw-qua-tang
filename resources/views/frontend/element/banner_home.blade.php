@@ -153,15 +153,10 @@
      }
 
      #banner-container .banner-category .megamenu-wrapper .megamenu-body {
-         max-height: 400px;
-         /* Thay đổi kích thước tối đa theo nhu cầu */
+         /* max-height: 400px;
          overflow-y: auto;
-         /* Thiết lập thanh cuộn dọc, sẽ hiển thị thanh cuộn khi cần thiết */
-         /* Ẩn thanh cuộn */
          scrollbar-width: none;
-         /* Firefox  */
-         -ms-overflow-style: none;
-         /* Edge */
+         -ms-overflow-style: none; */
      }
 
      #banner-container .banner-category .megamenu-wrapper .megamenu-body::-webkit-scrollbar {

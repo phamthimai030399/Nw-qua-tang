@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Consts;
 use App\Http\Services\ContentService;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Validator;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -70,20 +71,40 @@ class ContactController extends Controller
                 return $this->sendResponse($contact, $messageResult);
             } else {
                 $contact = Contact::create($params);
-                // if ($params['is_type'] == Consts::CONTACT_TYPE['advise'] || $params['is_type'] == Consts::CONTACT_TYPE['contact']) {
-                //     if (isset($this->web_information->information->email)) {
-                //         $email = $this->web_information->information->email;
-                //         Mail::send('frontend.emails.contact', ['contact' => $contact], function ($message) use ($email) {
-                //             $message->to($email);
-                //             $message->subject(__('You received a new appointment from the system'));
-                //         });
-                //     }
-                // }
-
                 return $this->sendResponse($contact, $messageResult);
             }
         } catch (Exception $ex) {
             throw $ex;
         }
+    }
+
+    public function postContact(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $customMessages = [
+            'name.required' => 'Vui lòng nhập họ và tên.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Email không đúng định dạng.',
+        ];
+        $validator->setCustomMessages($customMessages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->phone = $request->phone;
+        $contact->email = $request->email;
+        $contact->content = $request->content;
+        $contact->save();
+
+        return back()->with('contactPostSuccessMessage', 'Gửi thông tin thành công. Chúng tôi sẽ sớm liên hệ với bạn!');
     }
 }

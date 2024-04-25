@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('FrontEnd')->group(function () {
 
-  Route::get('/login', 'LoginController@index')->name('frontend.login');
   Route::post('/login', 'LoginController@login')->name('frontend.login.post');
   Route::post('/login-ajax', 'LoginController@loginAjax')->name('frontend.login.ajax');
   Route::post('/register-ajax', 'LoginController@registerAjax')->name('frontend.register.ajax');
@@ -71,7 +70,7 @@ Route::namespace('FrontEnd')->group(function () {
   Route::post('booking', 'BookingController@store')->name('frontend.booking.store');
   // Contact
   Route::get('lien-he', 'ContactController@index')->name('frontend.contact');
-  Route::post('contact', 'ContactController@store')->name('frontend.contact.store');
+  Route::post('contact', 'ContactController@postContact')->name('frontend.contact.store');
   // Order
   Route::post('order-service', 'OrderController@storeOrderService')->name('frontend.order.store.service');
   // Cart
@@ -86,10 +85,11 @@ Route::namespace('FrontEnd')->group(function () {
   Route::get('/{alias}', 'PageController@index')->name('frontend.page');
 
 
-  Route::group(['prefix' => 'user', 'middleware' => ['auth:web']], function () {
+  Route::group(['prefix' => 'tai-khoan', 'middleware' => ['auth:web']], function () {
 
-    Route::get('profile', 'UsersController@index')->name('frontend.user.index');
-    Route::post('update_profile', 'UsersController@update')->name('frontend.user.update');
+    Route::get('thong-tin', 'UsersController@index')->name('frontend.user.index');
+    Route::post('thay-doi-thong-tin', 'UsersController@update')->name('frontend.user.update');
+    Route::get('gio-hang', 'UsersController@shopCart')->name('frontend.user.shop_cart');
     Route::post('comment', 'CommentController@store')->name('frontend.comment.store');
     Route::post('addnew', 'CmsController@addnew')->name('frontend.post.addnew');
     Route::get('/logout', 'LoginController@logout')->name('frontend.logout');

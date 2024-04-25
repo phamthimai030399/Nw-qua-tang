@@ -9,6 +9,7 @@ use App\Http\Services\PageBuilderService;
 use App\Models\Admin;
 //use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,12 +24,10 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        // echo "SSSSSSSSSSS";die;
         if( Auth::guard('web')->check() ){
             return $this->responseView('frontend.pages.user.index');
         }else{
-            
-            return $this->responseView('frontend.pages.home');
+            return $this->responseView('frontend.home');
         }
         
     }
@@ -85,45 +84,53 @@ class UsersController extends Controller
      */
     public function update(Request $request)
     {
+        $user = Auth::guard('web')->user();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'old_password' => [
+                'nullable',
+                'required_with:new_password',
+                function ($attribute, $value, $fail) use ($user) {
+                    if (!empty($value) && !Hash::check($value, $user->password)) {
+                        // $fail(__('The :attribute is incorrect.'));
+                        $fail(__('Mật khẩu hiện tại không chính xác.'));
+                    }
+                },
+            ],
+            'new_password' => 'nullable|required_with:old_password|min:6',
+            'confirm_password' => 'nullable|required_with:new_password|same:new_password',
+        ]);
 
-        $params = $request->all();
-        $targetDir = "member/hinhanh".Auth::guard('web')->user()->id."/";
-        //$allowTypes = array('jpg','png','jpeg','gif');
-        if(!file_exists($targetDir)){
-            if(mkdir($targetDir)){
-                //echo "Tạo thư mục thành công.";
-            }
-        }
-        
-        if($_FILES['image']['name']){
-            $request->validate([
-                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-    
-            $imageName = time().'.'.$request->image->extension();  
-    
-            $request->image->move(public_path($targetDir), $imageName);
-            
-            $path_image = $targetDir.$imageName;
-        }else{
-            $path_image = $params['avatar'];
-        }
-        
-        /**/
-        
-        Auth::guard('web')->user()->avatar = '/'.$path_image;
-        Auth::guard('web')->user()->sex = $params['sex'];
-        Auth::guard('web')->user()->birthday = $params['birthday'];
-        Auth::guard('web')->user()->phone = $params['phone'];
-        
-        Auth::guard('web')->user()->save();
+        //đoạn dưới để custom message thông báo
+        $customMessages = [
+            'name.required' => 'Vui lòng nhập tên của bạn.',
+            'phone.required' => 'Vui lòng nhập số điện thoại của bạn.',
+            'email.required' => 'Vui lòng nhập địa chỉ email của bạn.',
+            'email.email' => 'Địa chỉ email không hợp lệ.',
+            'old_password.required_with' => 'Vui lòng nhập mật khẩu hiện tại.',
+            'new_password.min' => 'Mật khẩu mới phải có ít nhất 6 ký tự.',
+            'new_password.required_with' => 'Vui lòng nhập mật khẩu mới.',
+            'confirm_password.required_with' => 'Vui lòng nhập xác nhận mật khẩu mới.',
+            'confirm_password.same' => 'Xác nhận mật khẩu không khớp với mật khẩu mới.',
+        ];
+        $validator->setCustomMessages($customMessages);
 
-        /*
-        Auth::guard('web')->user()->save();
-        */
-        //print_r($params);die;
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+        if ($request->filled('new_password')) {
+            $user->password = Hash::make($request->input('new_password'));
+        }
+
+        // Lưu thông tin người dùng
+        $user->save();
+        return back()->with('updateSuccessMessage', 'Cập nhật thông tin tài khoản thành công!');
         return $this->responseView('frontend.pages.user.index');
-        
     }
 
     public function register(Request $request)
@@ -160,14 +167,8 @@ class UsersController extends Controller
         );
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Admin $admin)
+    public function shopCart()
     {
-        //
+        return $this->responseView('frontend.pages.user.shop_cart');
     }
 }

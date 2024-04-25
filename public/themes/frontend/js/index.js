@@ -278,12 +278,15 @@ $(document).ready(function () {
       url: action,
       type: method,
       data: formData,
-      success: function (data) {
+      success: function (xhr, textStatus, errorThrown) {
         $("#fhm-login-popup").modal("hide");
         // $("#box-login").html(data);
         $("[data-bs-target='#fhm-login-popup']").removeAttr(
           "data-bs-target data-bs-toggle"
         );
+        $("#icon-login").addClass("d-none");
+        $("#icon-logout").removeClass("d-none");
+        $(".user-name").html(xhr?.data?.name);
         setTimeout(function () {
           alert("Đăng nhập thành công");
         });
@@ -324,9 +327,7 @@ $(document).ready(function () {
       success: function (data, textStatus, errorThrown) {
         $("#fhm-register-popup").modal("hide");
         setTimeout(function () {
-          $("#fhm-login-popup .notification .success").html(
-            data?.message
-          );
+          $("#fhm-login-popup .notification .success").html(data?.message);
           $("#fhm-login-popup .notification .error").html("");
           $("#fhm-login-popup").modal("show");
         });
@@ -335,14 +336,10 @@ $(document).ready(function () {
         // Kiểm tra nếu mã trạng thái là 401 Unauthorized và là JSON
         if (data) {
           if (data.status == "success") {
-            $("#fhm-login-popup .notification .success").html(
-              data.message
-            );
+            $("#fhm-login-popup .notification .success").html(data.message);
             $("#fhm-login-popup .notification .error").html("");
           } else {
-            $("#fhm-register-popup .notification .error").html(
-              data.message
-            );
+            $("#fhm-register-popup .notification .error").html(data.message);
             $("#fhm-register-popup .notification .success").html("");
           }
         } else {
@@ -354,22 +351,32 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("change", "#filter-category input[type=checkbox]", function (event) {
-    handleFilter('#filter-category');
+  $(document).on(
+    "change",
+    "#filter-category input[type=checkbox]",
+    function (event) {
+      handleFilter("#filter-category");
+    }
+  );
+  $(document).on("click", "#dropdown-user", function (event) {
+    event.preventDefault();
+    $(".acount-info-home").toggleClass("d-none");
   });
 });
 
 function handleFilter(id) {
   // Lấy tất cả các ô checkbox đã chọn
   var checked = $(id + " input[type=checkbox]:checked");
-  var checkedValues = checked.map(function() {
+  var checkedValues = checked
+    .map(function () {
       return this.value;
-  }).get();
+    })
+    .get();
 
   var url = new URL(window.location.href);
-  url.searchParams.delete('taxonomy_ids[]');
-  checkedValues.forEach(function(value) {
-      url.searchParams.append('taxonomy_ids[]', value);
+  url.searchParams.delete("taxonomy_ids[]");
+  checkedValues.forEach(function (value) {
+    url.searchParams.append("taxonomy_ids[]", value);
   });
-  window.location.href = url.href.replaceAll('%5B%5D', '[]');
+  window.location.href = url.href.replaceAll("%5B%5D", "[]");
 }

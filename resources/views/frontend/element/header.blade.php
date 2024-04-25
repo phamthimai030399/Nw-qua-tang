@@ -56,7 +56,7 @@
                              <div class="header-topbar-info-icon">
                                  <i class="fas fa-headset"></i>
                              </div>
-                             <a href="#" title="Liên hệ">Liên hệ</a>
+                             <a href="{{ route('frontend.contact') }}" title="Liên hệ">Liên hệ</a>
                          </div>
                      </div>
                  </div>
@@ -232,7 +232,7 @@
                                      action="{{ route('frontend.cms.product_all') }}" class="search-form"
                                      method="get">
                                      <div class="input-group">
-                                         <input type="text" value="{{ request()->input('keyword') ?? "" }}"
+                                         <input type="text" value="{{ request()->input('keyword') ?? '' }}"
                                              placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn..."
                                              name="keyword" />
                                          <div class="input-group-btn">
@@ -244,8 +244,8 @@
                                  </form>
                              </div>
                          </div>
-                         <div class="header-account header-icon" data-bs-toggle="modal"
-                             data-bs-target="#fhm-login-popup" aria-controls="fhm-login-popup">
+                         <div id="icon-login" class="header-account header-icon" data-bs-toggle="modal"
+                             data-bs-toggle="modal" data-bs-target="#fhm-login-popup" aria-controls="fhm-login-popup">
                              <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                  <path
@@ -253,8 +253,23 @@
                                      fill="black" />
                              </svg>
                          </div>
+                         <div id="icon-logout" class="header-account header-icon d-none">
+                             <svg id="dropdown-user" width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                 <path
+                                     d="M10.0136 17.9537C9.57237 17.9537 9.13113 17.9537 8.6943 17.9537C8.4472 17.9184 8.20011 17.8919 7.95742 17.8522C5.7821 17.4815 3.92447 16.502 2.52573 14.7899C0.209204 11.9528 -0.293812 8.7714 1.1314 5.40472C2.8346 1.385 7.05729 -0.706493 11.3241 0.215704C14.7437 0.952579 17.5191 3.79418 18.159 7.21381C18.2251 7.58004 18.2781 7.95069 18.3354 8.31692C18.3354 8.75816 18.3354 9.1994 18.3354 9.63623C18.3001 9.88333 18.2737 10.1304 18.234 10.3731C17.8589 12.5749 16.8352 14.4061 15.132 15.8533C14.0289 16.7888 12.767 17.4198 11.355 17.7286C10.9137 17.8257 10.4593 17.8786 10.0136 17.9537ZM7.07935 11.6439C4.8952 10.0951 4.80695 7.20499 6.38219 5.51062C7.90448 3.87361 10.4946 3.77653 12.1316 5.31647C12.9082 6.04452 13.3406 6.95348 13.3979 8.01687C13.4774 9.53033 12.8552 10.7261 11.6286 11.6395C13.1067 12.1778 14.2628 13.0956 15.1232 14.384C18.0001 11.3615 18.0884 6.34015 14.7879 3.21615C11.5183 0.118631 6.28953 0.356902 3.31996 3.85154C0.496012 7.1741 1.0608 11.8292 3.59353 14.3796C4.01272 13.7486 4.51132 13.1971 5.10258 12.7338C5.69826 12.266 6.3513 11.9086 7.07935 11.6439ZM4.38336 15.1076C7.19849 17.5212 11.6594 17.4374 14.3246 15.0988C13.1111 13.2721 11.4212 12.2837 9.21496 12.3278C7.12789 12.3763 5.52618 13.3647 4.38336 15.1076ZM12.3478 8.26838C12.3478 6.62255 10.9932 5.27234 9.35175 5.27234C7.71474 5.27676 6.36895 6.61813 6.36454 8.25514C6.35571 9.89657 7.71033 11.2556 9.35175 11.26C10.9888 11.2688 12.3478 9.91422 12.3478 8.26838Z"
+                                     fill="black" />
+                             </svg>
+                             <div class="acount-info-home d-none">
+                                 <a href="{{route('frontend.user.index')}}" class="user-name">{{ Auth::guard('web')->user()->name ?? "" }}</a>
+                                 <div class="btn-logout">
+                                     <a href="{{ route('frontend.logout') }}"><i
+                                             class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                                 </div>
+                             </div>
+                         </div>
 
-                         <a href="shopping-cart.html" title="cart" class="header-cart header-icon">
+                         <a href="{{route('frontend.user.shop_cart')}}" title="cart" class="header-cart header-icon">
                              <div class="header-cart-img">
                                  <svg width="16" height="18" viewBox="0 0 16 18" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -334,5 +349,16 @@
          </div>
      </div>
  </header>
+ <script>
+     $(document).ready(function() {
+         @if (Auth::guard('web')->check())
+             $('#icon-login').addClass('d-none');
+             $('#icon-logout').removeClass('d-none');
+         @else
+             $('#icon-login').removeClass('d-none');
+             $('#icon-logout').addClass('d-none');
+         @endif
+     });
+ </script>
  <!-- END HEADER-->
  <!-- ============================================= -->

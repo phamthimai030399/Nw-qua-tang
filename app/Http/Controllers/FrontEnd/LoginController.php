@@ -50,7 +50,8 @@ class LoginController extends Controller
         if (Auth::guard('web')->check()) {
             return response()->json([
                 'status' => 'success',
-                'message' => 'Bạn đã đăng nhập trước đó'
+                'message' => 'Bạn đã đăng nhập trước đó',
+                'data' => Auth::user()
             ], 200);
         }
         $email = $request->email;
@@ -67,7 +68,8 @@ class LoginController extends Controller
         if ($attempt) {
             return response()->json([
                 'status' => 'success',
-                'message' => 'Đăng nhập thành công'
+                'message' => 'Đăng nhập thành công',
+                'dta' => Auth::user()
             ], 200);
         } else {
             return response()->json([
@@ -108,7 +110,7 @@ class LoginController extends Controller
     {
         Auth::guard('web')->logout();
 
-        return redirect()->back();
+        return redirect()->route('frontend.home');
     }
 
     public function register()
