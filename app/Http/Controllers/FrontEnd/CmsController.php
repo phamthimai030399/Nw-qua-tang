@@ -235,8 +235,8 @@ class CmsController extends Controller
                 $params_relative['status'] = Consts::POST_STATUS['active'];
                 $params_relative['is_type'] = Consts::POST_TYPE['post'];
 
-                $this->responseData['posts'] = ContentService::getCmsPostRelative($params_relative)->limit(Consts::DEFAULT_RELATIVE_LIMIT)->get();
-
+                $this->responseData['posts_relative'] = ContentService::getCmsPostRelative($params_relative)->limit(Consts::DEFAULT_OTHER_LIMIT)->get();
+                // dd($this->responseData['posts_relative']);
                 $this->responseData['comments'] = ContentService::getComment(['post_id' => $id, 'status' => 0])->get();
 
                 return $this->responseView('frontend.pages.post.detail');

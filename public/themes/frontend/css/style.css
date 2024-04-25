@@ -275,6 +275,7 @@ h3 {
 }
 .main-btn.main-btn-full {
   width: 100%;
+  padding: 10px;
 }
 .main-btn.main-btn-noborder {
   border-radius: 0;
@@ -394,8 +395,8 @@ h3 {
   display: none;
 }
 .checkbox:has(input[type="checkbox"]:checked) .checkmark {
-  background-color: #000000;
-  border-color: #000000;
+  background-color: #f07d00;
+  border-color: #f07d00;
 }
 .checkbox:has(input[type="checkbox"]:checked) .checkmark svg {
   display: block;
@@ -518,6 +519,9 @@ h3 {
   width: 15px;
   border: none;
   background: transparent;
+}
+.cart-product .cart-delete button i::before{
+  color: #f07d00;
 }
 .cart-product.popup-cart-item .cart-quantity {
   display: flex;
@@ -800,6 +804,7 @@ h3 {
 .login .login-not {
   font-size: 14px;
   text-align: center;
+  margin-top: 15px;
 }
 .login .login-not button {
   text-decoration: underline;
@@ -2556,6 +2561,36 @@ h3 {
   cursor: pointer;
   position: relative;
 }
+.header .header-icon .acount-info-home {
+  position: absolute;
+  top: 150%;
+  left: 0;
+  z-index: 100;
+  background: #ffffff;
+  color: #000000;
+  padding: 20px;
+  width: fit-content;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+}
+.header .header-icon .acount-info-home .user-name {
+  white-space: nowrap;
+}
+.header .header-icon .acount-info-home .btn-logout {
+  margin-top: 15px;
+}
+.header .header-icon .acount-info-home .btn-logout a {
+  white-space: nowrap;
+  color: #f07d00;
+  font-size: 14px;
+}
+.header .header-icon .acount-info-home .btn-logout a:hover {
+  text-decoration: underline;
+}
+.header .header-icon .acount-info-home .btn-logout i {
+  margin-right: 5px;
+}
 .header .header-search .search-input {
   visibility: hidden;
   opacity: 0;
@@ -3005,11 +3040,11 @@ h3 {
 .slider .slider-item {
   position: relative;
   width: 100%;
-  aspect-ratio: 1600/743;
+  /* aspect-ratio: 1600/743; */
 }
 @media only screen and (max-width: 767.98px) {
   .slider .slider-item {
-    aspect-ratio: 700/550;
+    /* aspect-ratio: 700/550; */
   }
 }
 .slider .slider-item .slider-item-content {
@@ -3172,6 +3207,9 @@ h3 {
 .justin {
   /* margin-top: 84px; */
   margin-bottom: 108px;
+}
+.home-collection .home-collection-banners .home-collection-banner-img {
+  width: 50%;
 }
 .justin .justin-container {
   /* padding-top: 20px;
@@ -7099,8 +7137,9 @@ h3 {
 }
 .shopping-cart .shopping-cart-heading h1 {
   font-size: 30px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 52px;
+  color: #f07d00;
 }
 .shopping-cart .shopping-cart-heading h1 span {
   font-size: 20px;
@@ -7188,13 +7227,13 @@ h3 {
 }
 .shopping-cart .order .order-container button {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   font-size: 20px;
   font-weight: 600;
 }
 @media only screen and (max-width: 991.98px) {
   .shopping-cart .order .order-container button {
-    padding: 7px 15px;
+    padding: 7px 10px;
   }
 }
 .shopping-cart .order .order-container .order-table {
@@ -7239,6 +7278,8 @@ h3 {
 .shopping-cart .order .order-container .order-table tfoot tr th {
   font-weight: 500;
   padding-top: 20px;
+  /* width: 100%;
+  text-align: end; */
 }
 .shopping-cart .order .order-container .order-table tfoot tr th span {
   font-size: 12px;
@@ -7415,7 +7456,7 @@ h3 {
   color: #f07d00;
   padding-bottom: 10px;
 }
-.blog-container .title .line {
+.title .line {
   height: 3px;
   width: 50px;
   background: #f07d00;
@@ -7675,6 +7716,9 @@ h3 {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+.blog-share i::before {
+  font-size: 20px;
 }
 .blog-share p {
   letter-spacing: 0.005em;
@@ -8421,7 +8465,7 @@ h3 {
   margin-bottom: 90px;
 }
 #fhm-contact .box-content-left {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 #fhm-contact .box-content-left h4 {
   font-size: 32px;
@@ -8481,7 +8525,7 @@ h3 {
   padding: 5px;
 }
 #fhm-contact .contact-container .form-outline .label-content {
-    top: 15%;
+  top: 15%;
 }
 #fhm-contact .contact-container .form-outline .label-top {
   top: 0;
@@ -8514,10 +8558,10 @@ h3 {
   border: none;
 }
 @media (min-width: 992px) {
-    #fhm-contact .col-lg-6{
-        width: 45%;
-      }
-      #fhm-contact .box-content-left {
-        margin-bottom: auto;
-    }
+  #fhm-contact .col-lg-6 {
+    width: 45%;
+  }
+  #fhm-contact .box-content-left {
+    margin-bottom: auto;
+  }
 }

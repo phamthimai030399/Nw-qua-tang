@@ -187,20 +187,15 @@ class ContentService
     }
     public static function getPost($params)
     {
-        $query = CmsPost::select('tb_cms_posts.*')
-            ->selectRaw('admins.name as admin_created, b.name as admin_updated, tb_cms_taxonomys.title as taxonomy_title, tb_cms_taxonomys.url_part as url_part')
-            ->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_cms_posts.taxonomy_id')
-            ->leftJoin('admins', 'admins.id', '=', 'tb_cms_posts.admin_created_id')
-            ->leftJoin('admins as b', 'b.id', '=', 'tb_cms_posts.admin_updated_id')
-            ->when(!empty($params['keyword']), function ($query) use ($params) {
-                $keyword = $params['keyword'];
-                return $query->where(function ($where) use ($keyword) {
-                    return $where->where('tb_cms_posts.title', 'like', '%' . $keyword . '%')
-                        ->orWhere('tb_cms_posts.mota', 'like', '%' . $keyword . '%')
-                        ->orWhere('tb_cms_posts.mota', 'like', '%' . $keyword . '%')
-                        ->orWhere('tb_cms_posts.meta_description', 'like', '%' . $keyword . '%');
-                });
+        $query = CmsPost::selectRaw('tb_cms_posts.* ,admins.avatar as avatar,admins.name as fullname, tb_cms_taxonomys.title AS taxonomy_title, tb_cms_taxonomys.taxonomy AS taxonomy, tb_cms_taxonomys.json_params AS taxonomy_json_params')
+        ->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_cms_posts.taxonomy_id')
+        ->leftJoin('admins', 'admins.id', '=', 'tb_cms_posts.admin_created_id')
+        ->when(!empty($params['keyword']), function ($query) use ($params) {
+            $keyword = $params['keyword'];
+            return $query->where(function ($where) use ($keyword) {
+                return $where->where('tb_cms_posts.title', 'like', '%' . $keyword . '%');
             });
+        });
 
         if (!empty($params['category'])) {
             $query->where('tb_cms_posts.category', 'like', '%,' . $params['category'] . ',%');
@@ -220,6 +215,9 @@ class ContentService
 
         if (!empty($params['different_id'])) {
             $query->where('tb_cms_posts.id', '!=', $params['different_id']);
+        }
+        if (!empty($params['is_type'])) {
+            $query->where('tb_cms_posts.is_type', $params['is_type']);
         }
 
         if (!empty($params['status'])) {

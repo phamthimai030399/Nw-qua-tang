@@ -20,8 +20,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         //return redirect()->route('frontend.home')->with('successMessage', 'Thêm mới tin thành công! Tin của bạn đang được chờ duyệt');
-        $this->responseData['home_post'] = ContentService::getPost(['status' => 'active', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
-        // dd($this->responseData['home_post']);
+        $this->responseData['home_post'] = ContentService::getPost(['is_type' => 'post', 'status' => 'active', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
+        // dd($this->responseData['home_post']);   
         $this->responseData['new_products'] = ContentService::getProducts(['hienthi' => '0', 'status' => '1', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
         $this->responseData['feature_products'] = ContentService::getProducts(['hienthi' => '1', 'status' => '1', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
         $this->responseData['ever_made_products'] = ContentService::getProducts(['hienthi' => '2', 'status' => '1', 'order_by' => ['created_at' => 'DESC']])->limit(8)->get();
