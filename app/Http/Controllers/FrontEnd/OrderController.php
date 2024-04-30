@@ -142,80 +142,69 @@ class OrderController extends Controller
 
     public function storeOrderProduct(Request $request)
     {
-        DB::beginTransaction();
-        try {
-            $cart = session()->get('cart', []);
-            if (empty($cart)) {
-                return redirect()->back()->with('errorMessage', __('Cart is empty!'));
+        if (Auth::guard('web')->check()) {
+            $user = Auth::guard('web')->user();
+            DB::beginTransaction();
+            try {
+                $order_params = [
+                    'name' =>  $user->name,
+                    'email' => $user->email,
+                    'phone' => $user->phone,
+                    'address' => $user->address,
+                    'customer_note' => "",
+                    'customer_id' => $user->id,
+                    'is_type' => Consts::ORDER_TYPE['product']
+                ];
+                $order_params = $request->only([
+                    'name',
+                    'email',
+                    'phone',
+                    'address',
+                    'customer_note'
+                ]);
+                
+                $order = Order::create($order_params);
+
+                $products = $request->products;
+                $data = [];
+                $productIds = [];
+                foreach ($products as $item) {
+                    $product = CmsProduct::findOrFail($item['id']);
+
+                    $order_detail_params['order_id'] = $order->id;
+                    $order_detail_params['item_id'] = $product->id;
+                    $order_detail_params['quantity'] = $item['quantity'] ?? 1;
+                    $order_detail_params['price'] = $product->price ?? null;
+                    $order_detail_params['customer_note'] = "";
+                    $order_detail_params['admin_note'] = "";
+                    $order_detail_params['status'] = 'pending';
+                    array_push($data, $order_detail_params);
+                    array_push($productIds, $product->id);
+
+
+                    $product->quantity = $product->quantity - $order_detail_params['quantity'];
+                    $product->save();
+                }
+                OrderDetail::insert($data);
+
+                Cart::where('customer_id', $user->id)->whereIn('product_id', $productIds)->delete();
+                
+                DB::commit();
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Đặt hàng thành công.'
+                ], 200);
+            } catch (Exception $ex) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $ex->getMessage(),
+                ], 400);
             }
-
-            $request->validate([
-                'name' => 'required',
-                'phone' => 'required'
-            ]);
-            // Check and store order
-            $order_params = $request->only([
-                'name',
-                'email',
-                'phone',
-                'address',
-                'customer_note'
-            ]);
-            $order_params['is_type'] = Consts::ORDER_TYPE['product'];
-            $order_params['order_date'] = Carbon::now();
-            if ($request->customer_id) {
-                $order_params['customer_id'] = $request->customer_id;
-            }
-
-            $order = Order::create($order_params);
-
-            $data = [];
-            foreach ($cart as $id => $details) {
-                // Check and store order_detail
-                $order_detail_params['order_id'] = $order->id;
-                $order_detail_params['item_id'] = $id;
-                $order_detail_params['quantity'] = $details['quantity'] ?? 1;
-                $order_detail_params['price'] = $details['price'] ?? null;
-                $order_detail_params['customer_note'] = $details['price'] ?? null;
-                $order_detail_params['admin_note'] = $order->admin_note;
-                $order_detail_params['status'] = 'pending';
-                array_push($data, $order_detail_params);
-
-                $product = CmsProduct::findOrFail($id);
-                $quantity = $details['quantity'];
-                $product->quantity = $product->quantity - $quantity;
-                $product->save();
-
-            }
-            OrderDetail::insert($data);
-
-
-
-            $messageResult = $this->web_information->information->notice_order_cart ?? __('Submit order successfull!');
-
-            // if (isset($this->web_information->information->email)) {
-            //     $email = $this->web_information->information->email;
-            //     Mail::send(
-            //         'frontend.emails.order',
-            //         [
-            //             'order' => $order
-            //         ],
-            //         function ($message) use ($email) {
-            //             $message->to($email);
-            //             $message->subject(__('You received a new order from the system'));
-            //         }
-            //     );
-            // }
-            DB::commit();
-            session()->forget('cart');
-
-            // return redirect()->back()->with('successMessage', $messageResult);
-            session()->flash('success', 'Đặt hàng thành công. Cảm ơn bạn đã mua hàng!');
-            return redirect()->back();
-        } catch (Exception $ex) {
-            // DB::rollBack();
-            // throw $ex;
-            session()->flash('error', 'Có lỗi xảy ra!');
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Vui lòng đăng nhập để thêm vào giỏ hàng'
+            ], 401);
         }
     }
 

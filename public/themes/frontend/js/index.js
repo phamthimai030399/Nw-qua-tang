@@ -337,9 +337,10 @@ $(document).ready(function () {
       error: function (xhr, textStatus, errorThrown) {
         // Kiểm tra nếu mã trạng thái là 401 Unauthorized và là JSON
         if (xhr) {
-            $("#fhm-register-popup .notification .error").html(xhr?.responseJSON?.message);
-            $("#fhm-register-popup .notification .success").html("");
-          
+          $("#fhm-register-popup .notification .error").html(
+            xhr?.responseJSON?.message
+          );
+          $("#fhm-register-popup .notification .success").html("");
         } else {
           // Xử lý lỗi khác nếu có
           alert("Lỗi: " + textStatus);
@@ -375,6 +376,98 @@ $(document).ready(function () {
         $(".header-cart-quantity").html(xhr?.data?.carts_count);
         alert(xhr?.message);
         _this.prop("disabled", false);
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        if (xhr) {
+          alert(xhr?.responseJSON?.message);
+        } else {
+          // Xử lý lỗi khác nếu có
+          alert("Lỗi: " + textStatus);
+        }
+        _this.prop("disabled", false);
+      },
+    });
+  });
+  $(document).on(
+    "change click",
+    ".shopping-cart-table input",
+    function (event) {
+      var checkedInputs = $(".cart-product input[type=checkbox]:checked");
+      var products = [];
+
+      checkedInputs.each(function () {
+        var productId = $(this).val();
+        var productName = $(this)
+          .closest(".cart-product")
+          .find(".cart-info-content a")
+          .html();
+        var quantity = $(this).closest(".cart-product").find(".qty").val();
+
+        products.push({
+          id: productId,
+          name: productName,
+          quantity: quantity,
+        });
+      });
+
+      let totalQuantity = 0;
+      $(".order-table tbody").html("");
+      products.forEach(function (product) {
+        // if (product.quantity > 0) {
+        var $row = $("<tr>");
+        var $th = $("<th>").text(product.name);
+        var $td = $("<td>").text("x " + product.quantity);
+
+        totalQuantity += parseInt(product.quantity);
+        $row.append($th, $td);
+
+        $(".order-table tbody").append($row);
+        // }
+      });
+      var $totalTh = $("<th>").text("Tổng sản phẩm");
+      var $totalTd = $("<td>").addClass("total-price").text(totalQuantity);
+
+      var $totalRow = $("<tr>").append($totalTh, $totalTd);
+
+      $(".order-table tfoot").html($totalRow);
+    }
+  );
+
+  $(document).on("click", ".order-container .main-btn", function (event) {
+    event.preventDefault();
+    let _this = $(this);
+    _this.prop("disabled", true);
+    const _token = _this.data("token");
+    var checkedInputs = $(".cart-product input[type=checkbox]:checked");
+    var products = [];
+
+    checkedInputs.each(function () {
+      var productId = $(this).val();
+      var productName = $(this)
+        .closest(".cart-product")
+        .find(".cart-info-content a")
+        .html();
+      var quantity = $(this).closest(".cart-product").find(".qty").val();
+
+      products.push({
+        id: productId,
+        name: productName,
+        quantity: quantity,
+      });
+    });
+
+    $.ajax({
+      url: "/order-product",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        products: products,
+        _token: _token,
+      }),
+      success: function (xhr, textStatus, errorThrown) {
+        alert(xhr?.message);
+        _this.prop("disabled", false);
+        window.location.reload();
       },
       error: function (xhr, textStatus, errorThrown) {
         if (xhr) {

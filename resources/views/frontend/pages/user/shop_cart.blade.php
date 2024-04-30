@@ -35,8 +35,7 @@
                                         <tr class="cart-product">
                                             <td class="cart-checkbox">
                                                 <div class="checkbox">
-                                                    <input type="checkbox"
-                                                        value="Bfgoodrich® 84194 - Advantage T/A Sport LT (255/50R20 109H)" />
+                                                    <input type="checkbox" value="{{ $cart->product->id }}" />
                                                     <span class="checkmark">
                                                         <svg width="12" height="9" viewBox="0 0 12 9" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -91,27 +90,16 @@
                                     <h5>Đơn hàng</h5>
                                     <table class="table order-table">
                                         <tbody>
-                                            <tr>
-                                                <th>Bát giấy 13</th>
-                                                <td>x 2</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Bình giữ nhiệt 49</th>
-                                                <td>
-                                                    x 3
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Móc khóa cao su 01</th>
-                                                <td>x 1</td>
-                                            </tr>
+                                            
                                         </tbody>
                                         <tfoot>
-                                            <th>Tổng sản phẩm</th>
-                                            <td class="total-price">6</td>
+                                            <tr>
+                                                <th>Tổng số sản phẩm</th>
+                                                <td class="total-price">0</td>
+                                            </tr>
                                         </tfoot>
                                     </table>
-                                    <button class="main-btn">Gửi đơn hàng</button>
+                                    <button class="main-btn" data-token="{{ csrf_token() }}">Gửi đơn hàng</button>
                                 </div>
                             </div>
                             <div class="protection">
@@ -176,10 +164,10 @@
         }
     </style>
     <script>
-        @if(Session::has('successMessage'))
+        @if (Session::has('successMessage'))
             alert("{{ Session::get('successMessage') }}");
         @endif
-        @if(Session::has('errorMessage'))
+        @if (Session::has('errorMessage'))
             alert("{{ Session::get('errorMessage') }}");
         @endif
     </script>
