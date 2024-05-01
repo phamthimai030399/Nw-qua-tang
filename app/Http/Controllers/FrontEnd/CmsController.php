@@ -362,6 +362,10 @@ class CmsController extends Controller
     {
         $params = $request->all();
         $params['status'] = 1;
+        if ($params['taxonomy_ids']) {
+            $child_ids = ContentService::getCmsTaxonomy(['parent_ids' => $params['taxonomy_ids']])->pluck('id');
+            $params['taxonomy_ids'] = array_merge($params['taxonomy_ids'], $child_ids);
+        }
         $products = ContentService::getProducts($params)->paginate(Consts::POST_PAGINATE_LIMIT);
         $this->responseData['products'] = $products;
         return $this->responseView('frontend.pages.product.default');

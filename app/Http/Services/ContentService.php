@@ -366,6 +366,9 @@ class ContentService
             ->when(!empty($params['parent_id']), function ($query) use ($params) {
                 return $query->where('tb_cms_taxonomys.parent_id', $params['parent_id']);
             })
+            ->when(!empty($params['parent_ids']), function ($query) use ($params) {
+                return $query->whereIn('tb_cms_taxonomys.parent_id', $params['parent_ids']);
+            })
 
             ->when(!empty($params['id']), function ($query) use ($params) {
                 return $query->where('tb_cms_taxonomys.id', $params['id']);
