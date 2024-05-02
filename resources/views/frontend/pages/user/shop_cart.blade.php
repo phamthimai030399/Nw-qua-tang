@@ -27,7 +27,7 @@
                     <div class="line"></div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-8 col-lg-8">
+                    <div class="col-xl-6 col-lg-6">
                         <div class="shopping-cart-table">
                             <table class="table">
                                 <tbody>
@@ -82,7 +82,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4">
+                    <div class="col-xl-6 col-lg-6">
                         <div class="shopping-cart-label">
                             <div class="order">
                                 <div class="order-bg"></div>
@@ -90,7 +90,7 @@
                                     <h5>Đơn hàng</h5>
                                     <table class="table order-table">
                                         <tbody>
-                                            
+
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -99,7 +99,68 @@
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    <button class="main-btn" data-token="{{ csrf_token() }}">Gửi đơn hàng</button>
+                                    <div class="info-client-cart">
+                                        <h5>Thông tin khách hàng</h5>
+                                        <form action="" method="post">
+                                            @csrf
+                                            <!-- Email input -->
+                                            <div class="form-outline mb-3">
+                                                <input type="text" id="form-control1" class="form-control" placeholder="Họ và tên *"
+                                                    name="name" />
+                                                    @error('name')
+                                                        <div class="error text-danger">{{ $message }}</div>
+                                                    @enderror
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="form-control2" class="form-control"
+                                                            placeholder="Số điện thoại *" name="phone" />
+                                                            @error('phone')
+                                                                <div class="error text-danger">{{ $message }}</div>
+                                                            @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="email" id="form-control3" class="form-control" placeholder="Email *"
+                                                            name="email" />
+                                                            @error('email')
+                                                                <div class="error text-danger">{{ $message }}</div>
+                                                            @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-outline mb-3">
+                                                <input type="text" id="form-control4" class="form-control" placeholder="Địa chỉ *"
+                                                    name="address" />
+                                                    @error('address')
+                                                        <div class="error text-danger">{{ $message }}</div>
+                                                    @enderror
+                                            </div>
+                
+                                            <!-- Password input -->
+                                            <div class="form-outline mb-3">
+                                                <textarea class="form-control" id="form-control5" rows="2" placeholder="Ghi chú" name="content"></textarea>
+                                            </div>
+                                            @error('content')
+                                                <div class="error text-danger">{{ $message }}</div>
+                                            @enderror
+                
+                                            <!-- Submit button -->
+                                            @if (Session::has('contactPostSuccessMessage'))
+                                            <p><i style="color: #f07d00">{{ Session::get('contactPostSuccessMessage') }}</i></p>
+                                        @endif
+                                            <button type="submit" class="button-get-order btn btn-block mb-4">
+                                              Gửi đơn hàng
+                                            </button>
+                                        </form>
+                                    </div>
+                                    {{-- <button type="button" class="btn button-get-order" data-bs-toggle="modal"
+                                        data-bs-target="#infoClientGetOrder">
+                                        Gửi đơn hàng
+                                    </button> --}}
+                                    {{-- <button class="main-btn" data-token="{{ csrf_token() }}">Gửi đơn hàng</button> --}}
                                 </div>
                             </div>
                             <div class="protection">
@@ -172,3 +233,11 @@
         @endif
     </script>
 @endsection
+<style>
+    .info-client-cart .form-outline input {
+       padding: 10px;
+    }
+    .info-client-cart .form-outline input::placeholder {
+       font-size: 15px;
+    }
+</style>

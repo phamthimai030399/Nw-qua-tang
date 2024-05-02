@@ -103,6 +103,10 @@ button:focus-visible {
 textarea {
   resize: none;
 }
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid #dee2e6;
+}
 
 @media (min-width: 1400px) {
   .container {
@@ -3054,9 +3058,9 @@ h3 {
   width: 100%;
   /* aspect-ratio: 1600/743; */
 }
-@media only screen and (max-width: 767.98px) {
-  .slider .slider-item {
-    /* aspect-ratio: 700/550; */
+@media only screen and (max-width: 991.98px) {
+  .slider.slider-banner {
+    aspect-ratio: 700/550;
   }
 }
 .slider .slider-item .slider-item-content {
@@ -7240,8 +7244,12 @@ h3 {
 .shopping-cart .order .order-container button {
   width: 100%;
   padding: 10px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
+}
+.shopping-cart .order .order-container button.button-get-order{
+ color: #fff;
+ background-color: #f07d00;
 }
 @media only screen and (max-width: 991.98px) {
   .shopping-cart .order .order-container button {

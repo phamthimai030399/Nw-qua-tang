@@ -1,4 +1,5 @@
 <script src="{{ asset('themes/frontend/swiper/swiper-bundle.min.js') }}"></script>
+{{-- <script src="{{ asset('themes/frontend/bootstrap/js/bootstrap.min.js') }}"></script> --}}
 <script src="{{ asset('themes/frontend/js/index.js') }}"></script>
 <script src="{{ asset('themes/frontend/js/home.js') }}"></script>
 {{-- <script src="{{ asset('themes/frontend/js/detail-page.js') }}"></script>

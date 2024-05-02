@@ -346,6 +346,7 @@ class CmsController extends Controller
                 }
                 $paramPost['taxonomy_ids'] = $taxonomy_ids;
                 $paramPost['status'] = 1;
+                $this->responseData['category_page'] = true;
                 $this->responseData['products'] = ContentService::getProducts($paramPost)->paginate(Consts::POST_PAGINATE_LIMIT);
                 return $this->responseView('frontend.pages.product.category');
             } else {

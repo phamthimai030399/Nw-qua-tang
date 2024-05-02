@@ -5,6 +5,7 @@
             <div class="col-lg-3 col-md-4 col-12">
                 <div class="products-filter-list">
                     <div class="products-filter-close">&#10005;</div>
+                    @if($category_page != true)
                     <div class="products-filter-item">
                         <div class="products-filter-heading" data-bs-toggle="collapse" data-bs-target="#filter-category">
                             <h2 class="heading">
@@ -45,6 +46,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     @foreach ($search as $item_search)
                         <div class="products-filter-item">
                             <div class="products-filter-heading" data-bs-toggle="collapse"
@@ -92,11 +94,14 @@
                         @if (!empty($taxonomy_product))
                             <h1>{{ $taxonomy_product->title }}</h1>
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownSubmenu"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Danh mục con
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownSubmenu">
+                                @if ($taxonomy_product->parent_id == null)
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownSubmenu"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Danh mục con
+                                    </button>
+                                @endif
+                                <ul class="dropdown-menu" aria-labelledby="dropdownSubmenu"
+                                    style="left: auto; right: 0">
                                     @foreach ($taxonomy_all as $item)
                                         @if ($item->parent_id == $taxonomy_product->id)
                                             <li><a class="dropdown-item"
@@ -222,6 +227,26 @@
                 check.checked = false;
             });
             handleFilter();
+        });
+    });
+    // Lắng nghe sự kiện khi click vào button dropdown
+    document.addEventListener('DOMContentLoaded', function() {
+        var dropdownMenu = document.querySelector('.dropdown-menu');
+        var dropdownToggle = document.querySelector('.dropdown-toggle');
+
+        dropdownToggle.addEventListener('click', function() {
+            if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+                dropdownMenu.style.display = 'block';
+            } else {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+        // Đóng dropdown nếu click bất kỳ đâu ngoài dropdown
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-toggle')) {
+                dropdownMenu.style.display = 'none';
+            }
         });
     });
 </script>

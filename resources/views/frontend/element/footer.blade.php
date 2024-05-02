@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="footer-end">
-            <p>2023 © Copyright of FHM Vietnam. All Right Reserved.</p>
+            <p>{{ $web_information->information->copyright}}</p>
             <div class="footer-element-download footer-element-center">
                 <h5></h5>
                 <div class="download-group">
