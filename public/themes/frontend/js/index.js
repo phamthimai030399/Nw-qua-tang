@@ -433,54 +433,93 @@ $(document).ready(function () {
     }
   );
 
-  $(document).on("click", ".order-container .main-btn", function (event) {
-    event.preventDefault();
-    let _this = $(this);
-    _this.prop("disabled", true);
-    const _token = _this.data("token");
-    var checkedInputs = $(".cart-product input[type=checkbox]:checked");
-    var products = [];
-
-    checkedInputs.each(function () {
-      var productId = $(this).val();
-      var productName = $(this)
-        .closest(".cart-product")
-        .find(".cart-info-content a")
-        .html();
-      var quantity = $(this).closest(".cart-product").find(".qty").val();
-
-      products.push({
-        id: productId,
-        name: productName,
-        quantity: quantity,
+  $(document).on(
+    "click",
+    ".order-container .button-get-order",
+    function (event) {
+      event.preventDefault();
+      let _this = $(this);
+      _this.prop("disabled", true);
+      var form = $(".order-container form");
+      $(".order-container form .error").addClass("d-none");
+      var formDataArray = form.serializeArray();
+      var formData = {};
+      formDataArray.forEach(function (item) {
+        var fieldName = item.name;
+        var fieldValue = item.value;
+        formData[fieldName] = fieldValue;
       });
-    });
+      if (validateFormOrder(formData)) {
+        let action = form.attr("action");
+        let method = form.attr("method");
+        var checkedInputs = $(".cart-product input[type=checkbox]:checked");
+        var products = [];
 
-    $.ajax({
-      url: "/order-product",
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify({
-        products: products,
-        _token: _token,
-      }),
-      success: function (xhr, textStatus, errorThrown) {
-        alert(xhr?.message);
+        checkedInputs.each(function () {
+          var productId = $(this).val();
+          var productName = $(this)
+            .closest(".cart-product")
+            .find(".cart-info-content a")
+            .html();
+          var quantity = $(this).closest(".cart-product").find(".qty").val();
+
+          products.push({
+            id: productId,
+            name: productName,
+            quantity: quantity,
+          });
+        });
+
+        $.ajax({
+          url: action,
+          type: method,
+          contentType: "application/json",
+          data: JSON.stringify({
+            products: products,
+            ...formData,
+          }),
+          success: function (xhr, textStatus, errorThrown) {
+            alert(xhr?.message);
+            _this.prop("disabled", false);
+            window.location.reload();
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            if (xhr) {
+              alert(xhr?.responseJSON?.message);
+            } else {
+              // Xử lý lỗi khác nếu có
+              alert("Lỗi: " + textStatus);
+            }
+            _this.prop("disabled", false);
+          },
+        });
+      } else {
         _this.prop("disabled", false);
-        window.location.reload();
-      },
-      error: function (xhr, textStatus, errorThrown) {
-        if (xhr) {
-          alert(xhr?.responseJSON?.message);
-        } else {
-          // Xử lý lỗi khác nếu có
-          alert("Lỗi: " + textStatus);
-        }
-        _this.prop("disabled", false);
-      },
-    });
-  });
+      }
+    }
+  );
 });
+
+function validateFormOrder(formData) {
+  let check = true;
+  if (formData.name.length == 0) {
+    $("input[name='name']").next().removeClass("d-none");
+    check = false;
+  }
+  if (formData.phone.length == 0) {
+    $("input[name='phone']").next().removeClass("d-none");
+    check = false;
+  }
+  if (formData.email.length == 0) {
+    $("input[name='email']").next().removeClass("d-none");
+    check = false;
+  }
+  if (formData.address.length == 0) {
+    $("input[name='address']").next().removeClass("d-none");
+    check = false;
+  }
+  return check;
+}
 
 function handleFilter() {
   var url = new URL(window.location.href);

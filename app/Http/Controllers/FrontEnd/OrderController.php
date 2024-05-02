@@ -82,10 +82,11 @@ class OrderController extends Controller
 
     public function addCart(Request $request)
     {
+        $cartCount = 0;
+        $params = $request->all();
+        $params['quantity'] = 1;
         if (Auth::guard('web')->check()) {
-            $params = $request->all();
             $params['customer_id'] = Auth::guard('web')->user()->id;
-            $params['quantity'] = 1;
             $cart = Cart::where('customer_id', Auth::guard('web')->user()->id)->where('product_id', $params['product_id'])->first();
             if ($cart) {
                 $cart->quantity = $cart->quantity + $params['quantity'];
@@ -93,19 +94,29 @@ class OrderController extends Controller
             } else {
                 Cart::create($params);
             }
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Thêm vào giỏ hàng thành công',
-                'data' => (object)[
-                    'carts_count' => Cart::where('customer_id', Auth::guard('web')->user()->id)->count()
-                ]
-            ], 200);
+            $cartCount = Cart::where('customer_id', Auth::guard('web')->user()->id)->count();
         } else {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Vui lòng đăng nhập để thêm vào giỏ hàng'
-            ], 401);
+            $cart = session()->get('cart') ?? [];
+            $check = false;
+            foreach($cart as $item) {
+                if ($item->product_id == $params['product_id']) {
+                    $item->quantity++;
+                    $check = true;
+                }
+            }
+            if(!$check) {
+                $cart[] = (object)$params;
+            }
+            $cartCount = count($cart);
+            session()->put('cart', $cart);
         }
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Thêm vào giỏ hàng thành công',
+            'data' => (object)[
+                'carts_count' => $cartCount
+            ]
+        ], 200);
     }
 
     public function updateCart(Request $request)
@@ -115,7 +126,7 @@ class OrderController extends Controller
         $totalPrice = 0;
 
         if ($id && $quantity) {
-            $cart = session()->get('cart');
+            $cart = session()->get('cart') ?? [];
             $cart[$id]["quantity"] = $quantity;
             session()->put('cart', $cart);
 
@@ -132,28 +143,37 @@ class OrderController extends Controller
 
     public function removeCart(Request $request)
     {
-        if ($request->id) {
-            $cart = Cart::find($request->id);
+        if (Auth::guard('web')->check()) {
+            $cart = Cart::where('product_id', $request->product_id)->first();
             $cart->delete();
             return back()->with('successMessage', "Xóa giỏ hàng thành công");
+        } else {
+            $cart = session()->get('cart') ?? [];
+            foreach ($cart as $key => $item) {
+                if ($item->product_id == $request->product_id) {
+                    unset($cart[$key]);
+                }
+            }
+            session()->put('cart', $cart);
+            return back()->with('successMessage', "Xóa giỏ hàng thành công");
         }
+        
         return back()->with('errorMessage', "Xóa giỏ hàng không thành công");
     }
 
     public function storeOrderProduct(Request $request)
     {
-        if (Auth::guard('web')->check()) {
-            $user = Auth::guard('web')->user();
             DB::beginTransaction();
             try {
                 $order_params = [
-                    'name' =>  $user->name,
-                    'email' => $user->email,
-                    'phone' => $user->phone,
-                    'address' => $user->address,
-                    'customer_note' => "",
-                    'customer_id' => $user->id,
-                    'is_type' => Consts::ORDER_TYPE['product']
+                    'name' =>  $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                    'customer_note' => $request->customer_note,
+                    'customer_id' => Auth::guard('web')->user()->id ?? 0,
+                    'is_type' => Consts::ORDER_TYPE['product'],
+                    'order_date' => Carbon::now(),
                 ];
                 $order_params = $request->only([
                     'name',
@@ -187,7 +207,17 @@ class OrderController extends Controller
                 }
                 OrderDetail::insert($data);
 
-                Cart::where('customer_id', $user->id)->whereIn('product_id', $productIds)->delete();
+                if (Auth::guard('web')->check()) {
+                    Cart::where('customer_id', Auth::guard('web')->user()->id)->whereIn('product_id', $productIds)->delete();
+                } else {
+                    $cart = session()->get('cart') ?? [];
+                    foreach ($cart as $key => $item) {
+                        if (in_array($item->product_id, $productIds)) {
+                            unset($cart[$key]);
+                        }
+                    }
+                    session()->put('cart', $cart);
+                }
                 
                 DB::commit();
                 return response()->json([
@@ -200,12 +230,6 @@ class OrderController extends Controller
                     'message' => $ex->getMessage(),
                 ], 400);
             }
-        } else {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Vui lòng đăng nhập để thêm vào giỏ hàng'
-            ], 401);
-        }
     }
 
     public function orderTracking()
@@ -221,5 +245,29 @@ class OrderController extends Controller
             $this->responseData['details'] = $orders;
         }
         return $this->responseView('frontend.pages.product.order_tracking');
+    }
+
+    public function shopCart()
+    {
+        if(Auth::guard('web')->check()) {
+            $this->responseData['carts'] = Cart::where('customer_id', Auth::guard('web')->user()->id)->with('product')->get();
+        } else {
+            $cart = session()->get('cart') ?? [];
+            $products = CmsProduct::whereIn('id', array_column($cart, 'product_id'))->get();
+            foreach ($cart as $key => $item) {
+                $check = false;
+                foreach ($products as $product) {
+                    if ($item->product_id == $product->id) {
+                        $cart[$key]->product = $product;
+                        $check = true;
+                    }
+                }
+                if (!$check) {
+                    unset($cart[$key]);
+                }
+            }
+            $this->responseData['carts'] = $cart;
+        }
+        return $this->responseView('frontend.pages.user.shop_cart');
     }
 }

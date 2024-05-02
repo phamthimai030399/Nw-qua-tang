@@ -94,6 +94,9 @@ class Controller extends BaseController
         $this->responseData['array_translate'] = $array_translate;
 
         $this->responseData['search'] = ContentService::getSearch(['status' => 'true'])->get();
+        
+
+        $this->responseData['carts_count'] = Auth::guard('web')->check() ? Auth::guard('web')->user()->carts()->count() : count(session()->get('cart') ?? []);
         return view($view, $this->responseData);
     }
 

@@ -23,7 +23,7 @@
         <section class="shopping-cart">
             <div class="container">
                 <div class="shopping-cart-heading title">
-                    <h1>Giỏ hàng <span>({{ Auth::guard('web')->user()->carts()->count() ?? 0 }})</span></h1>
+                    <h1>Giỏ hàng <span>({{ $cart_cout ?? 0 }})</span></h1>
                     <div class="line"></div>
                 </div>
                 <div class="row">
@@ -68,7 +68,8 @@
                                             </td>
                                             <td class="cart-delete">
                                                 <form method="POST" action="{{ route('frontend.order.cart.remove') }}">
-                                                    <input type="hidden" name="id" value="{{ $cart->id }}">
+                                                    <input type="hidden" name="product_id"
+                                                        value="{{ $cart->product->id }}">
                                                     @csrf
                                                     <button>
                                                         <i class="fas fa-trash-alt"></i>
@@ -101,58 +102,56 @@
                                     </table>
                                     <div class="info-client-cart">
                                         <h5>Thông tin khách hàng</h5>
-                                        <form action="" method="post">
-                                            @csrf
+                                        <form method="POST" action="{{ route('frontend.order.store.product') }}">
+                                            @php
+                                                $user = Auth::guard('web')->user();
+                                            @endphp
                                             <!-- Email input -->
                                             <div class="form-outline mb-3">
-                                                <input type="text" id="form-control1" class="form-control" placeholder="Họ và tên *"
-                                                    name="name" />
-                                                    @error('name')
-                                                        <div class="error text-danger">{{ $message }}</div>
-                                                    @enderror
+                                                <input type="text" id="form-control1" class="form-control"
+                                                    placeholder="Họ và tên *" name="name"
+                                                    value="{{ $user->name ?? '' }}" />
+                                                <div class="error text-danger d-none">Họ và tên không được để trống</div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col">
                                                     <div class="form-outline">
                                                         <input type="text" id="form-control2" class="form-control"
-                                                            placeholder="Số điện thoại *" name="phone" />
-                                                            @error('phone')
-                                                                <div class="error text-danger">{{ $message }}</div>
-                                                            @enderror
+                                                            placeholder="Số điện thoại *" name="phone" value="{{ $user->phone ?? '' }}" />
+
+                                                        <div class="error text-danger d-none">Số điện thoại không được để
+                                                            trống</div>
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-outline">
-                                                        <input type="email" id="form-control3" class="form-control" placeholder="Email *"
-                                                            name="email" />
-                                                            @error('email')
-                                                                <div class="error text-danger">{{ $message }}</div>
-                                                            @enderror
+                                                        <input type="email" id="form-control3" class="form-control"
+                                                            placeholder="Email *" name="email" value="{{ $user->email ?? '' }}" />
+                                                        <div class="error text-danger d-none">Email không được để trống
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-outline mb-3">
-                                                <input type="text" id="form-control4" class="form-control" placeholder="Địa chỉ *"
-                                                    name="address" />
-                                                    @error('address')
-                                                        <div class="error text-danger">{{ $message }}</div>
-                                                    @enderror
+                                                <input type="text" id="form-control4" class="form-control"
+                                                    placeholder="Địa chỉ *" name="address" value="{{ $user->address ?? '' }}" />
+                                                <div class="error text-danger d-none">Địa chỉ không được để trống</div>
                                             </div>
-                
+
                                             <!-- Password input -->
                                             <div class="form-outline mb-3">
-                                                <textarea class="form-control" id="form-control5" rows="2" placeholder="Ghi chú" name="content"></textarea>
+                                                <textarea class="form-control" id="form-control5" rows="2" placeholder="Ghi chú" name="customer_note"></textarea>
                                             </div>
-                                            @error('content')
-                                                <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
-                
+
+
                                             <!-- Submit button -->
                                             @if (Session::has('contactPostSuccessMessage'))
-                                            <p><i style="color: #f07d00">{{ Session::get('contactPostSuccessMessage') }}</i></p>
-                                        @endif
+                                                <p><i
+                                                        style="color: #f07d00">{{ Session::get('contactPostSuccessMessage') }}</i>
+                                                </p>
+                                            @endif
                                             <button type="submit" class="button-get-order btn btn-block mb-4">
-                                              Gửi đơn hàng
+                                                Gửi đơn hàng
                                             </button>
                                         </form>
                                     </div>
@@ -235,9 +234,10 @@
 @endsection
 <style>
     .info-client-cart .form-outline input {
-       padding: 10px;
+        padding: 10px;
     }
+
     .info-client-cart .form-outline input::placeholder {
-       font-size: 15px;
+        font-size: 15px;
     }
 </style>

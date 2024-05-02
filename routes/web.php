@@ -75,10 +75,11 @@ Route::namespace('FrontEnd')->group(function () {
   // Order
   Route::post('order-service', 'OrderController@storeOrderService')->name('frontend.order.store.service');
   // Cart
+  Route::get('gio-hang', 'OrderController@shopCart')->name('frontend.user.shop_cart');
   Route::post('add-cart', 'OrderController@addCart')->name('frontend.addCart')->withoutMiddleware(['verifyCsrfToken']);
   Route::get('update-cart', 'OrderController@updateCart')->name('frontend.order.cart.update');
   Route::post('remove-from-cart', 'OrderController@removeCart')->name('frontend.order.cart.remove');
-  Route::post('order-product', 'OrderController@storeOrderProduct')->name('frontend.order.store.product');
+  Route::post('order-product', 'OrderController@storeOrderProduct')->name('frontend.order.store.product')->withoutMiddleware(['verifyCsrfToken']);
   // Theo dõi đơn hàng
   Route::get('order-tracking', 'OrderController@orderTracking')->name('frontend.order.tracking');
 
@@ -89,7 +90,6 @@ Route::namespace('FrontEnd')->group(function () {
 
     Route::get('thong-tin', 'UsersController@index')->name('frontend.user.index');
     Route::post('thay-doi-thong-tin', 'UsersController@update')->name('frontend.user.update');
-    Route::get('gio-hang', 'UsersController@shopCart')->name('frontend.user.shop_cart');
     Route::post('comment', 'CommentController@store')->name('frontend.comment.store');
     Route::post('addnew', 'CmsController@addnew')->name('frontend.post.addnew');
     Route::get('/logout', 'LoginController@logout')->name('frontend.logout');

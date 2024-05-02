@@ -168,9 +168,5 @@ class UsersController extends Controller
         );
     }
 
-    public function shopCart()
-    {
-        $this->responseData['carts'] = Cart::where('customer_id', Auth::guard('web')->user()->id)->with('product')->get();
-        return $this->responseView('frontend.pages.user.shop_cart');
-    }
+  
 }

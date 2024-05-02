@@ -22,8 +22,8 @@
         <!--Account Information-->
         <section id="fhm-information">
             <div class="container">
-                <div class="information-container d-lg-flex justify-content-between">
-                    <div class="information-left d-flex d-lg-block">
+                <div class="information-container d-lg-flex justify-content-center">
+                    {{-- <div class="information-left d-flex d-lg-block">
                         <ul class="tabs-list" role="tablist">
                             <li class="tab-title" data-content="acount-info" role="presentation">
                                 <p class="text active" id="acount-info-tab" data-bs-toggle="tab"
@@ -39,7 +39,7 @@
                                 </p>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <div class="information-right">
                         <div class="tab-content tabs-content" id="tabs-content">
                             <div class="tab-pane fade show active" id="acount-info" role="tabpanel"
@@ -253,6 +253,7 @@
 
         #fhm-information .information-container .information-right {
             width: 76%;
+            
         }
 
         #fhm-information .information-left {
@@ -413,10 +414,6 @@
             #fhm-information .information-container .information-right {
                 width: 100%;
                 margin-top: 30px;
-            }
-
-            #fhm-information .information-right h3 {
-                text-align: center;
             }
 
             #fhm-information .information-right .account-information-container .account-avt {
