@@ -2415,8 +2415,8 @@ h3 {
   text-align: center;
 }
 .header .header-main {
-  padding: 20px 0;
-  height: 80px;
+  /* padding: 20px 0;
+  height: 80px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2517,6 +2517,15 @@ h3 {
 .header .header-left {
   display: flex;
   align-items: center;
+  max-width: 20%;
+}
+@media (max-width: 767.99px) {
+  .header .header-left {
+    max-width: 50%;
+  }
+  .header .header-wrapper {
+    width: fit-content !important;
+  }
 }
 .header .header-wrapper {
   display: flex;
