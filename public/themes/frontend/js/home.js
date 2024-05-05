@@ -13,7 +13,7 @@ const swiperSlider = new Swiper(".slider-container", {
 
 const swiperBestSeller = new Swiper(".justin-slider", {
   direction: "horizontal",
-  slidesPerView: 1.5,
+  slidesPerView: 2,
   spaceBetween: 10,
   speed: 800,
   autoplay: {
@@ -21,10 +21,6 @@ const swiperBestSeller = new Swiper(".justin-slider", {
     disableOnInteraction: false,
   },
   breakpoints: {
-    480: {
-      slidesPerView: 2,
-      spaceBetween: 10,
-    },
     768: {
       slidesPerView: 3,
       spaceBetween: 15,
@@ -70,31 +66,22 @@ const swiperInstagram = new Swiper(".instagram-slider", {
 
 const swiperTestimonials = new Swiper(".testimonials-slider", {
   direction: "horizontal",
-  slidesPerView: 3,
-  speed: 1000,
+  slidesPerView: 1.5,
+  spaceBetween: 25,
+  speed: 800,
   autoplay: {
-      delay: 2000,
-      disableOnInteraction: false,
+    delay: 2500,
+    disableOnInteraction: false,
   },
   breakpoints: {
-      320: {
-          slidesPerView: 1,
-      },
-      768: {
-          slidesPerView: 2,
-          spaceBetween: 10,
-      },
-      992: {
-          autoplay: false,
-          slidesPerView: 3,
-          spaceBetween: 10,
-      },
-      1200: {
-          spaceBetween: 43,
-      },
-  },
-  navigation: {
-      nextEl: ".testimonials-next",
-      prevEl: ".testimonials-prev",
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 25,
+    },
+    992: {
+      autoplay: false,
+      slidesPerView: 4,
+      spaceBetween: 26,
+    },
   },
 });

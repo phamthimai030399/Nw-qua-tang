@@ -1,4 +1,4 @@
-a<!-- START HOME JUST IN -->
+<!-- START HOME JUST IN -->
 <div id="product-home">
     <section class="justin home-collection">
         <div class="container">

@@ -1,4 +1,4 @@
-a<section id="fhm-testimonial">
+<section id="fhm-testimonial">
     <div class="container position-relative">
         <div class="section-content text-center">
             <div class="title d-flex justify-content-between align-items-center">
@@ -7,7 +7,7 @@ a<section id="fhm-testimonial">
                     <h3>TƯ VẤN SẢN PHẨM</h3>
                 </div>
                 <div class="view-more">
-                    <a href="">
+                    <a href="{{route('frontend.cms.post_category')}}">
                         Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
                 </div>
